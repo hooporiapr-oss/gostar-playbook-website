@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Gostar Digital · The Training Playbook</title>
+<title>Hooporia · Gostar Digital</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
@@ -107,7 +107,7 @@ nav a:hover{color:var(--chalk)}
 }
 .hero-sub strong{color:var(--chalk);font-weight:600}
 
-/* Play diagram — draws itself on load: three dashed routes branching
+/* Play diagram — draws itself on load: two dashed routes branching
    from one origin point, each resolving into a labeled circle. This
    is the page's one signature move — everything else stays quiet. */
 #play-diagram{width:100%;max-width:720px;margin-bottom:16px}
@@ -306,7 +306,7 @@ footer{
 <header>
   <div class="brand">
     <div class="brand-mark"></div>
-    <div class="brand-name">GOSTAR <span>DIGITAL</span></div>
+    <div class="brand-name">HOOP<span>ORIA</span></div>
   </div>
   <nav>
     <a href="#programs" data-i18n="navPrograms">Programs</a>
@@ -321,28 +321,26 @@ footer{
 
 <!-- ══════════════ HERO ══════════════ -->
 <section id="hero">
-  <div class="eyebrow" data-i18n="heroEyebrow">One Training System · Three Programs</div>
-  <h1 class="hero-title display" data-i18n="heroTitle">The <span class="accent">Playbook</span><br>Runs Deep</h1>
-  <p class="hero-sub" data-i18n="heroSub">Three programs, built on the same core discipline — <strong>escalating memory and reaction training</strong>, run through a real basketball court, with a scoreboard that never lets you settle.</p>
+  <div class="eyebrow" data-i18n="heroEyebrow">One Training System · Two Programs</div>
+  <h1 class="hero-title display" data-i18n="heroTitle"><span class="accent">Hooporia</span><br>Runs Deep</h1>
+  <p class="hero-sub" data-i18n="heroSub">Two programs, built on the same core discipline — <strong>escalating memory and reaction training</strong>, run through a real basketball court, with a scoreboard that never lets you settle.</p>
 
   <svg id="play-diagram" viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path class="route r1" d="M 360 40 C 300 90, 190 100, 130 190" />
-    <path class="route r2" d="M 360 40 C 360 110, 360 150, 360 190" />
-    <path class="route r3" d="M 360 40 C 420 90, 530 100, 590 190" />
+    <path class="route r1" d="M 360 40 C 320 90, 260 100, 220 190" />
+    <path class="route r2" d="M 360 40 C 400 90, 460 100, 500 190" />
+    <line class="node origin" x1="336" y1="24" x2="384" y2="24" stroke="var(--chalk)" stroke-width="2.5" stroke-linecap="round" />
     <circle class="node origin" cx="360" cy="40" r="10" fill="none" stroke="var(--chalk)" stroke-width="2.5" />
-    <circle class="node n1" cx="130" cy="200" r="16" fill="none" stroke="var(--orange)" stroke-width="2.5" />
-    <circle class="node n2" cx="360" cy="200" r="16" fill="none" stroke="var(--violet)" stroke-width="2.5" />
-    <circle class="node n3" cx="590" cy="200" r="16" fill="none" stroke="var(--blue)" stroke-width="2.5" />
-    <text class="diagram-label l1" x="130" y="240" text-anchor="middle" data-i18n="diagramLabel1">Dynamic BBALL</text>
-    <text class="diagram-label l2" x="360" y="240" text-anchor="middle" data-i18n="diagramLabel2">Memory BBALL</text>
-    <text class="diagram-label l3" x="590" y="240" text-anchor="middle" data-i18n="diagramLabel3">K-12 Ritnome</text>
+    <circle class="node n1" cx="220" cy="200" r="16" fill="none" stroke="var(--orange)" stroke-width="2.5" />
+    <circle class="node n2" cx="500" cy="200" r="16" fill="none" stroke="var(--violet)" stroke-width="2.5" />
+    <text class="diagram-label l1" x="220" y="240" text-anchor="middle" data-i18n="diagramLabel1">Dynamic BBALL</text>
+    <text class="diagram-label l2" x="500" y="240" text-anchor="middle" data-i18n="diagramLabel2">Memory BBALL</text>
   </svg>
 </section>
 
 <!-- ══════════════ PROGRAMS ══════════════ -->
 <section id="programs">
   <div class="section-inner">
-    <div class="section-eyebrow" style="color:var(--wood)" data-i18n="programsEyebrow">The Three Programs</div>
+    <div class="section-eyebrow" style="color:var(--wood)" data-i18n="programsEyebrow">The Programs</div>
     <h2 class="section-title display" data-i18n="programsTitle">Pick your court.</h2>
     <p class="section-desc" data-i18n="programsDesc">Every program runs on the same escalating philosophy — a round only gets harder, and the scoreboard remembers everyone who's played. Where they differ is who they're built for.</p>
   </div>
@@ -395,30 +393,6 @@ footer{
       </div>
     </div>
 
-    <div class="court-divider" aria-hidden="true"><div class="line"></div><div class="circle"></div><div class="line"></div></div>
-
-    <!-- Program 3: K-12 Ritnome -->
-    <div class="program blue">
-      <div class="program-top">
-        <div>
-          <div class="program-num mono">03</div>
-          <div class="program-name display">K-12 Ritnome</div>
-        </div>
-      </div>
-      <div class="program-tag" data-i18n="p3Tag">Classroom training system</div>
-      <p class="program-desc" data-i18n="p3Desc">The same escalating training discipline, built out for schools — teacher oversight, class rosters, and grade-level structure, so a classroom of students can train together and a teacher can see exactly how the room is doing.</p>
-      <ul class="feature-list">
-        <li data-i18n="p3F1">Teacher dashboard with class-level visibility</li>
-        <li data-i18n="p3F2">Student login by class code, no setup per device</li>
-        <li data-i18n="p3F3">Grade-level structure built for a real school day</li>
-        <li data-i18n="p3F4">Standings scoped to a class or a whole grade</li>
-      </ul>
-      <div class="program-bottom">
-        <a class="cta" href="https://ritnome.com" target="_blank" rel="noopener" data-i18n="p3Cta">Enter K-12 Ritnome →</a>
-        <span class="cta-domain mono">ritnome.com</span>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -428,7 +402,7 @@ footer{
     <div>
       <div class="section-eyebrow" style="color:var(--wood)" data-i18n="accessEyebrow">Getting In</div>
       <h2 class="section-title display" data-i18n="accessTitle">Every program is access-code protected.</h2>
-      <p class="section-desc" style="margin-bottom:24px" data-i18n="accessDesc">Each of the three programs sits behind its own access code — no public sign-ups, no guest play. A code is tied to one program, so a code for Dynamic Basketball won't open Memory Basketball or the K-12 system, and vice versa.</p>
+      <p class="section-desc" style="margin-bottom:24px" data-i18n="accessDesc">Each program sits behind its own access code — no public sign-ups, no guest play. A code is tied to one program, so a code for Dynamic Basketball won't open Memory Basketball, and vice versa.</p>
 
       <div class="code-mock">
         <div class="code-mock-label" data-i18n="codeLabel">Access Code</div>
@@ -452,10 +426,10 @@ footer{
   <div class="section-inner">
     <div class="section-eyebrow" style="color:var(--wood)" data-i18n="prefEyebrow">Get Started</div>
     <h2 class="section-title display" data-i18n="prefTitle">Which program fits your court?</h2>
-    <p class="section-desc" data-i18n="prefDesc">Select one, select all three — whatever's relevant, and we'll follow up with the right access code for each.</p>
+    <p class="section-desc" data-i18n="prefDesc">Select one, select both — whatever's relevant, and we'll follow up with the right access code for each.</p>
 
     <div class="pref-all-row">
-      <button class="pref-all-btn" id="prefAllBtn" type="button" data-i18n="prefAllBtn">Select all three</button>
+      <button class="pref-all-btn" id="prefAllBtn" type="button" data-i18n="prefAllBtn">Select both</button>
     </div>
 
     <div class="pref-options">
@@ -474,14 +448,6 @@ footer{
           <div class="pref-option-sub" data-i18n="prefSub2">Four-quarter memory system · gostar.digital</div>
         </div>
         <div class="pref-swatch" style="background:var(--violet)"></div>
-      </div>
-      <div class="pref-option" data-program="k12" tabindex="0" role="checkbox" aria-checked="false">
-        <div class="pref-check"><svg viewBox="0 0 24 24" fill="none" stroke="#10201A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="pref-option-body">
-          <div class="pref-option-name">K-12 Ritnome</div>
-          <div class="pref-option-sub" data-i18n="prefSub3">Classroom training system · ritnome.com</div>
-        </div>
-        <div class="pref-swatch" style="background:var(--blue)"></div>
       </div>
     </div>
 
@@ -502,8 +468,8 @@ footer{
 
 <script>
 (function(){
-var selected = {dynamic:false, memory:false, k12:false};
-var PROGRAM_LABELS = {dynamic:'Dynamic Basketball', memory:'Memory Basketball', k12:'K-12 Ritnome'};
+var selected = {dynamic:false, memory:false};
+var PROGRAM_LABELS = {dynamic:'Dynamic Basketball', memory:'Memory Basketball'};
 
 // ══════════════════════════════════════════════════════
 //  LANGUAGE — every translatable node carries a data-i18n key (or
@@ -517,12 +483,12 @@ var currentLang = 'en';
 var I18N = {
   en: {
     navPrograms:'Programs', navAccess:'Access', navStart:'Get Started',
-    heroEyebrow:'One Training System · Three Programs',
-    heroTitle:'The <span class="accent">Playbook</span><br>Runs Deep',
-    heroSub:'Three programs, built on the same core discipline — <strong>escalating memory and reaction training</strong>, run through a real basketball court, with a scoreboard that never lets you settle.',
-    diagramLabel1:'Dynamic BBALL', diagramLabel2:'Memory BBALL', diagramLabel3:'K-12 Ritnome',
+    heroEyebrow:'One Training System · Two Programs',
+    heroTitle:'<span class="accent">Hooporia</span><br>Runs Deep',
+    heroSub:'Two programs, built on the same core discipline — <strong>escalating memory and reaction training</strong>, run through a real basketball court, with a scoreboard that never lets you settle.',
+    diagramLabel1:'Dynamic BBALL', diagramLabel2:'Memory BBALL',
 
-    programsEyebrow:'The Three Programs',
+    programsEyebrow:'The Programs',
     programsTitle:'Pick your court.',
     programsDesc:"Every program runs on the same escalating philosophy — a round only gets harder, and the scoreboard remembers everyone who's played. Where they differ is who they're built for.",
 
@@ -542,17 +508,9 @@ var I18N = {
     p2F4:'Built for repeatable, focused training',
     p2Cta:'Enter Memory Basketball →',
 
-    p3Tag:'Classroom training system',
-    p3Desc:'The same escalating training discipline, built out for schools — teacher oversight, class rosters, and grade-level structure, so a classroom of students can train together and a teacher can see exactly how the room is doing.',
-    p3F1:'Teacher dashboard with class-level visibility',
-    p3F2:'Student login by class code, no setup per device',
-    p3F3:'Grade-level structure built for a real school day',
-    p3F4:'Standings scoped to a class or a whole grade',
-    p3Cta:'Enter K-12 Ritnome →',
-
     accessEyebrow:'Getting In',
     accessTitle:'Every program is access-code protected.',
-    accessDesc:"Each of the three programs sits behind its own access code — no public sign-ups, no guest play. A code is tied to one program, so a code for Dynamic Basketball won't open Memory Basketball or the K-12 system, and vice versa.",
+    accessDesc:"Each program sits behind its own access code — no public sign-ups, no guest play. A code is tied to one program, so a code for Dynamic Basketball won't open Memory Basketball, and vice versa.",
     codeLabel:'Access Code',
     codeNote:"This is what stands between the gate and the court on every program — enter a valid code, and you're in.",
     trialEyebrow:'Free Trial',
@@ -562,11 +520,10 @@ var I18N = {
 
     prefEyebrow:'Get Started',
     prefTitle:'Which program fits your court?',
-    prefDesc:"Select one, select all three — whatever's relevant, and we'll follow up with the right access code for each.",
-    prefAllBtn:'Select all three',
+    prefDesc:"Select one, select both — whatever's relevant, and we'll follow up with the right access code for each.",
+    prefAllBtn:'Select both',
     prefSub1:'Five-game progression · gostardigital.com',
     prefSub2:'Four-quarter memory system · gostar.digital',
-    prefSub3:'Classroom training system · ritnome.com',
     prefNamePlaceholder:'Your name',
     prefEmailPlaceholder:'Your email',
     prefOrgPlaceholder:'School or organization (optional)',
@@ -577,12 +534,12 @@ var I18N = {
   },
   es: {
     navPrograms:'Programas', navAccess:'Acceso', navStart:'Comenzar',
-    heroEyebrow:'Un Sistema de Entrenamiento · Tres Programas',
-    heroTitle:'El <span class="accent">Playbook</span><br>Va Más Profundo',
-    heroSub:'Tres programas, construidos sobre la misma disciplina central — <strong>entrenamiento de memoria y reacción que va escalando</strong>, en una cancha de baloncesto real, con una tabla de posiciones que nunca te deja acomodarte.',
-    diagramLabel1:'Dynamic BBALL', diagramLabel2:'Memory BBALL', diagramLabel3:'K-12 Ritnome',
+    heroEyebrow:'Un Sistema de Entrenamiento · Dos Programas',
+    heroTitle:'<span class="accent">Hooporia</span><br>Va Más Profundo',
+    heroSub:'Dos programas, construidos sobre la misma disciplina central — <strong>entrenamiento de memoria y reacción que va escalando</strong>, en una cancha de baloncesto real, con una tabla de posiciones que nunca te deja acomodarte.',
+    diagramLabel1:'Dynamic BBALL', diagramLabel2:'Memory BBALL',
 
-    programsEyebrow:'Los Tres Programas',
+    programsEyebrow:'Los Programas',
     programsTitle:'Elige tu cancha.',
     programsDesc:'Cada programa corre bajo la misma filosofía de escalar — cada ronda se pone más difícil, y la tabla de posiciones recuerda a todo el que ha jugado. La diferencia está en para quién está hecho cada uno.',
 
@@ -602,17 +559,9 @@ var I18N = {
     p2F4:'Hecho para entrenamiento enfocado y repetible',
     p2Cta:'Entrar a Memory Basketball →',
 
-    p3Tag:'Sistema de entrenamiento para el salón',
-    p3Desc:'La misma disciplina de entrenamiento que va escalando, construida para escuelas — supervisión del maestro, listas de clase, y estructura por grado, para que un salón entero entrene junto y el maestro vea exactamente cómo va el grupo.',
-    p3F1:'Panel del maestro con visibilidad a nivel de clase',
-    p3F2:'Acceso del estudiante por código de clase, sin configurar cada equipo',
-    p3F3:'Estructura por grado, hecha para un día real de escuela',
-    p3F4:'Tabla de posiciones por clase o por grado completo',
-    p3Cta:'Entrar a K-12 Ritnome →',
-
     accessEyebrow:'Cómo Entrar',
     accessTitle:'Cada programa está protegido por código de acceso.',
-    accessDesc:'Cada uno de los tres programas tiene su propio código de acceso — sin registro público, sin jugar como invitado. Un código pertenece a un solo programa, así que un código de Dynamic Basketball no abre Memory Basketball ni el sistema K-12, y viceversa.',
+    accessDesc:'Cada programa tiene su propio código de acceso — sin registro público, sin jugar como invitado. Un código pertenece a un solo programa, así que un código de Dynamic Basketball no abre Memory Basketball, y viceversa.',
     codeLabel:'Código de Acceso',
     codeNote:'Esto es lo único entre la entrada y la cancha en cada programa — con un código válido, ya estás dentro.',
     trialEyebrow:'Prueba Gratis',
@@ -622,11 +571,10 @@ var I18N = {
 
     prefEyebrow:'Comenzar',
     prefTitle:'¿Cuál programa va con tu cancha?',
-    prefDesc:'Elige uno, o elige los tres — lo que aplique, y te enviamos el código de acceso correcto para cada uno.',
-    prefAllBtn:'Seleccionar los tres',
+    prefDesc:'Elige uno, o elige los dos — lo que aplique, y te enviamos el código de acceso correcto para cada uno.',
+    prefAllBtn:'Seleccionar los dos',
     prefSub1:'Progresión de cinco juegos · gostardigital.com',
     prefSub2:'Sistema de memoria de cuatro cuartos · gostar.digital',
-    prefSub3:'Sistema de entrenamiento para el salón · ritnome.com',
     prefNamePlaceholder:'Tu nombre',
     prefEmailPlaceholder:'Tu correo electrónico',
     prefOrgPlaceholder:'Escuela u organización (opcional)',
@@ -669,7 +617,7 @@ function updateOptionUI(el, isChecked){
 }
 
 function anySelected(){
-  return selected.dynamic || selected.memory || selected.k12;
+  return selected.dynamic || selected.memory;
 }
 
 function refreshFormVisibility(){
@@ -695,7 +643,7 @@ document.querySelectorAll('.pref-option').forEach(function(el){
 });
 
 document.getElementById('prefAllBtn').addEventListener('click', function(){
-  var allOn = selected.dynamic && selected.memory && selected.k12;
+  var allOn = selected.dynamic && selected.memory;
   Object.keys(selected).forEach(function(key){
     selected[key] = !allOn;
     updateOptionUI(document.querySelector('[data-program="'+key+'"]'), selected[key]);
