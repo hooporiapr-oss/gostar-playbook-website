@@ -171,6 +171,7 @@ section{padding:100px 24px;position:relative}
 .program.orange::before{background:var(--orange)}
 .program.violet::before{background:var(--violet)}
 .program.blue::before{background:var(--blue)}
+.program.blue::before{background:var(--blue)}
 
 .program-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:8px}
 .program-num{font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;opacity:.5}
@@ -178,6 +179,7 @@ section{padding:100px 24px;position:relative}
 .program-tag{font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:26px}
 .program.orange .program-tag{color:var(--orange)}
 .program.violet .program-tag{color:var(--violet)}
+.program.blue .program-tag{color:var(--blue)}
 .program.blue .program-tag{color:var(--blue)}
 
 .program-desc{font-size:1rem;color:var(--chalk-dim);max-width:600px;margin-bottom:28px}
@@ -195,6 +197,7 @@ section{padding:100px 24px;position:relative}
 .program.orange .feature-list li::before{background:var(--orange)}
 .program.violet .feature-list li::before{background:var(--violet)}
 .program.blue .feature-list li::before{background:var(--blue)}
+.program.blue .feature-list li::before{background:var(--blue)}
 
 .program-bottom{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
 .cta{
@@ -207,6 +210,7 @@ section{padding:100px 24px;position:relative}
 .cta:active{transform:scale(.97)}
 .program.orange .cta{background:var(--orange)}
 .program.violet .cta{background:var(--violet)}
+.program.blue .cta{background:var(--blue)}
 .program.blue .cta{background:var(--blue)}
 .cta-domain{font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:var(--chalk-dim)}
 
@@ -321,19 +325,22 @@ footer{
 
 <!-- ══════════════ HERO ══════════════ -->
 <section id="hero">
-  <div class="eyebrow" data-i18n="heroEyebrow">One Training System · Two Programs</div>
+  <div class="eyebrow" data-i18n="heroEyebrow">One Training System · Three Programs</div>
   <h1 class="hero-title display" data-i18n="heroTitle"><span class="accent">Hooporia</span><br>Runs Deep</h1>
-  <p class="hero-sub" data-i18n="heroSub">Two programs, built on the same core discipline — <strong>escalating memory and reaction training</strong>, run through a real basketball court, with a scoreboard that never lets you settle.</p>
+  <p class="hero-sub" data-i18n="heroSub">Three programs, built on the same core discipline — <strong>escalating memory and reaction training</strong>, run through a real basketball court, with a scoreboard that never lets you settle.</p>
 
   <svg id="play-diagram" viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path class="route r1" d="M 360 40 C 320 90, 260 100, 220 190" />
-    <path class="route r2" d="M 360 40 C 400 90, 460 100, 500 190" />
+    <path class="route r1" d="M 360 40 C 300 100, 200 110, 140 190" />
+    <path class="route r2" d="M 360 40 C 360 100, 360 140, 360 190" />
+    <path class="route r3" d="M 360 40 C 420 100, 520 110, 580 190" />
     <line class="node origin" x1="336" y1="24" x2="384" y2="24" stroke="var(--chalk)" stroke-width="2.5" stroke-linecap="round" />
     <circle class="node origin" cx="360" cy="40" r="10" fill="none" stroke="var(--chalk)" stroke-width="2.5" />
-    <circle class="node n1" cx="220" cy="200" r="16" fill="none" stroke="var(--orange)" stroke-width="2.5" />
-    <circle class="node n2" cx="500" cy="200" r="16" fill="none" stroke="var(--violet)" stroke-width="2.5" />
-    <text class="diagram-label l1" x="220" y="240" text-anchor="middle" data-i18n="diagramLabel1">Dynamic BBALL</text>
-    <text class="diagram-label l2" x="500" y="240" text-anchor="middle" data-i18n="diagramLabel2">Memory BBALL</text>
+    <circle class="node n1" cx="140" cy="200" r="16" fill="none" stroke="var(--orange)" stroke-width="2.5" />
+    <circle class="node n2" cx="360" cy="200" r="16" fill="none" stroke="var(--violet)" stroke-width="2.5" />
+    <circle class="node n3" cx="580" cy="200" r="16" fill="none" stroke="var(--blue)" stroke-width="2.5" />
+    <text class="diagram-label l1" x="140" y="240" text-anchor="middle" data-i18n="diagramLabel1">Reaction Velocity</text>
+    <text class="diagram-label l2" x="360" y="240" text-anchor="middle" data-i18n="diagramLabel2">Dynamic Memory</text>
+    <text class="diagram-label l3" x="580" y="240" text-anchor="middle" data-i18n="diagramLabel3">Swish Basketball</text>
   </svg>
 </section>
 
@@ -347,36 +354,36 @@ footer{
 
   <div class="section-inner" style="display:flex;flex-direction:column;gap:28px">
 
-    <!-- Program 1: Dynamic Basketball -->
+    <!-- Program 1: Reaction Velocity -->
     <div class="program orange">
       <div class="program-top">
         <div>
           <div class="program-num mono">01</div>
-          <div class="program-name display">Dynamic Basketball</div>
+          <div class="program-name display">Reaction Velocity</div>
         </div>
       </div>
-      <div class="program-tag" data-i18n="p1Tag">Five-game progression</div>
-      <p class="program-desc" data-i18n="p1Desc">A full chain of five escalating challenges run back to back on one court, each testing a different edge of memory and reaction speed. Finish one, the next begins — the difficulty never resets, and neither does the pressure.</p>
+      <div class="program-tag" data-i18n="p1Tag">Four reaction disciplines</div>
+      <p class="program-desc" data-i18n="p1Desc">Four distinct reaction-time games — go/no-go restraint, pure speed, directional recall with the map reshuffled every round, and a moving target that never sits still. Played on their own or chained into one four-quarter run with a combined final score.</p>
       <ul class="feature-list">
-        <li data-i18n="p1F1">Five distinct games in one continuous session</li>
-        <li data-i18n="p1F2">Escalating difficulty — every round adds one more</li>
+        <li data-i18n="p1F1">Four games, each testing a different edge of reaction speed</li>
+        <li data-i18n="p1F2">Practice any single game, or run the full four-quarter chain</li>
         <li data-i18n="p1F3">Live standings, ranked by best score</li>
         <li data-i18n="p1F4">Built for individual and head-to-head play</li>
       </ul>
       <div class="program-bottom">
-        <a class="cta" href="https://dynamicbball.com" target="_blank" rel="noopener" data-i18n="p1Cta">Enter Dynamic Basketball →</a>
-        <span class="cta-domain mono">dynamicbball.com</span>
+        <a class="cta" href="https://vreaction.com" target="_blank" rel="noopener" data-i18n="p1Cta">Enter Reaction Velocity →</a>
+        <span class="cta-domain mono">vreaction.com</span>
       </div>
     </div>
 
     <div class="court-divider" aria-hidden="true"><div class="line"></div><div class="circle"></div><div class="line"></div></div>
 
-    <!-- Program 2: Memory Basketball -->
+    <!-- Program 2: Dynamic Memory -->
     <div class="program violet">
       <div class="program-top">
         <div>
           <div class="program-num mono">02</div>
-          <div class="program-name display">Memory Basketball</div>
+          <div class="program-name display">Dynamic Memory</div>
         </div>
       </div>
       <div class="program-tag" data-i18n="p2Tag">Four-quarter memory system</div>
@@ -388,8 +395,32 @@ footer{
         <li data-i18n="p2F4">Built for repeatable, focused training</li>
       </ul>
       <div class="program-bottom">
-        <a class="cta" href="https://memorybasketball.com" target="_blank" rel="noopener" data-i18n="p2Cta">Enter Memory Basketball →</a>
-        <span class="cta-domain mono">memorybasketball.com</span>
+        <a class="cta" href="https://memorybball.com" target="_blank" rel="noopener" data-i18n="p2Cta">Enter Dynamic Memory →</a>
+        <span class="cta-domain mono">memorybball.com</span>
+      </div>
+    </div>
+
+    <div class="court-divider" aria-hidden="true"><div class="line"></div><div class="circle"></div><div class="line"></div></div>
+
+    <!-- Program 3: Swish Basketball -->
+    <div class="program blue">
+      <div class="program-top">
+        <div>
+          <div class="program-num mono">03</div>
+          <div class="program-name display">Swish Basketball</div>
+        </div>
+      </div>
+      <div class="program-tag" data-i18n="p3Tag">A growing memory streak, scored like a 3-point contest</div>
+      <p class="program-desc" data-i18n="p3Desc">One cumulative sequence that grows by a tap every possession — watch it, then repeat it back. Every correct tap is a made 2-pointer, and finishing a possession clean adds a 3-pointer on top. In essence, it's a 3-point shot contest — the longer the streak runs, the more 3-pointers end up on the board.</p>
+      <ul class="feature-list">
+        <li data-i18n="p3F1">Every tap scores — a 2-pointer the instant it lands</li>
+        <li data-i18n="p3F2">Every finished possession adds a bonus 3-pointer</li>
+        <li data-i18n="p3F3">One growing sequence — no reset, no fixed finish</li>
+        <li data-i18n="p3F4">Live standings, ranked by total points</li>
+      </ul>
+      <div class="program-bottom">
+        <a class="cta" href="https://hooporia.com" target="_blank" rel="noopener" data-i18n="p3Cta">Enter Swish Basketball →</a>
+        <span class="cta-domain mono">hooporia.com</span>
       </div>
     </div>
 
@@ -402,7 +433,7 @@ footer{
     <div>
       <div class="section-eyebrow" style="color:var(--wood)" data-i18n="accessEyebrow">Getting In</div>
       <h2 class="section-title display" data-i18n="accessTitle">Every program is access-code protected.</h2>
-      <p class="section-desc" style="margin-bottom:24px" data-i18n="accessDesc">Each program sits behind its own access code — no public sign-ups, no guest play. A code is tied to one program, so a code for Dynamic Basketball won't open Memory Basketball, and vice versa.</p>
+      <p class="section-desc" style="margin-bottom:24px" data-i18n="accessDesc">Each program sits behind its own access code — no public sign-ups, no guest play. A code is tied to one program, so a code for Reaction Velocity won't open Dynamic Memory or Swish Basketball, and vice versa.</p>
 
       <div class="code-mock">
         <div class="code-mock-label" data-i18n="codeLabel">Access Code</div>
@@ -429,25 +460,33 @@ footer{
     <p class="section-desc" data-i18n="prefDesc">Select one, select both — whatever's relevant, and we'll follow up with the right access code for each.</p>
 
     <div class="pref-all-row">
-      <button class="pref-all-btn" id="prefAllBtn" type="button" data-i18n="prefAllBtn">Select both</button>
+      <button class="pref-all-btn" id="prefAllBtn" type="button" data-i18n="prefAllBtn">Select all</button>
     </div>
 
     <div class="pref-options">
-      <div class="pref-option" data-program="dynamic" tabindex="0" role="checkbox" aria-checked="false">
+      <div class="pref-option" data-program="reaction" tabindex="0" role="checkbox" aria-checked="false">
         <div class="pref-check"><svg viewBox="0 0 24 24" fill="none" stroke="#10201A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="pref-option-body">
-          <div class="pref-option-name">Dynamic Basketball</div>
-          <div class="pref-option-sub" data-i18n="prefSub1">Five-game progression · dynamicbball.com</div>
+          <div class="pref-option-name">Reaction Velocity</div>
+          <div class="pref-option-sub" data-i18n="prefSub1">Four reaction disciplines · vreaction.com</div>
         </div>
         <div class="pref-swatch" style="background:var(--orange)"></div>
       </div>
-      <div class="pref-option" data-program="memory" tabindex="0" role="checkbox" aria-checked="false">
+      <div class="pref-option" data-program="dynamicmemory" tabindex="0" role="checkbox" aria-checked="false">
         <div class="pref-check"><svg viewBox="0 0 24 24" fill="none" stroke="#10201A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="pref-option-body">
-          <div class="pref-option-name">Memory Basketball</div>
-          <div class="pref-option-sub" data-i18n="prefSub2">Four-quarter memory system · memorybasketball.com</div>
+          <div class="pref-option-name">Dynamic Memory</div>
+          <div class="pref-option-sub" data-i18n="prefSub2">Four-quarter memory system · memorybball.com</div>
         </div>
         <div class="pref-swatch" style="background:var(--violet)"></div>
+      </div>
+      <div class="pref-option" data-program="swish" tabindex="0" role="checkbox" aria-checked="false">
+        <div class="pref-check"><svg viewBox="0 0 24 24" fill="none" stroke="#10201A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="pref-option-body">
+          <div class="pref-option-name">Swish Basketball</div>
+          <div class="pref-option-sub" data-i18n="prefSub3">A 3-point shot contest · hooporia.com</div>
+        </div>
+        <div class="pref-swatch" style="background:var(--blue)"></div>
       </div>
     </div>
 
@@ -468,8 +507,8 @@ footer{
 
 <script>
 (function(){
-var selected = {dynamic:false, memory:false};
-var PROGRAM_LABELS = {dynamic:'Dynamic Basketball', memory:'Memory Basketball'};
+var selected = {reaction:false, dynamicmemory:false, swish:false};
+var PROGRAM_LABELS = {reaction:'Reaction Velocity', dynamicmemory:'Dynamic Memory', swish:'Swish Basketball'};
 
 // ══════════════════════════════════════════════════════
 //  LANGUAGE — every translatable node carries a data-i18n key (or
@@ -483,22 +522,22 @@ var currentLang = 'en';
 var I18N = {
   en: {
     navPrograms:'Programs', navAccess:'Access', navStart:'Get Started',
-    heroEyebrow:'One Training System · Two Programs',
+    heroEyebrow:'One Training System · Three Programs',
     heroTitle:'<span class="accent">Hooporia</span><br>Runs Deep',
-    heroSub:'Two programs, built on the same core discipline — <strong>escalating memory and reaction training</strong>, run through a real basketball court, with a scoreboard that never lets you settle.',
-    diagramLabel1:'Dynamic BBALL', diagramLabel2:'Memory BBALL',
+    heroSub:'Three programs, built on the same core discipline — <strong>escalating memory and reaction training</strong>, run through a real basketball court, with a scoreboard that never lets you settle.',
+    diagramLabel1:'Reaction Velocity', diagramLabel2:'Dynamic Memory', diagramLabel3:'Swish Basketball',
 
     programsEyebrow:'The Programs',
     programsTitle:'Pick your court.',
     programsDesc:"Every program runs on the same escalating philosophy — a round only gets harder, and the scoreboard remembers everyone who's played. Where they differ is who they're built for.",
 
-    p1Tag:'Five-game progression',
-    p1Desc:'A full chain of five escalating challenges run back to back on one court, each testing a different edge of memory and reaction speed. Finish one, the next begins — the difficulty never resets, and neither does the pressure.',
-    p1F1:'Five distinct games in one continuous session',
-    p1F2:'Escalating difficulty — every round adds one more',
+    p1Tag:'Four reaction disciplines',
+    p1Desc:'Four distinct reaction-time games — go/no-go restraint, pure speed, directional recall with the map reshuffled every round, and a moving target that never sits still. Played on their own or chained into one four-quarter run with a combined final score.',
+    p1F1:'Four games, each testing a different edge of reaction speed',
+    p1F2:'Practice any single game, or run the full four-quarter chain',
     p1F3:'Live standings, ranked by best score',
     p1F4:'Built for individual and head-to-head play',
-    p1Cta:'Enter Dynamic Basketball →',
+    p1Cta:'Enter Reaction Velocity →',
 
     p2Tag:'Four-quarter memory system',
     p2Desc:'A dedicated memory program built around four distinct quarters — recall, reflex, replay, and recognition — playable individually or run together as one complete game with a combined final score.',
@@ -506,11 +545,19 @@ var I18N = {
     p2F2:'Practice any single quarter, or play the full game',
     p2F3:'Standings for every quarter and the combined score',
     p2F4:'Built for repeatable, focused training',
-    p2Cta:'Enter Memory Basketball →',
+    p2Cta:'Enter Dynamic Memory →',
+
+    p3Tag:'A growing memory streak, scored like a 3-point contest',
+    p3Desc:"One cumulative sequence that grows by a tap every possession — watch it, then repeat it back. Every correct tap is a made 2-pointer, and finishing a possession clean adds a 3-pointer on top. In essence, it's a 3-point shot contest — the longer the streak runs, the more 3-pointers end up on the board.",
+    p3F1:'Every tap scores — a 2-pointer the instant it lands',
+    p3F2:'Every finished possession adds a bonus 3-pointer',
+    p3F3:'One growing sequence — no reset, no fixed finish',
+    p3F4:'Live standings, ranked by total points',
+    p3Cta:'Enter Swish Basketball →',
 
     accessEyebrow:'Getting In',
     accessTitle:'Every program is access-code protected.',
-    accessDesc:"Each program sits behind its own access code — no public sign-ups, no guest play. A code is tied to one program, so a code for Dynamic Basketball won't open Memory Basketball, and vice versa.",
+    accessDesc:"Each program sits behind its own access code — no public sign-ups, no guest play. A code is tied to one program, so a code for Reaction Velocity won't open Dynamic Memory or Swish Basketball, and vice versa.",
     codeLabel:'Access Code',
     codeNote:"This is what stands between the gate and the court on every program — enter a valid code, and you're in.",
     trialEyebrow:'Free Trial',
@@ -521,9 +568,10 @@ var I18N = {
     prefEyebrow:'Get Started',
     prefTitle:'Which program fits your court?',
     prefDesc:"Select one, select both — whatever's relevant, and we'll follow up with the right access code for each.",
-    prefAllBtn:'Select both',
-    prefSub1:'Five-game progression · dynamicbball.com',
-    prefSub2:'Four-quarter memory system · memorybasketball.com',
+    prefAllBtn:'Select all',
+    prefSub1:'Four reaction disciplines · vreaction.com',
+    prefSub2:'Four-quarter memory system · memorybball.com',
+    prefSub3:'A 3-point shot contest · hooporia.com',
     prefNamePlaceholder:'Your name',
     prefEmailPlaceholder:'Your email',
     prefOrgPlaceholder:'School or organization (optional)',
@@ -534,22 +582,22 @@ var I18N = {
   },
   es: {
     navPrograms:'Programas', navAccess:'Acceso', navStart:'Comenzar',
-    heroEyebrow:'Un Sistema de Entrenamiento · Dos Programas',
+    heroEyebrow:'Un Sistema de Entrenamiento · Tres Programas',
     heroTitle:'<span class="accent">Hooporia</span><br>Va Más Profundo',
-    heroSub:'Dos programas, construidos sobre la misma disciplina central — <strong>entrenamiento de memoria y reacción que va escalando</strong>, en una cancha de baloncesto real, con una tabla de posiciones que nunca te deja acomodarte.',
-    diagramLabel1:'Dynamic BBALL', diagramLabel2:'Memory BBALL',
+    heroSub:'Tres programas, construidos sobre la misma disciplina central — <strong>entrenamiento de memoria y reacción que va escalando</strong>, en una cancha de baloncesto real, con una tabla de posiciones que nunca te deja acomodarte.',
+    diagramLabel1:'Reaction Velocity', diagramLabel2:'Dynamic Memory', diagramLabel3:'Swish Basketball',
 
     programsEyebrow:'Los Programas',
     programsTitle:'Elige tu cancha.',
     programsDesc:'Cada programa corre bajo la misma filosofía de escalar — cada ronda se pone más difícil, y la tabla de posiciones recuerda a todo el que ha jugado. La diferencia está en para quién está hecho cada uno.',
 
-    p1Tag:'Progresión de cinco juegos',
-    p1Desc:'Una cadena completa de cinco retos que van escalando, uno tras otro en la misma cancha, cada uno poniendo a prueba un lado distinto de la memoria y la velocidad de reacción. Terminas uno, empieza el siguiente — la dificultad nunca se reinicia, y la presión tampoco.',
-    p1F1:'Cinco juegos distintos en una sola sesión continua',
-    p1F2:'Dificultad que escala — cada ronda suma una más',
+    p1Tag:'Cuatro disciplinas de reacción',
+    p1Desc:'Cuatro juegos distintos de tiempo de reacción — control de impulso (ir/no ir), velocidad pura, memoria direccional con el mapa reorganizado cada ronda, y un blanco en movimiento que nunca se queda quieto. Se juegan por separado o encadenados en una sola carrera de cuatro cuartos con una puntuación final combinada.',
+    p1F1:'Cuatro juegos, cada uno pone a prueba un lado distinto de la velocidad de reacción',
+    p1F2:'Practica un solo juego, o corre la cadena completa de cuatro cuartos',
     p1F3:'Tabla de posiciones en vivo, por mejor puntuación',
     p1F4:'Hecho para juego individual o cara a cara',
-    p1Cta:'Entrar a Dynamic Basketball →',
+    p1Cta:'Entrar a Reaction Velocity →',
 
     p2Tag:'Sistema de memoria de cuatro cuartos',
     p2Desc:'Un programa dedicado a la memoria, construido alrededor de cuatro cuartos distintos — recordar, reflejo, repetir y reconocer — que se pueden practicar por separado o correr juntos como un solo juego completo con una puntuación final combinada.',
@@ -557,11 +605,19 @@ var I18N = {
     p2F2:'Practica un solo cuarto, o juega el juego completo',
     p2F3:'Tabla de posiciones por cuarto y por puntuación combinada',
     p2F4:'Hecho para entrenamiento enfocado y repetible',
-    p2Cta:'Entrar a Memory Basketball →',
+    p2Cta:'Entrar a Dynamic Memory →',
+
+    p3Tag:'Una racha de memoria que crece, puntuada como un concurso de triples',
+    p3Desc:'Una secuencia acumulativa que crece con un toque en cada posesión — la observas, luego la repites. Cada toque correcto es un tiro de 2 puntos anotado, y terminar una posesión sin fallar suma un triple encima. En esencia, es un concurso de triples — mientras más dura la racha, más triples terminan en el marcador.',
+    p3F1:'Cada toque puntúa — un tiro de 2 en el instante en que cae',
+    p3F2:'Cada posesión terminada suma un triple de bono',
+    p3F3:'Una secuencia que crece — sin reinicio, sin final fijo',
+    p3F4:'Tabla de posiciones en vivo, por puntuación total',
+    p3Cta:'Entrar a Swish Basketball →',
 
     accessEyebrow:'Cómo Entrar',
     accessTitle:'Cada programa está protegido por código de acceso.',
-    accessDesc:'Cada programa tiene su propio código de acceso — sin registro público, sin jugar como invitado. Un código pertenece a un solo programa, así que un código de Dynamic Basketball no abre Memory Basketball, y viceversa.',
+    accessDesc:'Cada programa tiene su propio código de acceso — sin registro público, sin jugar como invitado. Un código pertenece a un solo programa, así que un código de Reaction Velocity no abre Dynamic Memory ni Swish Basketball, y viceversa.',
     codeLabel:'Código de Acceso',
     codeNote:'Esto es lo único entre la entrada y la cancha en cada programa — con un código válido, ya estás dentro.',
     trialEyebrow:'Prueba Gratis',
@@ -572,9 +628,10 @@ var I18N = {
     prefEyebrow:'Comenzar',
     prefTitle:'¿Cuál programa va con tu cancha?',
     prefDesc:'Elige uno, o elige los dos — lo que aplique, y te enviamos el código de acceso correcto para cada uno.',
-    prefAllBtn:'Seleccionar los dos',
-    prefSub1:'Progresión de cinco juegos · dynamicbball.com',
-    prefSub2:'Sistema de memoria de cuatro cuartos · memorybasketball.com',
+    prefAllBtn:'Seleccionar todos',
+    prefSub1:'Cuatro disciplinas de reacción · vreaction.com',
+    prefSub2:'Sistema de memoria de cuatro cuartos · memorybball.com',
+    prefSub3:'Un concurso de triples · hooporia.com',
     prefNamePlaceholder:'Tu nombre',
     prefEmailPlaceholder:'Tu correo electrónico',
     prefOrgPlaceholder:'Escuela u organización (opcional)',
@@ -617,7 +674,7 @@ function updateOptionUI(el, isChecked){
 }
 
 function anySelected(){
-  return selected.dynamic || selected.memory;
+  return Object.keys(selected).some(function(k){ return selected[k]; });
 }
 
 function refreshFormVisibility(){
@@ -643,7 +700,7 @@ document.querySelectorAll('.pref-option').forEach(function(el){
 });
 
 document.getElementById('prefAllBtn').addEventListener('click', function(){
-  var allOn = selected.dynamic && selected.memory;
+  var allOn = Object.keys(selected).every(function(k){ return selected[k]; });
   Object.keys(selected).forEach(function(key){
     selected[key] = !allOn;
     updateOptionUI(document.querySelector('[data-program="'+key+'"]'), selected[key]);
