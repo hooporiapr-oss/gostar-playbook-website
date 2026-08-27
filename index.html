@@ -2,734 +2,430 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Hooporia · Gostar Digital</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Dynamic Memory · Memory Basketball</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap');
-
-:root{
-  --ink:#10201A;
-  --ink-deep:#0A1610;
-  --chalk:#F2EEE3;
-  --chalk-dim:#B9C4BC;
-  --wood:#C9955C;
-  --orange:#FF6B35;
-  --violet:#8B5CF6;
-  --blue:#4FA3D1;
-  --line:rgba(242,238,227,.14);
-}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  background:var(--ink);
-  color:var(--chalk);
-  font-family:'Inter',sans-serif;
-  line-height:1.5;
-  overflow-x:hidden;
+html,body{
+  width:100%;min-height:100%;
+  background:#0a0705;
+  color:#fff;
+  font-family:'Inter',Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing:antialiased;
 }
-@media (prefers-reduced-motion: reduce){
-  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+body{overflow-x:hidden}
+
+#ambient{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 900px 600px at 50% -10%,rgba(243,116,24,.16),transparent 60%),
+             radial-gradient(ellipse 700px 500px at 100% 100%,rgba(124,58,237,.12),transparent 55%),
+             #0a0705;
+  animation:ambientPulse 7s ease-in-out infinite;
 }
+@keyframes ambientPulse{0%,100%{opacity:1}50%{opacity:.72}}
+@media(prefers-reduced-motion:reduce){#ambient{animation:none}}
 
-.display{font-family:'Bebas Neue',sans-serif;letter-spacing:.02em;text-transform:uppercase}
-.mono{font-family:'IBM Plex Mono',monospace}
+main{position:relative;z-index:1}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
 
-a{color:inherit}
-button{font-family:inherit;cursor:pointer}
-:focus-visible{outline:3px solid var(--wood);outline-offset:3px}
-
-/* ══════════════ COURT-TEXTURE BACKGROUND ══════════════ */
-body{
-  background-image:
-    radial-gradient(ellipse 1200px 700px at 50% -10%, rgba(255,107,53,.07), transparent 60%),
-    radial-gradient(ellipse 1000px 600px at 90% 30%, rgba(139,92,246,.06), transparent 60%),
-    radial-gradient(ellipse 1000px 600px at 5% 60%, rgba(79,163,209,.06), transparent 60%);
+.lang-toggle{
+  display:flex;justify-content:center;gap:6px;
+  padding:18px 0 0;
 }
-
-/* ══════════════ HEADER ══════════════ */
-header{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:20px clamp(20px,5vw,64px);
-  background:rgba(16,32,26,.85);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line);
-}
-.brand{display:flex;align-items:center;gap:10px}
-.brand-mark{
-  width:30px;height:30px;border-radius:50%;
-  border:2.5px solid var(--chalk);position:relative;flex-shrink:0;
-}
-.brand-mark::before,.brand-mark::after{content:'';position:absolute;background:var(--chalk)}
-.brand-mark::before{top:50%;left:-1px;right:-1px;height:1.5px;transform:translateY(-50%)}
-.brand-mark::after{left:50%;top:-1px;bottom:-1px;width:1.5px;transform:translateX(-50%)}
-.brand-name{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.08em;text-transform:uppercase}
-.brand-name span{color:var(--wood)}
-nav{display:flex;gap:clamp(14px,3vw,32px);font-size:.82rem;font-weight:600}
-nav a{text-decoration:none;color:var(--chalk-dim);transition:color .15s}
-nav a:hover{color:var(--chalk)}
-@media (max-width:640px){ nav{display:none} }
-
-.lang-toggle{display:flex;gap:4px;border:1.5px solid var(--line);border-radius:999px;padding:3px;flex-shrink:0}
 .lang-btn{
-  border:none;background:none;color:var(--chalk-dim);
-  font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.04em;
-  padding:6px 13px;border-radius:999px;transition:background .15s,color .15s;
+  padding:6px 14px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.4);
+  color:#8892a0;font-family:'Oswald',sans-serif;font-weight:600;
+  font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;transition:all .12s;
 }
-.lang-btn.active{background:var(--wood);color:var(--ink-deep)}
+.lang-btn.active{border-color:#ffd35a;color:#ffd35a;background:rgba(255,211,90,.1)}
 
-/* ══════════════ HERO ══════════════ */
-#hero{
-  min-height:100vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;
-  padding:120px 24px 60px;
-  position:relative;
+.hero{padding:36px 0 40px;text-align:center}
+.kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Oswald',sans-serif;font-weight:600;
+  font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+  color:#ffb066;
+  margin-bottom:18px;
 }
-.eyebrow{
-  font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;
-  letter-spacing:.28em;text-transform:uppercase;color:var(--wood);
-  margin-bottom:22px;
+.kicker .dot{width:6px;height:6px;border-radius:50%;background:#f37418;box-shadow:0 0 8px rgba(243,116,24,.8)}
+
+h1.title{
+  font-family:'Anton',sans-serif;
+  font-weight:400;
+  font-size:clamp(2.8rem,9vw,5rem);
+  line-height:.92;
+  letter-spacing:.01em;
+  text-transform:uppercase;
+  color:#fff;
+  text-shadow:0 0 60px rgba(243,116,24,.35);
 }
-.hero-title{
-  font-size:clamp(2.6rem,8vw,5.6rem);
-  line-height:.98;
-  margin-bottom:24px;
-  max-width:16ch;
-}
-.hero-title .accent{color:var(--orange)}
-.hero-sub{
-  font-size:clamp(1rem,2vw,1.2rem);
-  color:var(--chalk-dim);
-  max-width:560px;
-  margin-bottom:44px;
+h1.title .accent{color:#f37418}
+
+.subhead{
+  max-width:520px;margin:18px auto 0;
+  font-size:1.05rem;line-height:1.55;
+  color:#c9b8a8;
   font-weight:400;
 }
-.hero-sub strong{color:var(--chalk);font-weight:600}
+.subhead strong{color:#ffd35a;font-weight:600}
 
-/* Play diagram — draws itself on load: two dashed routes branching
-   from one origin point, each resolving into a labeled circle. This
-   is the page's one signature move — everything else stays quiet. */
-#play-diagram{width:100%;max-width:720px;margin-bottom:16px}
-.route{
-  fill:none;stroke-width:2.5;stroke-dasharray:6 7;stroke-linecap:round;
-  stroke-dashoffset:400;
-  animation:draw 1.4s ease-out forwards;
+.demo-wrap{margin:44px auto 8px;display:flex;flex-direction:column;align-items:center}
+.demo-caption{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:.66rem;
+  letter-spacing:.2em;text-transform:uppercase;color:#7d7268;
+  margin-bottom:10px;
 }
-.route.r1{stroke:var(--orange);animation-delay:.5s}
-.route.r2{stroke:var(--violet);animation-delay:.7s}
-.route.r3{stroke:var(--blue);animation-delay:.9s}
-@keyframes draw{to{stroke-dashoffset:0}}
-.node{opacity:0;animation:pop .4s ease-out forwards}
-.node.origin{animation-delay:.2s}
-.node.n1{animation-delay:1.7s}
-.node.n2{animation-delay:1.9s}
-.node.n3{animation-delay:2.1s}
-@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
-.diagram-label{
-  font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:600;
-  letter-spacing:.08em;text-transform:uppercase;fill:var(--chalk-dim);
-  opacity:0;animation:fadein .5s ease-out forwards;
+.demo-phase{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:.72rem;
+  letter-spacing:.12em;text-transform:uppercase;color:#ffd35a;
+  background:rgba(0,0,0,.6);border:1px solid rgba(255,211,90,.3);
+  padding:5px 14px;border-radius:20px;margin-bottom:12px;
+  transition:color .2s,border-color .2s;
+  min-width:190px;text-align:center;
 }
-.diagram-label.l1{animation-delay:1.9s}
-.diagram-label.l2{animation-delay:2.1s}
-.diagram-label.l3{animation-delay:2.3s}
-@keyframes fadein{to{opacity:1}}
-
-/* ══════════════ SECTION SCAFFOLDING ══════════════ */
-section{padding:100px 24px;position:relative}
-.section-inner{max-width:980px;margin:0 auto}
-
-/* Center-court-line divider between programs — the diagram device
-   carried through the page, not a generic hairline rule. */
-.court-divider{
-  display:flex;align-items:center;gap:16px;
-  max-width:980px;margin:0 auto;padding:0 24px;
+.demo-phase.recall{color:#00D9A5;border-color:rgba(0,217,165,.4)}
+.demo-court{
+  width:100%;max-width:340px;aspect-ratio:2/1;
+  display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(4,1fr);
+  gap:3px;padding:6px;border-radius:12px;
+  border:2px solid rgba(255,149,0,.4);
+  background-color:#2b1810;
+  background-image:url('data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20200%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%0A%20%20%3Crect%20width%3D%22200%22%20height%3D%22100%22%20fill%3D%22%233a1c0b%22/%3E%0A%20%20%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22198%22%20height%3D%2298%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Cline%20x1%3D%22100%22%20y1%3D%221%22%20x2%3D%22100%22%20y2%3D%2299%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%2250%22%20r%3D%2213%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Crect%20x%3D%221%22%20y%3D%2231%22%20width%3D%2238%22%20height%3D%2238%22%20fill%3D%22rgba%28255%2C107%2C0%2C.08%29%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Ccircle%20cx%3D%2239%22%20cy%3D%2250%22%20r%3D%2213%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Cpath%20d%3D%22M%201%2C10%20A%2084%2C84%200%200%2C1%2061%2C50%20A%2084%2C84%200%200%2C1%201%2C90%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.3%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Crect%20x%3D%22161%22%20y%3D%2231%22%20width%3D%2238%22%20height%3D%2238%22%20fill%3D%22rgba%28255%2C107%2C0%2C.08%29%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Ccircle%20cx%3D%22161%22%20cy%3D%2250%22%20r%3D%2213%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Cpath%20d%3D%22M%20199%2C10%20A%2084%2C84%200%200%2C0%20139%2C50%20A%2084%2C84%200%200%2C0%20199%2C90%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.3%29%22%20stroke-width%3D%221.5%22/%3E%0A%3C/svg%3E%0A');
+  background-size:100% 100%;
+  box-shadow:0 0 50px rgba(255,149,0,.18),inset 0 0 30px rgba(0,0,0,.4);
 }
-.court-divider .line{flex:1;height:1px;background:var(--line)}
-.court-divider .circle{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);flex-shrink:0}
+.demo-cell{
+  border-radius:5px;background:rgba(255,149,0,.06);border:1.5px solid rgba(255,149,0,.24);
+  transition:all .15s;
+}
+.demo-cell.lit{background:#ffd35a;border-color:#ffd35a;box-shadow:0 0 14px rgba(255,211,90,.7)}
+.demo-cell.recalled{background:#00D9A5;border-color:#00D9A5;box-shadow:0 0 14px rgba(0,217,165,.6)}
 
+.section{padding:36px 0 64px}
+.section-head{text-align:center;margin-bottom:28px}
 .section-eyebrow{
-  font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;
-  letter-spacing:.24em;text-transform:uppercase;margin-bottom:14px;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:.7rem;
+  letter-spacing:.24em;text-transform:uppercase;color:#a855f7;
+  margin-bottom:8px;
 }
-.section-title{font-size:clamp(2rem,4.5vw,3.2rem);line-height:1;margin-bottom:20px}
-.section-desc{font-size:1.05rem;color:var(--chalk-dim);max-width:640px;margin-bottom:36px}
-
-/* ══════════════ PROGRAM CARD ══════════════ */
-.program{
-  border:1.5px solid var(--line);
-  border-radius:20px;
-  padding:clamp(28px,4vw,48px);
-  background:rgba(242,238,227,.02);
-  position:relative;
-  overflow:hidden;
+.section-title{
+  font-family:'Anton',sans-serif;font-weight:400;font-size:1.6rem;
+  text-transform:uppercase;letter-spacing:.01em;color:#fff;
 }
-.program::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-}
-.program.orange::before{background:var(--orange)}
-.program.violet::before{background:var(--violet)}
-.program.blue::before{background:var(--blue)}
-.program.blue::before{background:var(--blue)}
-
-.program-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:8px}
-.program-num{font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;opacity:.5}
-.program-name{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1;margin-bottom:6px}
-.program-tag{font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:26px}
-.program.orange .program-tag{color:var(--orange)}
-.program.violet .program-tag{color:var(--violet)}
-.program.blue .program-tag{color:var(--blue)}
-.program.blue .program-tag{color:var(--blue)}
-
-.program-desc{font-size:1rem;color:var(--chalk-dim);max-width:600px;margin-bottom:28px}
-.program-desc strong{color:var(--chalk);font-weight:600}
-
-.feature-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;margin-bottom:34px}
-@media (max-width:560px){ .feature-list{grid-template-columns:1fr} }
-.feature-list li{
-  font-size:.9rem;color:var(--chalk-dim);
-  padding-left:18px;position:relative;
-}
-.feature-list li::before{
-  content:'';position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;
-}
-.program.orange .feature-list li::before{background:var(--orange)}
-.program.violet .feature-list li::before{background:var(--violet)}
-.program.blue .feature-list li::before{background:var(--blue)}
-.program.blue .feature-list li::before{background:var(--blue)}
-
-.program-bottom{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.cta{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:15px 28px;border-radius:12px;border:none;
-  font-size:.92rem;font-weight:700;letter-spacing:.02em;
-  text-decoration:none;color:var(--ink-deep);
-  transition:transform .15s;
-}
-.cta:active{transform:scale(.97)}
-.program.orange .cta{background:var(--orange)}
-.program.violet .cta{background:var(--violet)}
-.program.blue .cta{background:var(--blue)}
-.program.blue .cta{background:var(--blue)}
-.cta-domain{font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:var(--chalk-dim)}
-
-/* ══════════════ ACCESS SECTION ══════════════ */
-#access{
-  background:var(--ink-deep);
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-}
-.access-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
-@media (max-width:760px){ .access-grid{grid-template-columns:1fr;gap:36px} }
-
-.code-mock{
-  border:1.5px dashed rgba(201,149,92,.5);
-  border-radius:14px;padding:22px 24px;
-  background:rgba(201,149,92,.05);
-  margin-bottom:22px;
-}
-.code-mock-label{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--wood);margin-bottom:10px}
-.code-mock-value{font-family:'IBM Plex Mono',monospace;font-size:1.3rem;letter-spacing:.3em;color:var(--chalk-dim)}
-
-.trial-card{
-  border:1.5px solid var(--wood);border-radius:16px;
-  padding:32px;background:rgba(201,149,92,.06);
-}
-.trial-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--wood);margin-bottom:12px}
-.trial-title{font-size:1.7rem;line-height:1.1;margin-bottom:14px}
-.trial-desc{font-size:.92rem;color:var(--chalk-dim);margin-bottom:22px}
-.trial-cta{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:15px 26px;border-radius:12px;
-  background:var(--wood);color:var(--ink-deep);
-  font-size:.9rem;font-weight:700;text-decoration:none;
-}
-.trial-note{margin-top:14px;font-size:.78rem;color:var(--chalk-dim);opacity:.75}
-
-/* ══════════════ PLATFORM PREFERENCE ══════════════ */
-#preference{max-width:760px}
-.pref-options{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
-.pref-option{
-  display:flex;align-items:center;gap:16px;
-  padding:18px 20px;border-radius:14px;
-  border:1.5px solid var(--line);
-  background:rgba(242,238,227,.02);
-  cursor:pointer;transition:border-color .15s,background .15s;
-}
-.pref-option:hover{border-color:rgba(242,238,227,.3)}
-.pref-check{
-  width:22px;height:22px;border-radius:6px;flex-shrink:0;
-  border:2px solid var(--chalk-dim);
-  display:flex;align-items:center;justify-content:center;
-  transition:background .15s,border-color .15s;
-}
-.pref-check svg{opacity:0;width:13px;height:13px;transition:opacity .1s}
-.pref-option.checked .pref-check{background:var(--wood);border-color:var(--wood)}
-.pref-option.checked .pref-check svg{opacity:1}
-.pref-option-body{flex:1}
-.pref-option-name{font-weight:700;font-size:1rem;margin-bottom:2px}
-.pref-option-sub{font-size:.8rem;color:var(--chalk-dim)}
-.pref-swatch{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-
-.pref-all-row{margin-bottom:20px}
-.pref-all-btn{
-  background:none;border:none;color:var(--wood);font-size:.85rem;font-weight:600;
-  text-decoration:underline;padding:0;
+.section-sub{
+  font-size:.88rem;color:#8892a0;margin-top:8px;
 }
 
-#pref-form-fields{display:none;flex-direction:column;gap:12px;margin-top:8px}
-#pref-form-fields.show{display:flex}
-.pref-input{
-  padding:14px 16px;border-radius:10px;border:1.5px solid var(--line);
-  background:rgba(242,238,227,.03);color:var(--chalk);font-size:.92rem;font-family:inherit;
+.quarter-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
 }
-.pref-input:focus{outline:none;border-color:var(--wood)}
-.pref-input::placeholder{color:var(--chalk-dim)}
+@media(max-width:560px){.quarter-grid{grid-template-columns:1fr}}
 
-.pref-submit{
-  margin-top:6px;padding:15px 26px;border-radius:12px;border:none;
-  background:var(--chalk);color:var(--ink-deep);font-size:.92rem;font-weight:700;
-  align-self:flex-start;
+.quarter-card{
+  position:relative;display:block;text-decoration:none;
+  padding:20px 20px 18px;border-radius:16px;
+  border:1.5px solid rgba(124,58,237,.3);
+  background:linear-gradient(155deg,rgba(124,58,237,.1),rgba(124,58,237,.03));
+  text-align:left;
+  transition:border-color .15s,transform .1s,background .15s;
 }
-.pref-submit:disabled{opacity:.4;cursor:not-allowed}
-.pref-status{margin-top:14px;font-size:.85rem;color:var(--chalk-dim)}
+.quarter-card:hover,.quarter-card:focus-visible{
+  border-color:rgba(243,116,24,.55);
+  background:linear-gradient(155deg,rgba(243,116,24,.14),rgba(124,58,237,.05));
+  transform:translateY(-2px);
+}
+.quarter-card:active{transform:scale(.98) translateY(0)}
 
-/* ══════════════ FOOTER ══════════════ */
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.card-badge{
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:.64rem;
+  letter-spacing:.16em;text-transform:uppercase;color:#a855f7;
+  border:1px solid rgba(168,85,247,.4);border-radius:6px;
+  padding:3px 8px;
+}
+
+.mech{display:flex;gap:5px}
+.mech i{
+  width:9px;height:9px;border-radius:2px;
+  background:rgba(255,255,255,.14);
+  animation:mechPulse 2.2s ease-in-out infinite;
+}
+@keyframes mechPulse{
+  0%,20%{background:rgba(255,255,255,.14)}
+  35%,55%{background:#ffd35a;box-shadow:0 0 8px rgba(255,211,90,.7)}
+  75%,100%{background:rgba(255,255,255,.14)}
+}
+.mech.recall i:nth-child(1){animation-delay:0s}
+.mech.recall i:nth-child(2){animation-delay:0s}
+.mech.recall i:nth-child(3){animation-delay:0s}
+.mech.reflex i:nth-child(1){animation-delay:0s}
+.mech.reflex i:nth-child(2){animation-delay:.08s}
+.mech.reflex i:nth-child(3){animation-delay:.16s}
+.mech.replay i:nth-child(1){animation-delay:0s}
+.mech.replay i:nth-child(2){animation-delay:.5s}
+.mech.replay i:nth-child(3){animation-delay:1s}
+.mech.recognition i:nth-child(1){animation-delay:0s}
+.mech.recognition i:nth-child(2){animation-delay:0s}
+.mech.recognition i:nth-child(3){animation-delay:1.1s}
+@media(prefers-reduced-motion:reduce){.mech i{animation:none;background:rgba(255,211,90,.5)}}
+
+.card-name{
+  font-family:'Anton',sans-serif;font-weight:400;font-size:1.5rem;
+  text-transform:uppercase;letter-spacing:.01em;color:#fff;
+  margin-bottom:5px;line-height:1;
+}
+.card-skill{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:.68rem;
+  letter-spacing:.06em;color:#f37418;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.card-desc{font-size:.82rem;line-height:1.5;color:#a89b8f}
+.card-cta{
+  display:flex;align-items:center;gap:5px;margin-top:14px;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:.7rem;
+  letter-spacing:.08em;text-transform:uppercase;color:#ffb066;
+}
+.quarter-card:hover .card-cta{color:#ffd35a}
+.card-cta svg{width:12px;height:12px;transition:transform .15s}
+.quarter-card:hover .card-cta svg{transform:translateX(3px)}
+
 footer{
-  padding:48px 24px 40px;text-align:center;
-  border-top:1px solid var(--line);
+  text-align:center;padding:20px 0 40px;
+  font-size:.72rem;color:#544a42;letter-spacing:.02em;
 }
-.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
-.footer-note{font-size:.8rem;color:var(--chalk-dim)}
-.footer-note a{text-decoration:underline}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="brand">
-    <div class="brand-mark"></div>
-    <div class="brand-name">HOOP<span>ORIA</span></div>
-  </div>
-  <nav>
-    <a href="#programs" data-i18n="navPrograms">Programs</a>
-    <a href="#access" data-i18n="navAccess">Access</a>
-    <a href="#preference" data-i18n="navStart">Get Started</a>
-  </nav>
+<div id="ambient"></div>
+
+<main>
   <div class="lang-toggle">
-    <button class="lang-btn active" id="langEN" type="button">EN</button>
-    <button class="lang-btn" id="langES" type="button">ES</button>
-  </div>
-</header>
-
-<!-- ══════════════ HERO ══════════════ -->
-<section id="hero">
-  <div class="eyebrow" data-i18n="heroEyebrow">One Training System · Three Programs</div>
-  <h1 class="hero-title display" data-i18n="heroTitle"><span class="accent">Hooporia</span><br>Runs Deep</h1>
-  <p class="hero-sub" data-i18n="heroSub">Three programs, built on the same core discipline — <strong>escalating memory and reaction training</strong>, run through a real basketball court, with a scoreboard that never lets you settle.</p>
-
-  <svg id="play-diagram" viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path class="route r1" d="M 360 40 C 300 100, 200 110, 140 190" />
-    <path class="route r2" d="M 360 40 C 360 100, 360 140, 360 190" />
-    <path class="route r3" d="M 360 40 C 420 100, 520 110, 580 190" />
-    <line class="node origin" x1="336" y1="24" x2="384" y2="24" stroke="var(--chalk)" stroke-width="2.5" stroke-linecap="round" />
-    <circle class="node origin" cx="360" cy="40" r="10" fill="none" stroke="var(--chalk)" stroke-width="2.5" />
-    <circle class="node n1" cx="140" cy="200" r="16" fill="none" stroke="var(--orange)" stroke-width="2.5" />
-    <circle class="node n2" cx="360" cy="200" r="16" fill="none" stroke="var(--violet)" stroke-width="2.5" />
-    <circle class="node n3" cx="580" cy="200" r="16" fill="none" stroke="var(--blue)" stroke-width="2.5" />
-    <text class="diagram-label l1" x="140" y="240" text-anchor="middle" data-i18n="diagramLabel1">Reaction Velocity</text>
-    <text class="diagram-label l2" x="360" y="240" text-anchor="middle" data-i18n="diagramLabel2">Dynamic Memory</text>
-    <text class="diagram-label l3" x="580" y="240" text-anchor="middle" data-i18n="diagramLabel3">Swish Basketball</text>
-  </svg>
-</section>
-
-<!-- ══════════════ PROGRAMS ══════════════ -->
-<section id="programs">
-  <div class="section-inner">
-    <div class="section-eyebrow" style="color:var(--wood)" data-i18n="programsEyebrow">The Programs</div>
-    <h2 class="section-title display" data-i18n="programsTitle">Pick your court.</h2>
-    <p class="section-desc" data-i18n="programsDesc">Every program runs on the same escalating philosophy — a round only gets harder, and the scoreboard remembers everyone who's played. Where they differ is who they're built for.</p>
+    <button class="lang-btn active" id="langEN">EN</button>
+    <button class="lang-btn" id="langES">ES</button>
   </div>
 
-  <div class="section-inner" style="display:flex;flex-direction:column;gap:28px">
+  <div class="wrap">
 
-    <!-- Program 1: Reaction Velocity -->
-    <div class="program orange">
-      <div class="program-top">
-        <div>
-          <div class="program-num mono">01</div>
-          <div class="program-name display">Reaction Velocity</div>
-        </div>
-      </div>
-      <div class="program-tag" data-i18n="p1Tag">Four reaction disciplines</div>
-      <p class="program-desc" data-i18n="p1Desc">Four distinct reaction-time games — go/no-go restraint, pure speed, directional recall with the map reshuffled every round, and a moving target that never sits still. Played on their own or chained into one four-quarter run with a combined final score.</p>
-      <ul class="feature-list">
-        <li data-i18n="p1F1">Four games, each testing a different edge of reaction speed</li>
-        <li data-i18n="p1F2">Practice any single game, or run the full four-quarter chain</li>
-        <li data-i18n="p1F3">Live standings, ranked by best score</li>
-        <li data-i18n="p1F4">Built for individual and head-to-head play</li>
-      </ul>
-      <div class="program-bottom">
-        <a class="cta" href="https://vreaction.com" target="_blank" rel="noopener" data-i18n="p1Cta">Enter Reaction Velocity →</a>
-        <span class="cta-domain mono">vreaction.com</span>
-      </div>
-    </div>
+    <section class="hero">
+      <div class="kicker"><span class="dot"></span><span id="kickerText">Memory Basketball</span></div>
+      <h1 class="title">DYNAMIC<br><span class="accent">MEMORY</span></h1>
+      <p class="subhead" id="subheadText">Four quarters. Four different ways to play memory. Watch, react, recall — every round moves to a real basketball beat.</p>
 
-    <div class="court-divider" aria-hidden="true"><div class="line"></div><div class="circle"></div><div class="line"></div></div>
+      <div class="demo-wrap">
+        <div class="demo-caption" id="demoCaption">Live Preview</div>
+        <div class="demo-phase" id="demoPhase">Watch the pattern</div>
+        <div class="demo-court" id="demoCourt"></div>
+      </div>
+    </section>
 
-    <!-- Program 2: Dynamic Memory -->
-    <div class="program violet">
-      <div class="program-top">
-        <div>
-          <div class="program-num mono">02</div>
-          <div class="program-name display">Dynamic Memory</div>
-        </div>
+    <section class="section">
+      <div class="section-head">
+        <div class="section-eyebrow" id="sectionEyebrow">How To Play</div>
+        <div class="section-title" id="sectionTitle">Pick A Quarter</div>
+        <div class="section-sub" id="sectionSub">See how each quarter plays before you step on the court.</div>
       </div>
-      <div class="program-tag" data-i18n="p2Tag">Four-quarter memory system</div>
-      <p class="program-desc" data-i18n="p2Desc">A dedicated memory program built around four distinct quarters — recall, reflex, replay, and recognition — playable individually or run together as one complete game with a combined final score.</p>
-      <ul class="feature-list">
-        <li data-i18n="p2F1">Four quarters, each a different memory discipline</li>
-        <li data-i18n="p2F2">Practice any single quarter, or play the full game</li>
-        <li data-i18n="p2F3">Standings for every quarter and the combined score</li>
-        <li data-i18n="p2F4">Built for repeatable, focused training</li>
-      </ul>
-      <div class="program-bottom">
-        <a class="cta" href="https://memorybball.com" target="_blank" rel="noopener" data-i18n="p2Cta">Enter Dynamic Memory →</a>
-        <span class="cta-domain mono">memorybball.com</span>
-      </div>
-    </div>
 
-    <div class="court-divider" aria-hidden="true"><div class="line"></div><div class="circle"></div><div class="line"></div></div>
+      <div class="quarter-grid">
+        <a class="quarter-card" href="dynamic-memory-recall-how-to-play.html">
+          <div class="card-top">
+            <span class="card-badge">Q1</span>
+            <div class="mech recall"><i></i><i></i><i></i></div>
+          </div>
+          <div class="card-name">Recall</div>
+          <div class="card-skill" id="skill1">Flash. Repeat.</div>
+          <div class="card-desc" id="desc1">Watch a pattern flash all at once, then repeat it back in order.</div>
+          <div class="card-cta"><span id="cta1">How to play</span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </a>
 
-    <!-- Program 3: Swish Basketball -->
-    <div class="program blue">
-      <div class="program-top">
-        <div>
-          <div class="program-num mono">03</div>
-          <div class="program-name display">Swish Basketball</div>
-        </div>
+        <a class="quarter-card" href="dynamic-memory-reflex-how-to-play.html">
+          <div class="card-top">
+            <span class="card-badge">Q2</span>
+            <div class="mech reflex"><i></i><i></i><i></i></div>
+          </div>
+          <div class="card-name">Reflex</div>
+          <div class="card-skill" id="skill2">Find. React.</div>
+          <div class="card-desc" id="desc2">Spot the targets, then tap them all back — any order, as fast as you can.</div>
+          <div class="card-cta"><span id="cta2">How to play</span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </a>
+
+        <a class="quarter-card" href="dynamic-memory-replay-how-to-play.html">
+          <div class="card-top">
+            <span class="card-badge">Q3</span>
+            <div class="mech replay"><i></i><i></i><i></i></div>
+          </div>
+          <div class="card-name">Replay</div>
+          <div class="card-skill" id="skill3">Watch. Repeat.</div>
+          <div class="card-desc" id="desc3">Watch the sequence one cell at a time, then repeat it back in order.</div>
+          <div class="card-cta"><span id="cta3">How to play</span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </a>
+
+        <a class="quarter-card" href="dynamic-memory-recognition-how-to-play.html">
+          <div class="card-top">
+            <span class="card-badge">Q4</span>
+            <div class="mech recognition"><i></i><i></i><i></i></div>
+          </div>
+          <div class="card-name">Recognition</div>
+          <div class="card-skill" id="skill4">Spot the switch.</div>
+          <div class="card-desc" id="desc4">Watch the original, then spot what changed in the echo that follows.</div>
+          <div class="card-cta"><span id="cta4">How to play</span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </a>
       </div>
-      <div class="program-tag" data-i18n="p3Tag">A growing memory streak, scored like a 3-point contest</div>
-      <p class="program-desc" data-i18n="p3Desc">One cumulative sequence that grows by a tap every possession — watch it, then repeat it back. Every correct tap is a made 2-pointer, and finishing a possession clean adds a 3-pointer on top. In essence, it's a 3-point shot contest — the longer the streak runs, the more 3-pointers end up on the board.</p>
-      <ul class="feature-list">
-        <li data-i18n="p3F1">Every tap scores — a 2-pointer the instant it lands</li>
-        <li data-i18n="p3F2">Every finished possession adds a bonus 3-pointer</li>
-        <li data-i18n="p3F3">One growing sequence — no reset, no fixed finish</li>
-        <li data-i18n="p3F4">Live standings, ranked by total points</li>
-      </ul>
-      <div class="program-bottom">
-        <a class="cta" href="https://hooporia.com" target="_blank" rel="noopener" data-i18n="p3Cta">Enter Swish Basketball →</a>
-        <span class="cta-domain mono">hooporia.com</span>
-      </div>
-    </div>
+    </section>
 
   </div>
-</section>
 
-<!-- ══════════════ ACCESS ══════════════ -->
-<section id="access">
-  <div class="section-inner access-grid">
-    <div>
-      <div class="section-eyebrow" style="color:var(--wood)" data-i18n="accessEyebrow">Getting In</div>
-      <h2 class="section-title display" data-i18n="accessTitle">Every program is access-code protected.</h2>
-      <p class="section-desc" style="margin-bottom:24px" data-i18n="accessDesc">Each program sits behind its own access code — no public sign-ups, no guest play. A code is tied to one program, so a code for Reaction Velocity won't open Dynamic Memory or Swish Basketball, and vice versa.</p>
-
-      <div class="code-mock">
-        <div class="code-mock-label" data-i18n="codeLabel">Access Code</div>
-        <div class="code-mock-value">• • • •</div>
-      </div>
-      <p style="font-size:.85rem;color:var(--chalk-dim)" data-i18n="codeNote">This is what stands between the gate and the court on every program — enter a valid code, and you're in.</p>
-    </div>
-
-    <div class="trial-card">
-      <div class="trial-eyebrow" data-i18n="trialEyebrow">Free Trial</div>
-      <h3 class="trial-title display" data-i18n="trialTitle">Try any program, free for 7 days.</h3>
-      <p class="trial-desc" data-i18n="trialDesc">Reach out and we'll send over a trial access code for whichever program fits — no commitment, no card required.</p>
-      <a class="trial-cta" href="mailto:gostardigital@gmail.com?subject=7-Day%20Free%20Trial%20Access%20Code" data-i18n="trialCta">Request a Trial Code →</a>
-      <div class="trial-note mono">gostardigital@gmail.com</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ PLATFORM PREFERENCE ══════════════ -->
-<section id="preference">
-  <div class="section-inner">
-    <div class="section-eyebrow" style="color:var(--wood)" data-i18n="prefEyebrow">Get Started</div>
-    <h2 class="section-title display" data-i18n="prefTitle">Which program fits your court?</h2>
-    <p class="section-desc" data-i18n="prefDesc">Select one, select both — whatever's relevant, and we'll follow up with the right access code for each.</p>
-
-    <div class="pref-all-row">
-      <button class="pref-all-btn" id="prefAllBtn" type="button" data-i18n="prefAllBtn">Select all</button>
-    </div>
-
-    <div class="pref-options">
-      <div class="pref-option" data-program="reaction" tabindex="0" role="checkbox" aria-checked="false">
-        <div class="pref-check"><svg viewBox="0 0 24 24" fill="none" stroke="#10201A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="pref-option-body">
-          <div class="pref-option-name">Reaction Velocity</div>
-          <div class="pref-option-sub" data-i18n="prefSub1">Four reaction disciplines · vreaction.com</div>
-        </div>
-        <div class="pref-swatch" style="background:var(--orange)"></div>
-      </div>
-      <div class="pref-option" data-program="dynamicmemory" tabindex="0" role="checkbox" aria-checked="false">
-        <div class="pref-check"><svg viewBox="0 0 24 24" fill="none" stroke="#10201A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="pref-option-body">
-          <div class="pref-option-name">Dynamic Memory</div>
-          <div class="pref-option-sub" data-i18n="prefSub2">Four-quarter memory system · memorybball.com</div>
-        </div>
-        <div class="pref-swatch" style="background:var(--violet)"></div>
-      </div>
-      <div class="pref-option" data-program="swish" tabindex="0" role="checkbox" aria-checked="false">
-        <div class="pref-check"><svg viewBox="0 0 24 24" fill="none" stroke="#10201A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="pref-option-body">
-          <div class="pref-option-name">Swish Basketball</div>
-          <div class="pref-option-sub" data-i18n="prefSub3">A 3-point shot contest · hooporia.com</div>
-        </div>
-        <div class="pref-swatch" style="background:var(--blue)"></div>
-      </div>
-    </div>
-
-    <div id="pref-form-fields">
-      <input class="pref-input" id="prefName" type="text" data-i18n-placeholder="prefNamePlaceholder" placeholder="Your name" autocomplete="name">
-      <input class="pref-input" id="prefEmail" type="email" data-i18n-placeholder="prefEmailPlaceholder" placeholder="Your email" autocomplete="email">
-      <input class="pref-input" id="prefOrg" type="text" data-i18n-placeholder="prefOrgPlaceholder" placeholder="School or organization (optional)" autocomplete="organization">
-      <button class="pref-submit" id="prefSubmitBtn" type="button" disabled data-i18n="prefSubmitBtn">Send My Request →</button>
-      <div class="pref-status" id="prefStatus"></div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-brand">© Copyright 2026. Gostar Digital LLC. All Rights Reserved.</div>
-  <div class="footer-note" data-i18n="footerNote">Questions before you request a code? <a href="mailto:gostardigital@gmail.com">gostardigital@gmail.com</a></div>
-</footer>
+  <footer>Gostar Digital LLC</footer>
+</main>
 
 <script>
 (function(){
-var selected = {reaction:false, dynamicmemory:false, swish:false};
-var PROGRAM_LABELS = {reaction:'Reaction Velocity', dynamicmemory:'Dynamic Memory', swish:'Swish Basketball'};
+  var currentLang = 'en';
+  var translations = {
+    en: {
+      kickerText: 'Memory Basketball',
+      subheadPre: 'Four quarters. Four different ways to play ',
+      subheadStrong: 'memory',
+      subheadPost: '. Watch, react, recall — every round moves to a real basketball beat.',
+      demoCaption: 'Live Preview',
+      demoLabelWatch: 'Watch the pattern',
+      demoLabelRecall: 'Recall it back',
+      sectionEyebrow: 'How To Play',
+      sectionTitle: 'Pick A Quarter',
+      sectionSub: 'See how each quarter plays before you step on the court.',
+      skill1: 'Flash. Repeat.',
+      desc1: 'Watch a pattern flash all at once, then repeat it back in order.',
+      skill2: 'Find. React.',
+      desc2: 'Spot the targets, then tap them all back — any order, as fast as you can.',
+      skill3: 'Watch. Repeat.',
+      desc3: 'Watch the sequence one cell at a time, then repeat it back in order.',
+      skill4: 'Spot the switch.',
+      desc4: 'Watch the original, then spot what changed in the echo that follows.',
+      cta: 'How to play'
+    },
+    es: {
+      kickerText: 'Baloncesto de Memoria',
+      subheadPre: 'Cuatro cuartos. Cuatro maneras diferentes de jugar con la ',
+      subheadStrong: 'memoria',
+      subheadPost: '. Mira, reacciona, repite — cada ronda se mueve al ritmo real del baloncesto.',
+      demoCaption: 'Vista En Vivo',
+      demoLabelWatch: 'Mira el patrón',
+      demoLabelRecall: 'Repítelo',
+      sectionEyebrow: 'Cómo Jugar',
+      sectionTitle: 'Elige Un Cuarto',
+      sectionSub: 'Mira cómo se juega cada cuarto antes de entrar a la cancha.',
+      skill1: 'Destello. Repite.',
+      desc1: 'Mira un patrón encenderse todo a la vez, luego repítelo en el mismo orden.',
+      skill2: 'Encuentra. Reacciona.',
+      desc2: 'Encuentra los objetivos, luego tócalos todos de vuelta — en cualquier orden, lo más rápido que puedas.',
+      skill3: 'Mira. Repite.',
+      desc3: 'Mira la secuencia encenderse una celda a la vez, luego repítela en el mismo orden.',
+      skill4: 'Nota el cambio.',
+      desc4: 'Mira el original, luego nota qué cambió en el eco que sigue.',
+      cta: 'Cómo jugar'
+    }
+  };
 
-// ══════════════════════════════════════════════════════
-//  LANGUAGE — every translatable node carries a data-i18n key (or
-//  data-i18n-placeholder for inputs). Swapping language re-renders
-//  every marked node from this dictionary. Elements whose English
-//  source contains real markup (a nested <span> or <strong>) use
-//  innerHTML on render; everything else is plain text, which
-//  innerHTML renders identically to textContent.
-// ══════════════════════════════════════════════════════
-var currentLang = 'en';
-var I18N = {
-  en: {
-    navPrograms:'Programs', navAccess:'Access', navStart:'Get Started',
-    heroEyebrow:'One Training System · Three Programs',
-    heroTitle:'<span class="accent">Hooporia</span><br>Runs Deep',
-    heroSub:'Three programs, built on the same core discipline — <strong>escalating memory and reaction training</strong>, run through a real basketball court, with a scoreboard that never lets you settle.',
-    diagramLabel1:'Reaction Velocity', diagramLabel2:'Dynamic Memory', diagramLabel3:'Swish Basketball',
+  function t(key){ return translations[currentLang][key] || translations.en[key] || key; }
 
-    programsEyebrow:'The Programs',
-    programsTitle:'Pick your court.',
-    programsDesc:"Every program runs on the same escalating philosophy — a round only gets harder, and the scoreboard remembers everyone who's played. Where they differ is who they're built for.",
-
-    p1Tag:'Four reaction disciplines',
-    p1Desc:'Four distinct reaction-time games — go/no-go restraint, pure speed, directional recall with the map reshuffled every round, and a moving target that never sits still. Played on their own or chained into one four-quarter run with a combined final score.',
-    p1F1:'Four games, each testing a different edge of reaction speed',
-    p1F2:'Practice any single game, or run the full four-quarter chain',
-    p1F3:'Live standings, ranked by best score',
-    p1F4:'Built for individual and head-to-head play',
-    p1Cta:'Enter Reaction Velocity →',
-
-    p2Tag:'Four-quarter memory system',
-    p2Desc:'A dedicated memory program built around four distinct quarters — recall, reflex, replay, and recognition — playable individually or run together as one complete game with a combined final score.',
-    p2F1:'Four quarters, each a different memory discipline',
-    p2F2:'Practice any single quarter, or play the full game',
-    p2F3:'Standings for every quarter and the combined score',
-    p2F4:'Built for repeatable, focused training',
-    p2Cta:'Enter Dynamic Memory →',
-
-    p3Tag:'A growing memory streak, scored like a 3-point contest',
-    p3Desc:"One cumulative sequence that grows by a tap every possession — watch it, then repeat it back. Every correct tap is a made 2-pointer, and finishing a possession clean adds a 3-pointer on top. In essence, it's a 3-point shot contest — the longer the streak runs, the more 3-pointers end up on the board.",
-    p3F1:'Every tap scores — a 2-pointer the instant it lands',
-    p3F2:'Every finished possession adds a bonus 3-pointer',
-    p3F3:'One growing sequence — no reset, no fixed finish',
-    p3F4:'Live standings, ranked by total points',
-    p3Cta:'Enter Swish Basketball →',
-
-    accessEyebrow:'Getting In',
-    accessTitle:'Every program is access-code protected.',
-    accessDesc:"Each program sits behind its own access code — no public sign-ups, no guest play. A code is tied to one program, so a code for Reaction Velocity won't open Dynamic Memory or Swish Basketball, and vice versa.",
-    codeLabel:'Access Code',
-    codeNote:"This is what stands between the gate and the court on every program — enter a valid code, and you're in.",
-    trialEyebrow:'Free Trial',
-    trialTitle:'Try any program, free for 7 days.',
-    trialDesc:"Reach out and we'll send over a trial access code for whichever program fits — no commitment, no card required.",
-    trialCta:'Request a Trial Code →',
-
-    prefEyebrow:'Get Started',
-    prefTitle:'Which program fits your court?',
-    prefDesc:"Select one, select both — whatever's relevant, and we'll follow up with the right access code for each.",
-    prefAllBtn:'Select all',
-    prefSub1:'Four reaction disciplines · vreaction.com',
-    prefSub2:'Four-quarter memory system · memorybball.com',
-    prefSub3:'A 3-point shot contest · hooporia.com',
-    prefNamePlaceholder:'Your name',
-    prefEmailPlaceholder:'Your email',
-    prefOrgPlaceholder:'School or organization (optional)',
-    prefSubmitBtn:'Send My Request →',
-    prefStatusMsg:"Opening your email client with this request pre-filled — send it over and we'll follow up with your code.",
-
-    footerNote:'Questions before you request a code? <a href="mailto:gostardigital@gmail.com">gostardigital@gmail.com</a>'
-  },
-  es: {
-    navPrograms:'Programas', navAccess:'Acceso', navStart:'Comenzar',
-    heroEyebrow:'Un Sistema de Entrenamiento · Tres Programas',
-    heroTitle:'<span class="accent">Hooporia</span><br>Va Más Profundo',
-    heroSub:'Tres programas, construidos sobre la misma disciplina central — <strong>entrenamiento de memoria y reacción que va escalando</strong>, en una cancha de baloncesto real, con una tabla de posiciones que nunca te deja acomodarte.',
-    diagramLabel1:'Reaction Velocity', diagramLabel2:'Dynamic Memory', diagramLabel3:'Swish Basketball',
-
-    programsEyebrow:'Los Programas',
-    programsTitle:'Elige tu cancha.',
-    programsDesc:'Cada programa corre bajo la misma filosofía de escalar — cada ronda se pone más difícil, y la tabla de posiciones recuerda a todo el que ha jugado. La diferencia está en para quién está hecho cada uno.',
-
-    p1Tag:'Cuatro disciplinas de reacción',
-    p1Desc:'Cuatro juegos distintos de tiempo de reacción — control de impulso (ir/no ir), velocidad pura, memoria direccional con el mapa reorganizado cada ronda, y un blanco en movimiento que nunca se queda quieto. Se juegan por separado o encadenados en una sola carrera de cuatro cuartos con una puntuación final combinada.',
-    p1F1:'Cuatro juegos, cada uno pone a prueba un lado distinto de la velocidad de reacción',
-    p1F2:'Practica un solo juego, o corre la cadena completa de cuatro cuartos',
-    p1F3:'Tabla de posiciones en vivo, por mejor puntuación',
-    p1F4:'Hecho para juego individual o cara a cara',
-    p1Cta:'Entrar a Reaction Velocity →',
-
-    p2Tag:'Sistema de memoria de cuatro cuartos',
-    p2Desc:'Un programa dedicado a la memoria, construido alrededor de cuatro cuartos distintos — recordar, reflejo, repetir y reconocer — que se pueden practicar por separado o correr juntos como un solo juego completo con una puntuación final combinada.',
-    p2F1:'Cuatro cuartos, cada uno una disciplina de memoria distinta',
-    p2F2:'Practica un solo cuarto, o juega el juego completo',
-    p2F3:'Tabla de posiciones por cuarto y por puntuación combinada',
-    p2F4:'Hecho para entrenamiento enfocado y repetible',
-    p2Cta:'Entrar a Dynamic Memory →',
-
-    p3Tag:'Una racha de memoria que crece, puntuada como un concurso de triples',
-    p3Desc:'Una secuencia acumulativa que crece con un toque en cada posesión — la observas, luego la repites. Cada toque correcto es un tiro de 2 puntos anotado, y terminar una posesión sin fallar suma un triple encima. En esencia, es un concurso de triples — mientras más dura la racha, más triples terminan en el marcador.',
-    p3F1:'Cada toque puntúa — un tiro de 2 en el instante en que cae',
-    p3F2:'Cada posesión terminada suma un triple de bono',
-    p3F3:'Una secuencia que crece — sin reinicio, sin final fijo',
-    p3F4:'Tabla de posiciones en vivo, por puntuación total',
-    p3Cta:'Entrar a Swish Basketball →',
-
-    accessEyebrow:'Cómo Entrar',
-    accessTitle:'Cada programa está protegido por código de acceso.',
-    accessDesc:'Cada programa tiene su propio código de acceso — sin registro público, sin jugar como invitado. Un código pertenece a un solo programa, así que un código de Reaction Velocity no abre Dynamic Memory ni Swish Basketball, y viceversa.',
-    codeLabel:'Código de Acceso',
-    codeNote:'Esto es lo único entre la entrada y la cancha en cada programa — con un código válido, ya estás dentro.',
-    trialEyebrow:'Prueba Gratis',
-    trialTitle:'Prueba cualquier programa, gratis por 7 días.',
-    trialDesc:'Escríbenos y te enviamos un código de acceso de prueba para el programa que te interese — sin compromiso, sin tarjeta.',
-    trialCta:'Pedir Código de Prueba →',
-
-    prefEyebrow:'Comenzar',
-    prefTitle:'¿Cuál programa va con tu cancha?',
-    prefDesc:'Elige uno, o elige los dos — lo que aplique, y te enviamos el código de acceso correcto para cada uno.',
-    prefAllBtn:'Seleccionar todos',
-    prefSub1:'Cuatro disciplinas de reacción · vreaction.com',
-    prefSub2:'Sistema de memoria de cuatro cuartos · memorybball.com',
-    prefSub3:'Un concurso de triples · hooporia.com',
-    prefNamePlaceholder:'Tu nombre',
-    prefEmailPlaceholder:'Tu correo electrónico',
-    prefOrgPlaceholder:'Escuela u organización (opcional)',
-    prefSubmitBtn:'Enviar Mi Solicitud →',
-    prefStatusMsg:'Abriendo tu correo con esta solicitud ya preparada — envíala y te contactamos con tu código.',
-
-    footerNote:'¿Preguntas antes de pedir un código? <a href="mailto:gostardigital@gmail.com">gostardigital@gmail.com</a>'
+  function updateUILanguage(){
+    document.getElementById('kickerText').textContent = t('kickerText');
+    document.getElementById('subheadText').innerHTML =
+      t('subheadPre') + '<strong>' + t('subheadStrong') + '</strong>' + t('subheadPost');
+    document.getElementById('demoCaption').textContent = t('demoCaption');
+    document.getElementById('sectionEyebrow').textContent = t('sectionEyebrow');
+    document.getElementById('sectionTitle').textContent = t('sectionTitle');
+    document.getElementById('sectionSub').textContent = t('sectionSub');
+    for (var i = 1; i <= 4; i++){
+      document.getElementById('skill' + i).textContent = t('skill' + i);
+      document.getElementById('desc' + i).textContent = t('desc' + i);
+      document.getElementById('cta' + i).textContent = t('cta');
+    }
+    document.getElementById('langEN').classList.toggle('active', currentLang === 'en');
+    document.getElementById('langES').classList.toggle('active', currentLang === 'es');
+    updateDemoPhaseLabel();
   }
-};
 
-function renderLang(){
-  var dict = I18N[currentLang];
-  document.querySelectorAll('[data-i18n]').forEach(function(el){
-    var key = el.getAttribute('data-i18n');
-    if(dict[key] !== undefined) el.innerHTML = dict[key];
-  });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
-    var key = el.getAttribute('data-i18n-placeholder');
-    if(dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
-  });
-}
-
-document.getElementById('langEN').addEventListener('click', function(){
-  currentLang = 'en';
-  document.getElementById('langEN').classList.add('active');
-  document.getElementById('langES').classList.remove('active');
-  renderLang();
-});
-document.getElementById('langES').addEventListener('click', function(){
-  currentLang = 'es';
-  document.getElementById('langES').classList.add('active');
-  document.getElementById('langEN').classList.remove('active');
-  renderLang();
-});
-
-
-function updateOptionUI(el, isChecked){
-  el.classList.toggle('checked', isChecked);
-  el.setAttribute('aria-checked', isChecked ? 'true' : 'false');
-}
-
-function anySelected(){
-  return Object.keys(selected).some(function(k){ return selected[k]; });
-}
-
-function refreshFormVisibility(){
-  var fields = document.getElementById('pref-form-fields');
-  var submitBtn = document.getElementById('prefSubmitBtn');
-  fields.classList.toggle('show', anySelected());
-  var name = document.getElementById('prefName').value.trim();
-  var email = document.getElementById('prefEmail').value.trim();
-  submitBtn.disabled = !(anySelected() && name && email);
-}
-
-document.querySelectorAll('.pref-option').forEach(function(el){
-  var key = el.dataset.program;
-  function toggle(){
-    selected[key] = !selected[key];
-    updateOptionUI(el, selected[key]);
-    refreshFormVisibility();
+  function setLang(l){
+    currentLang = l;
+    try{ localStorage.setItem('lc-lang', l); }catch(e){}
+    updateUILanguage();
   }
-  el.addEventListener('click', toggle);
-  el.addEventListener('keydown', function(e){
-    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
-  });
-});
+  document.getElementById('langEN').onclick = function(){ setLang('en'); };
+  document.getElementById('langES').onclick = function(){ setLang('es'); };
+  var savedLang;
+  try{ savedLang = localStorage.getItem('lc-lang'); }catch(e){}
+  if (savedLang) currentLang = savedLang;
 
-document.getElementById('prefAllBtn').addEventListener('click', function(){
-  var allOn = Object.keys(selected).every(function(k){ return selected[k]; });
-  Object.keys(selected).forEach(function(key){
-    selected[key] = !allOn;
-    updateOptionUI(document.querySelector('[data-program="'+key+'"]'), selected[key]);
-  });
-  refreshFormVisibility();
-});
+  // ── Signature hero element — a small, looping, fully authentic demo
+  // of the core mechanic: watch a pattern flash together, then see it
+  // played back in order. Purely ambient, no interaction needed.
+  var court = document.getElementById('demoCourt');
+  var phaseEl = document.getElementById('demoPhase');
+  var GRID = 32; // 8 x 4
+  var cells = [];
+  for (var i = 0; i < GRID; i++) {
+    var c = document.createElement('div');
+    c.className = 'demo-cell';
+    court.appendChild(c);
+    cells.push(c);
+  }
 
-['prefName','prefEmail'].forEach(function(id){
-  document.getElementById(id).addEventListener('input', refreshFormVisibility);
-});
+  var PATTERN = [6, 13, 20, 27];
+  var demoPhase = 'watch';
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-document.getElementById('prefSubmitBtn').addEventListener('click', function(){
-  var name = document.getElementById('prefName').value.trim();
-  var email = document.getElementById('prefEmail').value.trim();
-  var org = document.getElementById('prefOrg').value.trim();
-  var chosen = Object.keys(selected).filter(function(k){ return selected[k]; }).map(function(k){ return PROGRAM_LABELS[k]; });
+  function updateDemoPhaseLabel(){
+    if (demoPhase === 'watch'){
+      phaseEl.textContent = t('demoLabelWatch');
+      phaseEl.className = 'demo-phase';
+    } else {
+      phaseEl.textContent = t('demoLabelRecall');
+      phaseEl.className = 'demo-phase recall';
+    }
+  }
 
-  var subject = encodeURIComponent('7-Day Free Trial Request — ' + chosen.join(', '));
-  var bodyLines = [
-    'Name: ' + name,
-    'Email: ' + email,
-    org ? ('Organization: ' + org) : null,
-    'Interested in: ' + chosen.join(', ')
-  ].filter(Boolean);
-  var body = encodeURIComponent(bodyLines.join('\n'));
+  function reset(){ cells.forEach(function(c){ c.className = 'demo-cell'; }); }
 
-  window.location.href = 'mailto:gostardigital@gmail.com?subject=' + subject + '&body=' + body;
-  document.getElementById('prefStatus').textContent = I18N[currentLang].prefStatusMsg;
-});
+  function loop(){
+    reset();
+    demoPhase = 'watch';
+    updateDemoPhaseLabel();
+
+    setTimeout(function(){
+      PATTERN.forEach(function(idx){ cells[idx].classList.add('lit'); });
+
+      setTimeout(function(){
+        reset();
+        demoPhase = 'recall';
+        updateDemoPhaseLabel();
+        recall(0);
+      }, 900);
+    }, 500);
+  }
+
+  function recall(step){
+    if (step >= PATTERN.length){
+      setTimeout(loop, 1500);
+      return;
+    }
+    cells[PATTERN[step]].classList.add('recalled');
+    setTimeout(function(){ recall(step + 1); }, 420);
+  }
+
+  updateUILanguage();
+
+  if (reduced){
+    PATTERN.forEach(function(idx){ cells[idx].classList.add('recalled'); });
+  } else {
+    loop();
+  }
 })();
 </script>
 
