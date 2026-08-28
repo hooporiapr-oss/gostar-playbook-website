@@ -116,7 +116,6 @@
       <button class="prod-tab active" id="tab-mobile" onclick="switchProduct('mobile')">📱 Mobile</button>
       <button class="prod-tab" id="tab-hooporia" onclick="switchProduct('hooporia')">🎯 Hooporia</button>
       <button class="prod-tab" id="tab-reaction-velocity" onclick="switchProduct('reaction-velocity')">⚡ Reaction Velocity</button>
-      <button class="prod-tab" id="tab-reaction-velocity-standings" onclick="switchProduct('reaction-velocity-standings')">🏆 Reaction Velocity Standings</button>
     </div>
 
     <div class="mobile-note" id="mobile-note">⚠️ Mobile codes work differently: a device stays unlocked permanently once it enters a valid code, using local on-device storage rather than a per-visit check. Revoking or deleting a code here blocks it for any <b>new</b> device — it will not retroactively lock out a device that already unlocked with it.</div>
@@ -271,9 +270,8 @@ window.switchProduct = function(product){
   $('tab-mobile').className = 'prod-tab' + (product==='mobile' ? ' active' : '');
   $('tab-hooporia').className = 'prod-tab' + (product==='hooporia' ? ' active' : '');
   $('tab-reaction-velocity').className = 'prod-tab' + (product==='reaction-velocity' ? ' active' : '');
-  $('tab-reaction-velocity-standings').className = 'prod-tab' + (product==='reaction-velocity-standings' ? ' active' : '');
   $('mobile-note').className = 'mobile-note' + (product==='mobile' ? ' show' : '');
-  var label = product==='mobile' ? '(Mobile)' : product==='hooporia' ? '(Hooporia)' : product==='reaction-velocity' ? '(Reaction Velocity)' : product==='reaction-velocity-standings' ? '(Reaction Velocity Standings)' : '';
+  var label = product==='mobile' ? '(Mobile)' : product==='hooporia' ? '(Hooporia)' : product==='reaction-velocity' ? '(Reaction Velocity)' : '';
   $('add-product-label').textContent = label;
   $('list-product-label').textContent = label;
   loadLicenses();
@@ -287,14 +285,6 @@ window.switchProduct = function(product){
 // not a tap any player passing through could reach.
 var STANDINGS_BY_PRODUCT = {
   'reaction-velocity': [
-    { name: 'Full Game (combined)', table: 'reaction_velocity_standings' },
-    { name: 'Reactific', table: 'vr_reactific_standings' },
-    { name: 'Reaction Speed', table: 'vr_reaction_speed_standings' },
-    { name: 'Shoot It. Own It.', table: 'vr_shoot_it_own_it_standings' },
-    { name: 'Make It Count.', table: 'vr_make_it_count_standings' }
-  ],
-  'reaction-velocity-standings': [
-    { name: 'Full Game (combined)', table: 'reaction_velocity_standings' },
     { name: 'Reactific', table: 'vr_reactific_standings' },
     { name: 'Reaction Speed', table: 'vr_reaction_speed_standings' },
     { name: 'Shoot It. Own It.', table: 'vr_shoot_it_own_it_standings' },
