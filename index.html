@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Gostar Digital LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{
+  width:100%;min-height:100%;
+  background:#000;
+  color:#fff;
+  font-family:'Inter',Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ══════════════════════════════════════════════════════
+   THE STAGE — a true black void with slow-sweeping spotlight
+   beams crossing overhead, exactly the moment before a show
+   starts. Everything else on this page sits inside that space.
+   ══════════════════════════════════════════════════════ */
+#stage-lights{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.beam{
+  position:absolute;top:-20%;left:50%;width:140%;height:160%;
+  transform-origin:50% 0%;
+  background:conic-gradient(from 90deg at 50% 0%,transparent 0deg,rgba(255,255,255,.05) 3deg,transparent 7deg);
+  animation:sweep 14s ease-in-out infinite;
+}
+.beam.b2{animation-duration:18s;animation-delay:-4s;background:conic-gradient(from 90deg at 50% 0%,transparent 0deg,rgba(255,30,60,.05) 4deg,transparent 9deg)}
+.beam.b3{animation-duration:22s;animation-delay:-9s;background:conic-gradient(from 90deg at 50% 0%,transparent 0deg,rgba(124,58,237,.05) 4deg,transparent 9deg)}
+@keyframes sweep{
+  0%,100%{transform:translateX(-50%) rotate(-38deg)}
+  50%{transform:translateX(-50%) rotate(38deg)}
+}
+@media(prefers-reduced-motion:reduce){.beam{animation:none}}
+
+#glow-floor{
+  position:fixed;left:0;right:0;bottom:0;height:45vh;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 900px 400px at 50% 100%,rgba(255,149,0,.14),transparent 65%);
+}
+
+#haze{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 1100px 700px at 50% 0%,rgba(255,255,255,.05),transparent 60%);
+}
+
+main{position:relative;z-index:1}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+
+/* ── Hero ── */
+.hero{padding:64px 0 56px;text-align:center}
+.kicker{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Oswald',sans-serif;font-weight:600;
+  font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;
+  color:#ffb066;margin-bottom:22px;
+}
+.kicker .dot{width:6px;height:6px;border-radius:50%;background:#ffd35a;box-shadow:0 0 10px rgba(255,211,90,.9)}
+
+h1.brand{
+  font-family:'Anton',sans-serif;font-weight:400;
+  font-size:clamp(2.6rem,9vw,5.4rem);
+  line-height:.95;letter-spacing:.01em;text-transform:uppercase;
+  color:#fff;
+  text-shadow:0 0 70px rgba(255,255,255,.25),0 0 140px rgba(255,149,0,.25);
+}
+h1.brand .accent{
+  background:linear-gradient(120deg,#ff1e3c,#ff9500,#ffd35a);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+.tagline{
+  max-width:600px;margin:22px auto 0;
+  font-size:1.08rem;line-height:1.6;color:#c9b8a8;
+}
+.tagline strong{color:#ffd35a;font-weight:600}
+
+.curtain-rule{
+  width:120px;height:2px;margin:36px auto 0;
+  background:linear-gradient(90deg,transparent,#ff9500,transparent);
+}
+
+/* ── Two portals — the whole point of this page ── */
+.portals{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:22px;
+  padding:52px 0 20px;
+}
+@media(max-width:720px){.portals{grid-template-columns:1fr}}
+
+.portal{
+  position:relative;display:block;text-decoration:none;
+  border-radius:22px;padding:38px 30px 32px;
+  overflow:hidden;
+  transition:transform .18s ease,box-shadow .18s ease;
+  border:1.5px solid rgba(255,255,255,.12);
+}
+.portal:hover{transform:translateY(-4px)}
+.portal:active{transform:translateY(-1px) scale(.99)}
+
+.portal.hooporia{
+  background:linear-gradient(160deg,rgba(124,58,237,.16),rgba(255,149,0,.06) 60%,rgba(0,0,0,.4));
+}
+.portal.hooporia:hover{border-color:rgba(255,149,0,.55);box-shadow:0 20px 60px rgba(255,149,0,.18),0 0 0 1px rgba(255,149,0,.15) inset}
+
+.portal.reaction{
+  background:linear-gradient(160deg,rgba(255,30,60,.16),rgba(255,107,53,.06) 60%,rgba(0,0,0,.4));
+}
+.portal.reaction:hover{border-color:rgba(255,107,53,.55);box-shadow:0 20px 60px rgba(255,30,60,.18),0 0 0 1px rgba(255,107,53,.15) inset}
+
+.portal-spot{
+  position:absolute;top:-40%;left:50%;width:220%;height:220%;
+  transform:translateX(-50%);
+  background:radial-gradient(ellipse 320px 500px at 50% 0%,rgba(255,255,255,.06),transparent 65%);
+  pointer-events:none;
+}
+
+.portal-eyebrow{
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:.66rem;
+  letter-spacing:.24em;text-transform:uppercase;
+  margin-bottom:14px;position:relative;z-index:1;
+}
+.portal.hooporia .portal-eyebrow{color:#c99bff}
+.portal.reaction .portal-eyebrow{color:#ff8f6b}
+
+.portal-name{
+  font-family:'Anton',sans-serif;font-weight:400;
+  font-size:clamp(1.9rem,5vw,2.5rem);
+  text-transform:uppercase;line-height:.98;letter-spacing:.01em;
+  color:#fff;margin-bottom:12px;position:relative;z-index:1;
+}
+.portal-name span{display:block}
+.portal.hooporia .portal-name span:last-child{color:#f37418}
+.portal.reaction .portal-name span:last-child{color:#ff1e3c}
+
+.portal-desc{
+  font-size:.9rem;line-height:1.6;color:#c9b8a8;
+  position:relative;z-index:1;margin-bottom:22px;max-width:340px;
+}
+
+.portal-mechs{display:flex;gap:8px;margin-bottom:24px;position:relative;z-index:1}
+.portal-mechs span{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:.64rem;
+  letter-spacing:.05em;text-transform:uppercase;color:#8892a0;
+  border:1px solid rgba(255,255,255,.15);border-radius:999px;
+  padding:5px 12px;
+}
+
+.portal-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:.78rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  position:relative;z-index:1;
+  padding:12px 22px;border-radius:999px;
+}
+.portal.hooporia .portal-cta{background:linear-gradient(135deg,#7c3aed,#f37418);color:#fff;box-shadow:0 0 30px rgba(243,116,24,.35)}
+.portal.reaction .portal-cta{background:linear-gradient(135deg,#ff1e3c,#ff6b35);color:#fff;box-shadow:0 0 30px rgba(255,30,60,.35)}
+.portal-cta svg{width:13px;height:13px;transition:transform .15s}
+.portal:hover .portal-cta svg{transform:translateX(3px)}
+
+/* ── Closing line ── */
+.closing{
+  text-align:center;padding:40px 0 20px;
+}
+.closing-line{
+  font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(1.3rem,4vw,1.9rem);
+  text-transform:uppercase;letter-spacing:.01em;color:#fff;
+  text-shadow:0 0 40px rgba(255,255,255,.15);
+}
+.closing-sub{font-size:.85rem;color:#8892a0;margin-top:10px}
+
+footer{
+  text-align:center;padding:32px 0 44px;
+  font-size:.72rem;color:#544a42;letter-spacing:.08em;text-transform:uppercase;
+}
+</style>
+</head>
+<body>
+
+<div id="stage-lights">
+  <div class="beam b1"></div>
+  <div class="beam b2"></div>
+  <div class="beam b3"></div>
+</div>
+<div id="haze"></div>
+<div id="glow-floor"></div>
+
+<main>
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="kicker"><span class="dot"></span><span>Gostar Digital LLC</span></div>
+      <h1 class="brand">THIS IS<br><span class="accent">GOSTAR DIGITAL</span></h1>
+      <p class="tagline">Every game we build is meant to feel like <strong>walking onto a stage</strong> — lights up, pulse racing, nothing else in the room. Pick a world below and step in.</p>
+      <div class="curtain-rule"></div>
+    </section>
+
+    <section class="portals">
+      <a class="portal hooporia" href="https://hooporia.com">
+        <div class="portal-spot"></div>
+        <div class="portal-eyebrow">Memory · Precision · Rhythm</div>
+        <div class="portal-name"><span>DYNAMIC</span><span>MEMORY</span></div>
+        <div class="portal-desc">Four quarters of pure recall — watch, remember, react, in sync with a real basketball beat.</div>
+        <div class="portal-mechs">
+          <span>Recall</span><span>Reflex</span><span>Replay</span><span>Recognition</span>
+        </div>
+        <div class="portal-cta">Step Onto The Court<svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <a class="portal reaction" href="https://vreaction.com/htp-vr-index.html">
+        <div class="portal-spot"></div>
+        <div class="portal-eyebrow">Speed · Reflex · Instinct</div>
+        <div class="portal-name"><span>REACTION</span><span>VELOCITY</span></div>
+        <div class="portal-desc">Four ways to measure the gap between seeing and doing — no mercy, no deadline, just raw reaction.</div>
+        <div class="portal-mechs">
+          <span>Reactific</span><span>Speed</span><span>Shoot It.</span><span>Count.</span>
+        </div>
+        <div class="portal-cta">Enter The Arena<svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+    </section>
+
+    <section class="closing">
+      <div class="closing-line">The lights are up. Your move.</div>
+      <div class="closing-sub">Built by Gostar Digital LLC — every round, every beat, every reaction, real.</div>
+    </section>
+
+  </div>
+
+  <footer>© Gostar Digital LLC — All Rights Reserved</footer>
+</main>
+
+</body>
+</html>
