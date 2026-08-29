@@ -45,6 +45,10 @@ main{position:relative;z-index:1}
 }
 .lang-btn.active{border-color:#ffd35a;color:#ffd35a;background:rgba(255,211,90,.1)}
 
+#homeWrap{position:fixed;top:16px;left:16px;z-index:130}
+.home-btn{padding:8px 16px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.6);color:#fff;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-family:'Oswald',sans-serif}
+.home-btn:hover{border-color:#ffd35a}
+
 .hero{padding:36px 0 40px;text-align:center}
 .kicker{
   display:inline-flex;align-items:center;gap:8px;
@@ -227,6 +231,10 @@ footer{
 
 <div id="ambient"></div>
 
+<div id="homeWrap">
+  <a href="index.html" class="home-btn" id="homeBtn">🏠 <span id="homeBtnText">Home</span></a>
+</div>
+
 <main>
   <div class="lang-toggle">
     <button class="lang-btn active" id="langEN">EN</button>
@@ -334,7 +342,8 @@ footer{
       desc3: 'Watch the sequence one cell at a time, then repeat it back in order.',
       skill4: 'Spot the switch.',
       desc4: 'Watch the original, then spot what changed in the echo that follows.',
-      cta: 'How to play'
+      cta: 'How to play',
+      homeBtnText: 'Home'
     },
     es: {
       kickerText: 'Baloncesto de Memoria',
@@ -355,7 +364,8 @@ footer{
       desc3: 'Mira la secuencia encenderse una celda a la vez, luego repítela en el mismo orden.',
       skill4: 'Nota el cambio.',
       desc4: 'Mira el original, luego nota qué cambió en el eco que sigue.',
-      cta: 'Cómo jugar'
+      cta: 'Cómo jugar',
+      homeBtnText: 'Inicio'
     }
   };
 
@@ -374,6 +384,7 @@ footer{
       document.getElementById('desc' + i).textContent = t('desc' + i);
       document.getElementById('cta' + i).textContent = t('cta');
     }
+    document.getElementById('homeBtnText').textContent = t('homeBtnText');
     document.getElementById('langEN').classList.toggle('active', currentLang === 'en');
     document.getElementById('langES').classList.toggle('active', currentLang === 'es');
     updateDemoPhaseLabel();
