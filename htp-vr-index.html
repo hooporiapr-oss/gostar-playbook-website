@@ -45,6 +45,10 @@ main{position:relative;z-index:1}
 }
 .lang-btn.active{border-color:#ffd35a;color:#ffd35a;background:rgba(255,211,90,.1)}
 
+#homeWrap{position:fixed;top:16px;left:16px;z-index:130}
+.home-btn{padding:8px 16px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.6);color:#fff;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-family:'Oswald',sans-serif}
+.home-btn:hover{border-color:#ffd35a}
+
 .hero{padding:36px 0 40px;text-align:center}
 .kicker{
   display:inline-flex;align-items:center;gap:8px;
@@ -232,6 +236,10 @@ footer{
 
 <div id="ambient"></div>
 
+<div id="homeWrap">
+  <a href="index.html" class="home-btn" id="homeBtn">🏠 <span id="homeBtnText">Home</span></a>
+</div>
+
 <main>
   <div class="lang-toggle">
     <button class="lang-btn active" id="langEN">EN</button>
@@ -347,7 +355,8 @@ footer{
       readyTitle1: 'ARE YOU ',
       readyTitle2: 'READY?',
       readySub: 'Four games. One test of reflex. See how fast you really are.',
-      readyBtn: 'Enter The Arena'
+      readyBtn: 'Enter The Arena',
+      homeBtnText: 'Home'
     },
     es: {
       kickerText: 'Velocidad de Reacción',
@@ -372,7 +381,8 @@ footer{
       readyTitle1: '¿ESTÁS ',
       readyTitle2: 'LISTO?',
       readySub: 'Cuatro juegos. Una prueba de reflejos. Mira qué tan rápido eres en realidad.',
-      readyBtn: 'Entrar A La Arena'
+      readyBtn: 'Entrar A La Arena',
+      homeBtnText: 'Inicio'
     }
   };
 
@@ -394,6 +404,7 @@ footer{
     document.getElementById('readyTitle').innerHTML = t('readyTitle1') + '<span>' + t('readyTitle2') + '</span>';
     document.getElementById('readySub').textContent = t('readySub');
     document.getElementById('readyBtn').textContent = t('readyBtn');
+    document.getElementById('homeBtnText').textContent = t('homeBtnText');
     document.getElementById('langEN').classList.toggle('active', currentLang === 'en');
     document.getElementById('langES').classList.toggle('active', currentLang === 'es');
     updateDemoPhaseLabel();
