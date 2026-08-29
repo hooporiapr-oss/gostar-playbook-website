@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Reaction Speed · How To Play</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#000;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+body{font-family:Arial,Helvetica,sans-serif;color:#fff}
+
+:root{--red:#ff1e3c;--red-light:#ff6b7f;--gold:#ffd35a;--cream:#c9b8a8;--teal:#00e5ff}
+
+#stage{position:fixed;inset:0;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at center,#1a0508 0%,#000 70%)}
+#panel{position:relative;z-index:2;width:100%;max-width:640px;max-height:100%;overflow-y:auto;text-align:center}
+#panel::-webkit-scrollbar{width:6px}
+#panel::-webkit-scrollbar-thumb{background:rgba(255,30,60,.4);border-radius:10px}
+
+.demo-title{font-size:2.2rem;font-weight:900;font-style:italic;letter-spacing:.02em;text-transform:uppercase;text-shadow:0 0 40px rgba(255,30,60,.5);margin-bottom:4px}
+.demo-title span{color:var(--red)}
+.demo-subtitle{font-size:.85rem;font-weight:700;color:var(--cream);letter-spacing:.04em;margin-bottom:22px}
+
+.demo-label{font-family:Arial,Helvetica,sans-serif;font-size:.72rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);background:rgba(0,0,0,.85);padding:5px 14px;border-radius:10px;display:inline-block;margin-bottom:14px;border:1px solid rgba(255,215,90,.3);transition:all .3s}
+.demo-label.phase-go{color:var(--teal);border-color:rgba(0,229,255,.5)}
+
+.demo-stage-wrap{display:flex;justify-content:center;margin-bottom:22px}
+.demo-stage{position:relative;width:100%;max-width:340px;height:220px;background:#150507;border-radius:18px;border:2px solid rgba(255,30,60,.3);box-shadow:0 0 50px rgba(255,30,60,.15),inset 0 0 30px rgba(0,0,0,.4)}
+.demo-target{position:absolute;top:50%;left:50%;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.15);transform:translate(-50%,-50%) scale(1);transition:background .1s,box-shadow .1s,border-color .1s}
+.demo-target.lit{background:var(--red);border-color:var(--red-light);box-shadow:0 0 30px rgba(255,30,60,.8);transform:translate(-50%,-50%) scale(1.15)}
+.demo-bpm{position:absolute;top:12px;right:14px;font-size:.65rem;font-weight:900;letter-spacing:.08em;color:var(--cream);background:rgba(0,0,0,.5);padding:4px 10px;border-radius:8px}
+
+.playbook-section{max-width:520px;margin:0 auto 20px;text-align:left}
+.playbook-toggle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 16px;background:linear-gradient(135deg,rgba(255,30,60,.1),rgba(255,215,90,.05));border:1px solid rgba(255,30,60,.3);border-radius:12px;cursor:pointer;transition:all .3s}
+.playbook-toggle-icon{font-size:1rem}
+.playbook-toggle-text{font-size:.8rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#fff}
+.playbook-toggle-arrow{color:var(--red-light);transition:transform .3s;margin-left:auto}
+.playbook-toggle.open .playbook-toggle-arrow{transform:rotate(180deg)}
+.playbook-content{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.playbook-content.open{max-height:700px}
+.playbook-inner{padding:16px 4px 4px}
+.playbook-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.playbook-card-title{font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--red-light);margin-bottom:10px}
+.playbook-step{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.playbook-step:last-child{margin-bottom:0}
+.playbook-step-num{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(255,30,60,.2);color:var(--red-light);font-size:.68rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.playbook-step-text{font-size:.78rem;line-height:1.5;color:var(--cream)}
+.playbook-step-text strong{color:#fff}
+.playbook-tip{background:rgba(255,215,90,.06);border-left:3px solid var(--gold);padding:9px 12px;border-radius:0 8px 8px 0;margin-top:10px}
+.playbook-tip-title{font-size:.68rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.playbook-tip-text{font-size:.76rem;color:var(--cream);line-height:1.5}
+
+.back-link{display:inline-block;padding:8px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:#fff;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;margin-bottom:18px}
+
+.nav-lang{display:inline-flex;gap:3px;margin-left:10px;vertical-align:middle}
+.nav-lang-btn{padding:6px 10px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:#9a9088;border-radius:6px;font-size:.66rem;font-weight:800;cursor:pointer;letter-spacing:.04em}
+.nav-lang-btn.active{border-color:var(--gold);color:var(--gold)}
+
+footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
+
+@media(max-width:480px){.demo-title{font-size:1.6rem}.demo-stage{max-width:280px;height:190px}}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="panel">
+    <a href="reaction-velocity.html" class="back-link" id="backLink">← Back to Hub</a>
+    <div class="nav-lang">
+      <button class="nav-lang-btn active" id="langEN">EN</button>
+      <button class="nav-lang-btn" id="langES">ES</button>
+    </div>
+
+    <div class="demo-title">REACTION <span>SPEED</span></div>
+    <div class="demo-subtitle" id="demoSubtitle">No rules. Just speed.</div>
+
+    <div class="demo-stage-wrap">
+      <div style="width:100%;max-width:340px">
+        <div class="demo-label" id="demoLabel">👁️ WAIT FOR IT</div>
+        <div class="demo-stage">
+          <div class="demo-bpm" id="demoBpm">-- BPM</div>
+          <div class="demo-target" id="demoTarget"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="playbook-section">
+      <div class="playbook-toggle" id="playbookToggle">
+        <span class="playbook-toggle-icon">📖</span>
+        <span class="playbook-toggle-text" id="playbookToggleText">The Playbook</span>
+        <span class="playbook-toggle-arrow">▼</span>
+      </div>
+      <div class="playbook-content" id="playbookContent">
+        <div class="playbook-inner">
+          <div class="playbook-card">
+            <div class="playbook-card-title">🎯 <span id="objectiveTitle">Objective</span></div>
+            <div class="playbook-step"><div class="playbook-step-num">1</div><div class="playbook-step-text" id="step1">A cell <strong>lights up</strong> somewhere on screen — no warning, no countdown.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">2</div><div class="playbook-step-text" id="step2">Tap it as <strong>fast</strong> as you possibly can.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">3</div><div class="playbook-step-text" id="step3">No colors to read, no deadline pressing on you — just how quickly you react.</div></div>
+          </div>
+          <div class="playbook-card">
+            <div class="playbook-card-title">⭐ <span id="progressionTitle">Scoring</span></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog1">25 targets, back to back — that's the whole run.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog2">Every reaction is scored on <strong>raw speed</strong>, then converted to its own <strong>beats-per-minute</strong> equivalent — the faster you react, the higher the number.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog3">Your average BPM across all 25 targets is what lands you on the board.</div></div>
+          </div>
+          <div class="playbook-card">
+            <div class="playbook-card-title">🏆 <span id="standingsTitle">Standings</span></div>
+            <div class="playbook-step"><div class="playbook-step-num">🥇</div><div class="playbook-step-text" id="standings1">Every run gets tracked on <strong>The Standings</strong> — your best score, ranked against every other player.</div></div>
+            <div class="playbook-tip">
+              <div class="playbook-tip-title">💡 <span id="tipTitle">Tip</span></div>
+              <div class="playbook-tip-text" id="tipText">Rest your eyes near the center of the screen between targets, not fixed on one spot — targets can appear anywhere.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>Gostar Digital LLC</footer>
+  </div>
+</div>
+
+<script>
+(function(){
+var demoTarget=document.getElementById('demoTarget');
+var demoLabel=document.getElementById('demoLabel');
+var demoBpm=document.getElementById('demoBpm');
+
+var currentLang='en';
+var translations={
+  en:{
+    backLink:'← Back to Hub',
+    demoSubtitle:'No rules. Just speed.',
+    demoLabelWait:'👁️ WAIT FOR IT',
+    demoLabelGo:'⚡ TAP NOW!',
+    playbookToggleText:'The Playbook',
+    objectiveTitle:'Objective',
+    step1:'A cell <strong>lights up</strong> somewhere on screen — no warning, no countdown.',
+    step2:'Tap it as <strong>fast</strong> as you possibly can.',
+    step3:'No colors to read, no deadline pressing on you — just how quickly you react.',
+    progressionTitle:'Scoring',
+    prog1:'25 targets, back to back — that\'s the whole run.',
+    prog2:'Every reaction is scored on <strong>raw speed</strong>, then converted to its own <strong>beats-per-minute</strong> equivalent — the faster you react, the higher the number.',
+    prog3:'Your average BPM across all 25 targets is what lands you on the board.',
+    standingsTitle:'Standings',
+    standings1:'Every run gets tracked on <strong>The Standings</strong> — your best score, ranked against every other player.',
+    tipTitle:'Tip',
+    tipText:'Rest your eyes near the center of the screen between targets, not fixed on one spot — targets can appear anywhere.'
+  },
+  es:{
+    backLink:'← Volver al Centro',
+    demoSubtitle:'Sin reglas. Solo velocidad.',
+    demoLabelWait:'👁️ ESPERA',
+    demoLabelGo:'⚡ ¡TOCA YA!',
+    playbookToggleText:'El Manual',
+    objectiveTitle:'Objetivo',
+    step1:'Una celda se <strong>enciende</strong> en algún lugar de la pantalla — sin aviso, sin cuenta regresiva.',
+    step2:'Tócala tan <strong>rápido</strong> como puedas.',
+    step3:'Sin colores que leer, sin presión de tiempo — solo qué tan rápido reaccionas.',
+    progressionTitle:'Puntuación',
+    prog1:'25 objetivos, uno tras otro — eso es toda la corrida.',
+    prog2:'Cada reacción se puntúa por <strong>velocidad pura</strong>, luego se convierte en su propio equivalente de <strong>pulsaciones por minuto</strong> — mientras más rápido reacciones, más alto el número.',
+    prog3:'Tu promedio de BPM en los 25 objetivos es lo que te ubica en la tabla.',
+    standingsTitle:'Clasificación',
+    standings1:'Cada corrida se registra en <strong>La Clasificación</strong> — tu mejor puntaje, comparado con todos los demás jugadores.',
+    tipTitle:'Consejo',
+    tipText:'Descansa la vista cerca del centro de la pantalla entre objetivos, no fija en un solo punto — los objetivos pueden aparecer en cualquier lugar.'
+  }
+};
+function t(key){return translations[currentLang][key]||translations.en[key]||key}
+function updateUILanguage(){
+  document.getElementById('backLink').textContent=t('backLink');
+  document.getElementById('demoSubtitle').textContent=t('demoSubtitle');
+  document.getElementById('playbookToggleText').textContent=t('playbookToggleText');
+  document.getElementById('objectiveTitle').textContent=t('objectiveTitle');
+  document.getElementById('step1').innerHTML=t('step1');
+  document.getElementById('step2').innerHTML=t('step2');
+  document.getElementById('step3').innerHTML=t('step3');
+  document.getElementById('progressionTitle').textContent=t('progressionTitle');
+  document.getElementById('prog1').innerHTML=t('prog1');
+  document.getElementById('prog2').innerHTML=t('prog2');
+  document.getElementById('prog3').innerHTML=t('prog3');
+  document.getElementById('standingsTitle').textContent=t('standingsTitle');
+  document.getElementById('standings1').innerHTML=t('standings1');
+  document.getElementById('tipTitle').textContent=t('tipTitle');
+  document.getElementById('tipText').textContent=t('tipText');
+  document.getElementById('langEN').classList.toggle('active',currentLang==='en');
+  document.getElementById('langES').classList.toggle('active',currentLang==='es');
+  updateDemoLabelForCurrentPhase();
+}
+function setLang(l){
+  currentLang=l;
+  try{localStorage.setItem('lc-lang',l)}catch(e){}
+  updateUILanguage();
+}
+document.getElementById('langEN').onclick=function(){setLang('en')};
+document.getElementById('langES').onclick=function(){setLang('es')};
+var savedLang;
+try{savedLang=localStorage.getItem('lc-lang')}catch(e){}
+if(savedLang)currentLang=savedLang;
+
+var demoPhase='wait';
+function updateDemoLabelForCurrentPhase(){
+  if(demoPhase==='wait'){demoLabel.textContent=t('demoLabelWait');demoLabel.className='demo-label'}
+  else if(demoPhase==='go'){demoLabel.textContent=t('demoLabelGo');demoLabel.className='demo-label phase-go'}
+}
+
+var demoEpoch=0,demoTimeouts=[];
+function setDemoTimeout(fn,delay){
+  var id=setTimeout(function(){
+    var idx=demoTimeouts.indexOf(id);
+    if(idx>-1)demoTimeouts.splice(idx,1);
+    fn();
+  },delay);
+  demoTimeouts.push(id);
+  return id;
+}
+function clearDemoTimeouts(){demoTimeouts.forEach(function(id){clearTimeout(id)});demoTimeouts=[]}
+
+function positionTarget(){
+  var x=25+Math.random()*50, y=25+Math.random()*50;
+  demoTarget.style.left=x+'%';
+  demoTarget.style.top=y+'%';
+}
+
+function runDemoCycle(epoch){
+  if(epoch!==demoEpoch)return;
+  demoPhase='wait';
+  updateDemoLabelForCurrentPhase();
+  demoTarget.classList.remove('lit');
+  demoBpm.textContent='-- BPM';
+
+  var waitMs=900+Math.random()*1100;
+  setDemoTimeout(function(){
+    if(epoch!==demoEpoch)return;
+    positionTarget();
+    demoTarget.classList.add('lit');
+    demoPhase='go';
+    updateDemoLabelForCurrentPhase();
+
+    var reactMs=280+Math.random()*180;
+    setDemoTimeout(function(){
+      if(epoch!==demoEpoch)return;
+      var bpm=Math.round(60000/reactMs);
+      demoBpm.textContent=bpm+' BPM';
+      demoTarget.classList.remove('lit');
+      setDemoTimeout(function(){runDemoCycle(epoch)},900);
+    },reactMs);
+  },waitMs);
+}
+
+function startDemo(){demoEpoch++;clearDemoTimeouts();runDemoCycle(demoEpoch)}
+
+updateUILanguage();
+startDemo();
+
+var toggle=document.getElementById('playbookToggle');
+var content=document.getElementById('playbookContent');
+toggle.addEventListener('click',function(){
+  toggle.classList.toggle('open');
+  content.classList.toggle('open');
+});
+})();
+</script>
+</body>
+</html>
