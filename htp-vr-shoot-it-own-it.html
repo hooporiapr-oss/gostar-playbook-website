@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Shoot It. Own It. · How To Play</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#000;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+body{font-family:Arial,Helvetica,sans-serif;color:#fff}
+
+:root{--orange:#FF6B35;--orange-light:#ff8a5c;--purple:#7c3aed;--purple-light:#a855f7;--gold:#ffd35a;--cream:#c9b8a8}
+
+#stage{position:fixed;inset:0;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at center,#1a0f0a 0%,#000 70%)}
+#panel{position:relative;z-index:2;width:100%;max-width:640px;max-height:100%;overflow-y:auto;text-align:center}
+#panel::-webkit-scrollbar{width:6px}
+#panel::-webkit-scrollbar-thumb{background:rgba(255,107,53,.4);border-radius:10px}
+
+.demo-title{font-size:1.9rem;font-weight:900;font-style:italic;letter-spacing:.01em;text-transform:uppercase;text-shadow:0 0 40px rgba(255,107,53,.5);margin-bottom:4px}
+.demo-title span{color:var(--orange)}
+.demo-subtitle{font-size:.85rem;font-weight:700;color:var(--cream);letter-spacing:.04em;margin-bottom:22px}
+
+.demo-label{font-family:Arial,Helvetica,sans-serif;font-size:.72rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);background:rgba(0,0,0,.85);padding:5px 14px;border-radius:10px;display:inline-block;margin-bottom:14px;border:1px solid rgba(255,215,90,.3);transition:all .3s}
+.demo-label.phase-go{color:var(--orange-light);border-color:rgba(255,107,53,.5)}
+.demo-label.phase-correct{color:#00D9A5;border-color:rgba(0,217,165,.5)}
+
+.demo-stage-wrap{display:flex;justify-content:center;margin-bottom:22px}
+.demo-stage{width:100%;max-width:320px}
+.demo-flash{width:100%;height:110px;background:#150c07;border-radius:16px;border:2px solid rgba(255,107,53,.3);display:flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:0 0 40px rgba(255,107,53,.12),inset 0 0 30px rgba(0,0,0,.4)}
+.demo-flash-arrow{font-size:3rem;opacity:0;transition:opacity .1s}
+.demo-flash-arrow.show{opacity:1}
+.demo-choices{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.demo-choice{aspect-ratio:1;border:3px solid rgba(124,58,237,.5);background:rgba(124,58,237,.08);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:2rem;transition:all .15s}
+.demo-choice.correct{border-color:#00D9A5;background:rgba(0,217,165,.28);box-shadow:0 0 20px rgba(0,217,165,.5)}
+
+.playbook-section{max-width:520px;margin:0 auto 20px;text-align:left}
+.playbook-toggle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 16px;background:linear-gradient(135deg,rgba(255,107,53,.1),rgba(255,215,90,.05));border:1px solid rgba(255,107,53,.3);border-radius:12px;cursor:pointer;transition:all .3s}
+.playbook-toggle-icon{font-size:1rem}
+.playbook-toggle-text{font-size:.8rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#fff}
+.playbook-toggle-arrow{color:var(--orange-light);transition:transform .3s;margin-left:auto}
+.playbook-toggle.open .playbook-toggle-arrow{transform:rotate(180deg)}
+.playbook-content{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.playbook-content.open{max-height:700px}
+.playbook-inner{padding:16px 4px 4px}
+.playbook-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.playbook-card-title{font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-light);margin-bottom:10px}
+.playbook-step{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.playbook-step:last-child{margin-bottom:0}
+.playbook-step-num{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(255,107,53,.2);color:var(--orange-light);font-size:.68rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.playbook-step-text{font-size:.78rem;line-height:1.5;color:var(--cream)}
+.playbook-step-text strong{color:#fff}
+.playbook-tip{background:rgba(255,215,90,.06);border-left:3px solid var(--gold);padding:9px 12px;border-radius:0 8px 8px 0;margin-top:10px}
+.playbook-tip-title{font-size:.68rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.playbook-tip-text{font-size:.76rem;color:var(--cream);line-height:1.5}
+
+.back-link{display:inline-block;padding:8px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:#fff;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;margin-bottom:18px}
+
+.nav-lang{display:inline-flex;gap:3px;margin-left:10px;vertical-align:middle}
+.nav-lang-btn{padding:6px 10px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:#9a9088;border-radius:6px;font-size:.66rem;font-weight:800;cursor:pointer;letter-spacing:.04em}
+.nav-lang-btn.active{border-color:var(--gold);color:var(--gold)}
+
+footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
+
+@media(max-width:480px){.demo-title{font-size:1.4rem}.demo-stage{max-width:270px}}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="panel">
+    <a href="reaction-velocity.html" class="back-link" id="backLink">← Back to Hub</a>
+    <div class="nav-lang">
+      <button class="nav-lang-btn active" id="langEN">EN</button>
+      <button class="nav-lang-btn" id="langES">ES</button>
+    </div>
+
+    <div class="demo-title">SHOOT IT. <span>OWN IT.</span></div>
+    <div class="demo-subtitle" id="demoSubtitle">Read the arrow. Find the match.</div>
+
+    <div class="demo-stage-wrap">
+      <div class="demo-stage">
+        <div class="demo-label" id="demoLabel">👁️ WATCH FOR THE ARROW</div>
+        <div class="demo-flash"><div class="demo-flash-arrow" id="demoFlashArrow">▲</div></div>
+        <div class="demo-choices" id="demoChoices">
+          <div class="demo-choice" id="demoChoice0">▲</div>
+          <div class="demo-choice" id="demoChoice1">▶</div>
+          <div class="demo-choice" id="demoChoice2">▼</div>
+          <div class="demo-choice" id="demoChoice3">◀</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="playbook-section">
+      <div class="playbook-toggle" id="playbookToggle">
+        <span class="playbook-toggle-icon">📖</span>
+        <span class="playbook-toggle-text" id="playbookToggleText">The Playbook</span>
+        <span class="playbook-toggle-arrow">▼</span>
+      </div>
+      <div class="playbook-content" id="playbookContent">
+        <div class="playbook-inner">
+          <div class="playbook-card">
+            <div class="playbook-card-title">🎯 <span id="objectiveTitle">Objective</span></div>
+            <div class="playbook-step"><div class="playbook-step-num">1</div><div class="playbook-step-text" id="step1">An <strong>arrow flashes once</strong> in the center — then it's gone.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">2</div><div class="playbook-step-text" id="step2">Find the <strong>button</strong> showing that same direction and tap it.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">3</div><div class="playbook-step-text" id="step3">The four buttons <strong>reshuffle their positions</strong> every single round — so you're reading the arrow fresh every time, never relying on muscle memory.</div></div>
+          </div>
+          <div class="playbook-card">
+            <div class="playbook-card-title">⭐ <span id="progressionTitle">Scoring</span></div>
+            <div class="playbook-step"><div class="playbook-step-num">▶</div><div class="playbook-step-text" id="prog1">Speed and accuracy both count — a fast, correct tap scores higher than a slow one.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">▶</div><div class="playbook-step-text" id="prog2">A full run plays out over a fixed period — every hit adds up, every miss holds you back.</div></div>
+          </div>
+          <div class="playbook-card">
+            <div class="playbook-card-title">🏆 <span id="standingsTitle">Standings</span></div>
+            <div class="playbook-step"><div class="playbook-step-num">🥇</div><div class="playbook-step-text" id="standings1">Every run gets tracked on <strong>The Standings</strong> — tap any player's row to see their full shot-by-shot breakdown.</div></div>
+            <div class="playbook-tip">
+              <div class="playbook-tip-title">💡 <span id="tipTitle">Tip</span></div>
+              <div class="playbook-tip-text" id="tipText">Don't memorize where a direction "usually" sits — the buttons genuinely move every round. Read the arrow, then scan.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>Gostar Digital LLC</footer>
+  </div>
+</div>
+
+<script>
+(function(){
+var flashArrow=document.getElementById('demoFlashArrow');
+var demoLabel=document.getElementById('demoLabel');
+var choiceEls=[document.getElementById('demoChoice0'),document.getElementById('demoChoice1'),document.getElementById('demoChoice2'),document.getElementById('demoChoice3')];
+
+var currentLang='en';
+var translations={
+  en:{
+    backLink:'← Back to Hub',
+    demoSubtitle:'Read the arrow. Find the match.',
+    demoLabelWatch:'👁️ WATCH FOR THE ARROW',
+    demoLabelGo:'🔍 FIND IT!',
+    demoLabelCorrect:'✅ CORRECT!',
+    playbookToggleText:'The Playbook',
+    objectiveTitle:'Objective',
+    step1:'An <strong>arrow flashes once</strong> in the center — then it\'s gone.',
+    step2:'Find the <strong>button</strong> showing that same direction and tap it.',
+    step3:'The four buttons <strong>reshuffle their positions</strong> every single round — so you\'re reading the arrow fresh every time, never relying on muscle memory.',
+    progressionTitle:'Scoring',
+    prog1:'Speed and accuracy both count — a fast, correct tap scores higher than a slow one.',
+    prog2:'A full run plays out over a fixed period — every hit adds up, every miss holds you back.',
+    standingsTitle:'Standings',
+    standings1:'Every run gets tracked on <strong>The Standings</strong> — tap any player\'s row to see their full shot-by-shot breakdown.',
+    tipTitle:'Tip',
+    tipText:'Don\'t memorize where a direction "usually" sits — the buttons genuinely move every round. Read the arrow, then scan.'
+  },
+  es:{
+    backLink:'← Volver al Centro',
+    demoSubtitle:'Lee la flecha. Encuentra la coincidencia.',
+    demoLabelWatch:'👁️ ESPERA LA FLECHA',
+    demoLabelGo:'🔍 ¡ENCUÉNTRALA!',
+    demoLabelCorrect:'✅ ¡CORRECTO!',
+    playbookToggleText:'El Manual',
+    objectiveTitle:'Objetivo',
+    step1:'Una <strong>flecha destella una vez</strong> en el centro — y luego desaparece.',
+    step2:'Encuentra el <strong>botón</strong> que muestra esa misma dirección y tócalo.',
+    step3:'Los cuatro botones <strong>reorganizan sus posiciones</strong> cada ronda — así que lees la flecha de nuevo cada vez, sin depender de la memoria muscular.',
+    progressionTitle:'Puntuación',
+    prog1:'La velocidad y la precisión cuentan — un toque rápido y correcto puntúa más que uno lento.',
+    prog2:'Una corrida completa se desarrolla en un período fijo — cada acierto suma, cada fallo te atrasa.',
+    standingsTitle:'Clasificación',
+    standings1:'Cada corrida se registra en <strong>La Clasificación</strong> — toca la fila de cualquier jugador para ver su desglose completo, tiro por tiro.',
+    tipTitle:'Consejo',
+    tipText:'No memorices dónde "suele" estar una dirección — los botones genuinamente se mueven cada ronda. Lee la flecha, luego escanea.'
+  }
+};
+function t(key){return translations[currentLang][key]||translations.en[key]||key}
+function updateUILanguage(){
+  document.getElementById('backLink').textContent=t('backLink');
+  document.getElementById('demoSubtitle').textContent=t('demoSubtitle');
+  document.getElementById('playbookToggleText').textContent=t('playbookToggleText');
+  document.getElementById('objectiveTitle').textContent=t('objectiveTitle');
+  document.getElementById('step1').innerHTML=t('step1');
+  document.getElementById('step2').innerHTML=t('step2');
+  document.getElementById('step3').innerHTML=t('step3');
+  document.getElementById('progressionTitle').textContent=t('progressionTitle');
+  document.getElementById('prog1').innerHTML=t('prog1');
+  document.getElementById('prog2').innerHTML=t('prog2');
+  document.getElementById('standingsTitle').textContent=t('standingsTitle');
+  document.getElementById('standings1').innerHTML=t('standings1');
+  document.getElementById('tipTitle').textContent=t('tipTitle');
+  document.getElementById('tipText').textContent=t('tipText');
+  document.getElementById('langEN').classList.toggle('active',currentLang==='en');
+  document.getElementById('langES').classList.toggle('active',currentLang==='es');
+  updateDemoLabelForCurrentPhase();
+}
+function setLang(l){
+  currentLang=l;
+  try{localStorage.setItem('lc-lang',l)}catch(e){}
+  updateUILanguage();
+}
+document.getElementById('langEN').onclick=function(){setLang('en')};
+document.getElementById('langES').onclick=function(){setLang('es')};
+var savedLang;
+try{savedLang=localStorage.getItem('lc-lang')}catch(e){}
+if(savedLang)currentLang=savedLang;
+
+var ARROWS=['▲','▶','▼','◀'];
+var demoPhase='watch';
+function updateDemoLabelForCurrentPhase(){
+  if(demoPhase==='watch'){demoLabel.textContent=t('demoLabelWatch');demoLabel.className='demo-label'}
+  else if(demoPhase==='go'){demoLabel.textContent=t('demoLabelGo');demoLabel.className='demo-label phase-go'}
+  else if(demoPhase==='correct'){demoLabel.textContent=t('demoLabelCorrect');demoLabel.className='demo-label phase-correct'}
+}
+
+var demoEpoch=0,demoTimeouts=[];
+function setDemoTimeout(fn,delay){
+  var id=setTimeout(function(){
+    var idx=demoTimeouts.indexOf(id);
+    if(idx>-1)demoTimeouts.splice(idx,1);
+    fn();
+  },delay);
+  demoTimeouts.push(id);
+  return id;
+}
+function clearDemoTimeouts(){demoTimeouts.forEach(function(id){clearTimeout(id)});demoTimeouts=[]}
+
+function shuffle(arr){
+  var a=arr.slice();
+  for(var i=a.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var tmp=a[i];a[i]=a[j];a[j]=tmp;
+  }
+  return a;
+}
+
+function runDemoCycle(epoch){
+  if(epoch!==demoEpoch)return;
+  demoPhase='watch';
+  updateDemoLabelForCurrentPhase();
+  flashArrow.classList.remove('show');
+
+  // reshuffle the four buttons' directions every round
+  var order=shuffle([0,1,2,3]);
+  choiceEls.forEach(function(el,i){
+    el.textContent=ARROWS[order[i]];
+    el.classList.remove('correct');
+  });
+  var targetDir=ARROWS[Math.floor(Math.random()*4)];
+  var correctSlot=0;
+  for(var i=0;i<4;i++){ if(ARROWS[order[i]]===targetDir){ correctSlot=i; } }
+
+  setDemoTimeout(function(){
+    if(epoch!==demoEpoch)return;
+    flashArrow.textContent=targetDir;
+    flashArrow.classList.add('show');
+    demoPhase='go';
+    updateDemoLabelForCurrentPhase();
+
+    setDemoTimeout(function(){
+      if(epoch!==demoEpoch)return;
+      flashArrow.classList.remove('show');
+    },450);
+
+    setDemoTimeout(function(){
+      if(epoch!==demoEpoch)return;
+      choiceEls[correctSlot].classList.add('correct');
+      demoPhase='correct';
+      updateDemoLabelForCurrentPhase();
+      setDemoTimeout(function(){runDemoCycle(epoch)},1300);
+    },1100);
+  },700);
+}
+
+function startDemo(){demoEpoch++;clearDemoTimeouts();runDemoCycle(demoEpoch)}
+
+updateUILanguage();
+startDemo();
+
+var toggle=document.getElementById('playbookToggle');
+var content=document.getElementById('playbookContent');
+toggle.addEventListener('click',function(){
+  toggle.classList.toggle('open');
+  content.classList.toggle('open');
+});
+})();
+</script>
+</body>
+</html>
