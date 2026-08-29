@@ -52,6 +52,19 @@ html,body{
 main{position:relative;z-index:1}
 .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
 
+.lang-toggle{
+  display:flex;justify-content:center;gap:6px;
+  padding:18px 0 0;
+}
+.lang-btn{
+  padding:6px 14px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.4);
+  color:#8892a0;font-family:'Oswald',sans-serif;font-weight:600;
+  font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;transition:all .12s;
+}
+.lang-btn.active{border-color:#ffd35a;color:#ffd35a;background:rgba(255,211,90,.1)}
+
 /* ── Hero ── */
 .hero{padding:64px 0 56px;text-align:center}
 .kicker{
@@ -190,48 +203,122 @@ footer{
 <div id="glow-floor"></div>
 
 <main>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="langEN">EN</button>
+    <button class="lang-btn" id="langES">ES</button>
+  </div>
+
   <div class="wrap">
 
     <section class="hero">
       <div class="kicker"><span class="dot"></span><span>Gostar Digital LLC</span></div>
-      <h1 class="brand">THIS IS<br><span class="accent">GOSTAR DIGITAL</span></h1>
-      <p class="tagline">Every game we build is meant to feel like <strong>walking onto a stage</strong> — lights up, pulse racing, nothing else in the room. Pick a world below and step in.</p>
+      <h1 class="brand"><span id="heroPre">THIS IS</span><br><span class="accent">GOSTAR DIGITAL</span></h1>
+      <p class="tagline" id="tagline">Every game we build is meant to feel like <strong>walking onto a stage</strong> — lights up, pulse racing, nothing else in the room. Pick a world below and step in.</p>
       <div class="curtain-rule"></div>
     </section>
 
     <section class="portals">
       <a class="portal hooporia" href="htp-index.html">
         <div class="portal-spot"></div>
-        <div class="portal-eyebrow">Memory · Precision · Rhythm</div>
+        <div class="portal-eyebrow" id="portal1Eyebrow">Memory · Precision · Rhythm</div>
         <div class="portal-name"><span>DYNAMIC</span><span>MEMORY</span></div>
-        <div class="portal-desc">Four quarters of pure recall — watch, remember, react, in sync with a real basketball beat.</div>
+        <div class="portal-desc" id="portal1Desc">Four quarters of pure recall — watch, remember, react, in sync with a real basketball beat.</div>
         <div class="portal-mechs">
           <span>Recall</span><span>Reflex</span><span>Replay</span><span>Recognition</span>
         </div>
-        <div class="portal-cta">Step Onto The Court<svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="portal-cta" id="portal1Cta">Step Onto The Court<svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
       <a class="portal reaction" href="htp-vr-index.html">
         <div class="portal-spot"></div>
-        <div class="portal-eyebrow">Speed · Reflex · Instinct</div>
+        <div class="portal-eyebrow" id="portal2Eyebrow">Speed · Reflex · Instinct</div>
         <div class="portal-name"><span>REACTION</span><span>VELOCITY</span></div>
-        <div class="portal-desc">Four ways to measure the gap between seeing and doing — no mercy, no deadline, just raw reaction.</div>
+        <div class="portal-desc" id="portal2Desc">Four ways to measure the gap between seeing and doing — no mercy, no deadline, just raw reaction.</div>
         <div class="portal-mechs">
           <span>Reactific</span><span>Speed</span><span>Shoot It.</span><span>Count.</span>
         </div>
-        <div class="portal-cta">Enter The Arena<svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="portal-cta" id="portal2Cta">Enter The Arena<svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
     </section>
 
     <section class="closing">
-      <div class="closing-line">The lights are up. Your move.</div>
-      <div class="closing-sub">Built by Gostar Digital LLC — every round, every beat, every reaction, real.</div>
+      <div class="closing-line" id="closingLine">The lights are up. Your move.</div>
+      <div class="closing-sub" id="closingSub">Built by Gostar Digital LLC — every round, every beat, every reaction, real.</div>
     </section>
 
   </div>
 
-  <footer>© Gostar Digital LLC — All Rights Reserved</footer>
+  <footer id="footerText">© Gostar Digital LLC — All Rights Reserved</footer>
 </main>
+
+<script>
+(function(){
+  var currentLang = 'en';
+  // Spanish here is written for Puerto Rico specifically — natural,
+  // warm, direct phrasing, not a neutral or generic Latin American
+  // translation. "Ustedes," never "vosotros," and wording a Puerto
+  // Rican reader would genuinely say out loud, not just recognize.
+  var translations = {
+    en: {
+      heroPre: 'THIS IS',
+      tagline: 'Every game we build is meant to feel like <strong>walking onto a stage</strong> — lights up, pulse racing, nothing else in the room. Pick a world below and step in.',
+      portal1Eyebrow: 'Memory · Precision · Rhythm',
+      portal1Desc: 'Four quarters of pure recall — watch, remember, react, in sync with a real basketball beat.',
+      portal1Cta: 'Step Onto The Court',
+      portal2Eyebrow: 'Speed · Reflex · Instinct',
+      portal2Desc: 'Four ways to measure the gap between seeing and doing — no mercy, no deadline, just raw reaction.',
+      portal2Cta: 'Enter The Arena',
+      closingLine: 'The lights are up. Your move.',
+      closingSub: 'Built by Gostar Digital LLC — every round, every beat, every reaction, real.',
+      footerText: '© Gostar Digital LLC — All Rights Reserved'
+    },
+    es: {
+      heroPre: 'AQUÍ ES',
+      tagline: 'Cada juego que hacemos está pensado para que se sienta como <strong>subir a una tarima</strong> — las luces encendidas, el pulso acelerado, nada más en el mundo. Elige tu mundo y entra.',
+      portal1Eyebrow: 'Memoria · Precisión · Ritmo',
+      portal1Desc: 'Cuatro cuartos de pura memoria — mira, recuerda, reacciona, todo al ritmo real del baloncesto.',
+      portal1Cta: 'Entra A La Cancha',
+      portal2Eyebrow: 'Velocidad · Reflejo · Instinto',
+      portal2Desc: 'Cuatro maneras de medir la brecha entre ver y actuar — sin piedad, sin límite de tiempo, pura reacción.',
+      portal2Cta: 'Entra A La Arena',
+      closingLine: 'Las luces están encendidas. Te toca a ti.',
+      closingSub: 'Hecho por Gostar Digital LLC — cada ronda, cada golpe, cada reacción, de verdad.',
+      footerText: '© Gostar Digital LLC — Todos Los Derechos Reservados'
+    }
+  };
+
+  function t(key){ return translations[currentLang][key] || translations.en[key] || key; }
+
+  function updateUILanguage(){
+    document.getElementById('heroPre').textContent = t('heroPre');
+    document.getElementById('tagline').innerHTML = t('tagline');
+    document.getElementById('portal1Eyebrow').textContent = t('portal1Eyebrow');
+    document.getElementById('portal1Desc').textContent = t('portal1Desc');
+    document.getElementById('portal1Cta').childNodes[0].nodeValue = t('portal1Cta');
+    document.getElementById('portal2Eyebrow').textContent = t('portal2Eyebrow');
+    document.getElementById('portal2Desc').textContent = t('portal2Desc');
+    document.getElementById('portal2Cta').childNodes[0].nodeValue = t('portal2Cta');
+    document.getElementById('closingLine').textContent = t('closingLine');
+    document.getElementById('closingSub').textContent = t('closingSub');
+    document.getElementById('footerText').textContent = t('footerText');
+    document.getElementById('langEN').classList.toggle('active', currentLang === 'en');
+    document.getElementById('langES').classList.toggle('active', currentLang === 'es');
+  }
+
+  function setLang(l){
+    currentLang = l;
+    try{ localStorage.setItem('lc-lang', l); }catch(e){}
+    updateUILanguage();
+  }
+  document.getElementById('langEN').onclick = function(){ setLang('en'); };
+  document.getElementById('langES').onclick = function(){ setLang('es'); };
+  var savedLang;
+  try{ savedLang = localStorage.getItem('lc-lang'); }catch(e){}
+  if (savedLang) currentLang = savedLang;
+
+  updateUILanguage();
+})();
+</script>
 
 </body>
 </html>
