@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Flashpoint · How To Play</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#000;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+body{font-family:Arial,Helvetica,sans-serif;color:#fff}
+
+:root{--gold:#e6a817;--gold-light:#ffd35a;--cream:#c9b8a8}
+
+#stage{position:fixed;inset:0;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at center,#201804 0%,#000 70%)}
+#panel{position:relative;z-index:2;width:100%;max-width:640px;max-height:100%;overflow-y:auto;text-align:center}
+#panel::-webkit-scrollbar{width:6px}
+#panel::-webkit-scrollbar-thumb{background:rgba(230,168,23,.4);border-radius:10px}
+
+.demo-title{font-size:2rem;font-weight:900;font-style:italic;letter-spacing:.01em;text-transform:uppercase;text-shadow:0 0 40px rgba(230,168,23,.5);margin-bottom:4px}
+.demo-title span{color:var(--gold-light)}
+.demo-subtitle{font-size:.85rem;font-weight:700;color:var(--cream);letter-spacing:.04em;margin-bottom:22px}
+
+.demo-label{font-family:Arial,Helvetica,sans-serif;font-size:.72rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);background:rgba(0,0,0,.85);padding:5px 14px;border-radius:10px;display:inline-block;margin-bottom:14px;border:1px solid rgba(255,215,90,.3);transition:all .3s}
+.demo-label.phase-go{color:#ffd35a;border-color:rgba(255,211,90,.5)}
+.demo-label.phase-correct{color:#00D9A5;border-color:rgba(0,217,165,.5)}
+
+.demo-stage-wrap{display:flex;justify-content:center;margin-bottom:22px}
+.demo-board{position:relative;width:100%;max-width:320px;height:220px;background:#201804;border-radius:16px;border:2px solid rgba(230,168,23,.3);box-shadow:0 0 40px rgba(230,168,23,.15),inset 0 0 30px rgba(0,0,0,.4)}
+.demo-target{position:absolute;width:50px;height:50px;border-radius:50%;transform:translate(-50%,-50%) scale(1);opacity:1;transition:filter .12s,box-shadow .12s,transform .12s}
+.demo-target.lit{filter:brightness(1.6) saturate(1.3);box-shadow:0 0 30px currentColor,0 0 50px currentColor;transform:translate(-50%,-50%) scale(1.12)}
+.demo-level-badge{position:absolute;top:10px;right:14px;font-size:.65rem;font-weight:900;letter-spacing:.08em;color:var(--cream);background:rgba(0,0,0,.5);padding:4px 10px;border-radius:8px}
+
+.playbook-section{max-width:520px;margin:0 auto 20px;text-align:left}
+.playbook-toggle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 16px;background:linear-gradient(135deg,rgba(230,168,23,.1),rgba(255,215,90,.05));border:1px solid rgba(230,168,23,.3);border-radius:12px;cursor:pointer;transition:all .3s}
+.playbook-toggle-icon{font-size:1rem}
+.playbook-toggle-text{font-size:.8rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#fff}
+.playbook-toggle-arrow{color:var(--gold-light);transition:transform .3s;margin-left:auto}
+.playbook-toggle.open .playbook-toggle-arrow{transform:rotate(180deg)}
+.playbook-content{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.playbook-content.open{max-height:700px}
+.playbook-inner{padding:16px 4px 4px}
+.playbook-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.playbook-card-title{font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px}
+.playbook-step{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.playbook-step:last-child{margin-bottom:0}
+.playbook-step-num{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(230,168,23,.2);color:var(--gold-light);font-size:.68rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.playbook-step-text{font-size:.78rem;line-height:1.5;color:var(--cream)}
+.playbook-step-text strong{color:#fff}
+.playbook-tip{background:rgba(255,215,90,.06);border-left:3px solid var(--gold-light);padding:9px 12px;border-radius:0 8px 8px 0;margin-top:10px}
+.playbook-tip-title{font-size:.68rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:3px}
+.playbook-tip-text{font-size:.76rem;color:var(--cream);line-height:1.5}
+
+.back-link{display:inline-block;padding:8px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:#fff;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;margin-bottom:18px}
+
+.nav-lang{display:inline-flex;gap:3px;margin-left:10px;vertical-align:middle}
+.nav-lang-btn{padding:6px 10px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:#9a9088;border-radius:6px;font-size:.66rem;font-weight:800;cursor:pointer;letter-spacing:.04em}
+.nav-lang-btn.active{border-color:var(--gold-light);color:var(--gold-light)}
+
+footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
+
+@media(max-width:480px){.demo-title{font-size:1.4rem}.demo-board{max-width:270px;height:190px}}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="panel">
+    <a href="htp-vr-index.html" class="back-link" id="backLink">← Back to Hub</a>
+    <div class="nav-lang">
+      <button class="nav-lang-btn active" id="langEN">EN</button>
+      <button class="nav-lang-btn" id="langES">ES</button>
+    </div>
+
+    <div class="demo-title">FLASH<span>POINT</span></div>
+    <div class="demo-subtitle" id="demoSubtitle">A new flash. Every level.</div>
+
+    <div class="demo-label" id="demoLabel">👁️ WATCH THE FLASH</div>
+    <div class="demo-stage-wrap">
+      <div class="demo-board">
+        <div class="demo-level-badge" id="demoLevelBadge">LEVEL 1</div>
+        <div class="demo-target" id="demoT0" style="left:20%;top:32%;background:radial-gradient(circle at 35% 35%,#fff2,#ff1e3c);color:#ff1e3c"></div>
+        <div class="demo-target" id="demoT1" style="left:50%;top:24%;background:radial-gradient(circle at 35% 35%,#fff2,#ffd35a);color:#ffd35a"></div>
+        <div class="demo-target" id="demoT2" style="left:80%;top:32%;background:radial-gradient(circle at 35% 35%,#fff2,#00D9A5);color:#00D9A5"></div>
+        <div class="demo-target" id="demoT3" style="left:20%;top:70%;background:radial-gradient(circle at 35% 35%,#fff2,#3b82f6);color:#3b82f6"></div>
+        <div class="demo-target" id="demoT4" style="left:50%;top:78%;background:radial-gradient(circle at 35% 35%,#fff2,#ff6b35);color:#ff6b35"></div>
+        <div class="demo-target" id="demoT5" style="left:80%;top:70%;background:radial-gradient(circle at 35% 35%,#fff2,#ec4899);color:#ec4899"></div>
+      </div>
+    </div>
+
+    <div class="playbook-section">
+      <div class="playbook-toggle" id="playbookToggle">
+        <span class="playbook-toggle-icon">📖</span>
+        <span class="playbook-toggle-text" id="playbookToggleText">The Playbook</span>
+        <span class="playbook-toggle-arrow">▼</span>
+      </div>
+      <div class="playbook-content" id="playbookContent">
+        <div class="playbook-inner">
+          <div class="playbook-card">
+            <div class="playbook-card-title">🎯 <span id="objectiveTitle">Objective</span></div>
+            <div class="playbook-step"><div class="playbook-step-num">1</div><div class="playbook-step-text" id="step1"><strong>Six colored targets</strong>, fixed in place for the whole game — same position, same color, from start to finish.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">2</div><div class="playbook-step-text" id="step2">Watch a sequence flash, then <strong>tap the targets back in the same order</strong>.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">3</div><div class="playbook-step-text" id="step3">Get it right and the next level is <strong>one target longer</strong> — but a genuinely brand new sequence, never the one you just learned.</div></div>
+          </div>
+          <div class="playbook-card">
+            <div class="playbook-card-title">⭐ <span id="progressionTitle">What Makes It Different</span></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog1">Chain Reaction replays the same growing sequence every level — this one never does. Every level is a fresh read, with zero benefit from what you memorized last time.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog2">There's still no timer on your taps — this is pure accuracy, just without the comfort of repetition.</div></div>
+          </div>
+          <div class="playbook-card">
+            <div class="playbook-card-title">🏆 <span id="standingsTitle">Standings</span></div>
+            <div class="playbook-step"><div class="playbook-step-num">🥇</div><div class="playbook-step-text" id="standings1">Every run gets tracked on <strong>The Standings</strong> — the longest sequence you read correctly, ranked against every other player.</div></div>
+            <div class="playbook-tip">
+              <div class="playbook-tip-title">💡 <span id="tipTitle">Tip</span></div>
+              <div class="playbook-tip-text" id="tipText">Don't try to memorize — read and react. There's nothing to recall from the last level here, so trust what you just watched, not what you remember.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>Gostar Digital LLC</footer>
+  </div>
+</div>
+
+<script>
+(function(){
+var levelBadge=document.getElementById('demoLevelBadge');
+var demoLabel=document.getElementById('demoLabel');
+var targetEls=[
+  document.getElementById('demoT0'),document.getElementById('demoT1'),document.getElementById('demoT2'),
+  document.getElementById('demoT3'),document.getElementById('demoT4'),document.getElementById('demoT5')
+];
+
+var currentLang='en';
+var translations={
+  en:{
+    backLink:'← Back to Hub',
+    demoSubtitle:'A new flash. Every level.',
+    demoLabelWatch:'👁️ WATCH THE FLASH',
+    demoLabelGo:'🔁 YOUR TURN',
+    demoLabelCorrect:'✅ NAILED IT',
+    levelLabel:'LEVEL ',
+    playbookToggleText:'The Playbook',
+    objectiveTitle:'Objective',
+    step1:'<strong>Six colored targets</strong>, fixed in place for the whole game — same position, same color, from start to finish.',
+    step2:'Watch a sequence flash, then <strong>tap the targets back in the same order</strong>.',
+    step3:'Get it right and the next level is <strong>one target longer</strong> — but a genuinely brand new sequence, never the one you just learned.',
+    progressionTitle:'What Makes It Different',
+    prog1:'Chain Reaction replays the same growing sequence every level — this one never does. Every level is a fresh read, with zero benefit from what you memorized last time.',
+    prog2:'There\'s still no timer on your taps — this is pure accuracy, just without the comfort of repetition.',
+    standingsTitle:'Standings',
+    standings1:'Every run gets tracked on <strong>The Standings</strong> — the longest sequence you read correctly, ranked against every other player.',
+    tipTitle:'Tip',
+    tipText:'Don\'t try to memorize — read and react. There\'s nothing to recall from the last level here, so trust what you just watched, not what you remember.'
+  },
+  es:{
+    backLink:'← Volver al Centro',
+    demoSubtitle:'Un destello nuevo. Cada nivel.',
+    demoLabelWatch:'👁️ MIRA EL DESTELLO',
+    demoLabelGo:'🔁 TU TURNO',
+    demoLabelCorrect:'✅ ¡LO LOGRASTE!',
+    levelLabel:'NIVEL ',
+    playbookToggleText:'El Manual',
+    objectiveTitle:'Objetivo',
+    step1:'<strong>Seis objetivos de colores</strong>, en posición fija durante todo el juego — mismo lugar, mismo color, de principio a fin.',
+    step2:'Mira una secuencia destellar, luego <strong>toca los objetivos de vuelta en el mismo orden</strong>.',
+    step3:'Acertar hace que el siguiente nivel sea <strong>un objetivo más largo</strong> — pero una secuencia genuinamente nueva, nunca la que acabas de aprender.',
+    progressionTitle:'Qué Lo Hace Diferente',
+    prog1:'Chain Reaction repite la misma secuencia creciente cada nivel — este nunca lo hace. Cada nivel es una lectura nueva, sin ningún beneficio de lo que memorizaste la vez anterior.',
+    prog2:'Sigue sin haber temporizador en tus toques — esto es puro acierto, solo que sin la comodidad de la repetición.',
+    standingsTitle:'Clasificación',
+    standings1:'Cada corrida se registra en <strong>La Clasificación</strong> — la secuencia más larga que leíste correctamente, comparada con todos los demás jugadores.',
+    tipTitle:'Consejo',
+    tipText:'No intentes memorizar — lee y reacciona. Aquí no hay nada que recordar del nivel anterior, así que confía en lo que acabas de ver, no en lo que recuerdas.'
+  }
+};
+function t(key){return translations[currentLang][key]||translations.en[key]||key}
+function updateUILanguage(){
+  document.getElementById('backLink').textContent=t('backLink');
+  document.getElementById('demoSubtitle').textContent=t('demoSubtitle');
+  document.getElementById('playbookToggleText').textContent=t('playbookToggleText');
+  document.getElementById('objectiveTitle').textContent=t('objectiveTitle');
+  document.getElementById('step1').innerHTML=t('step1');
+  document.getElementById('step2').innerHTML=t('step2');
+  document.getElementById('step3').innerHTML=t('step3');
+  document.getElementById('progressionTitle').textContent=t('progressionTitle');
+  document.getElementById('prog1').innerHTML=t('prog1');
+  document.getElementById('prog2').innerHTML=t('prog2');
+  document.getElementById('standingsTitle').textContent=t('standingsTitle');
+  document.getElementById('standings1').innerHTML=t('standings1');
+  document.getElementById('tipTitle').textContent=t('tipTitle');
+  document.getElementById('tipText').textContent=t('tipText');
+  document.getElementById('langEN').classList.toggle('active',currentLang==='en');
+  document.getElementById('langES').classList.toggle('active',currentLang==='es');
+  updateDemoLabelForCurrentPhase();
+  levelBadge.textContent=t('levelLabel')+currentLevel;
+}
+function setLang(l){
+  currentLang=l;
+  try{localStorage.setItem('lc-lang',l)}catch(e){}
+  updateUILanguage();
+}
+document.getElementById('langEN').onclick=function(){setLang('en')};
+document.getElementById('langES').onclick=function(){setLang('es')};
+var savedLang;
+try{savedLang=localStorage.getItem('lc-lang')}catch(e){}
+if(savedLang)currentLang=savedLang;
+
+var demoPhase='watch';
+var currentLevel=1;
+function updateDemoLabelForCurrentPhase(){
+  if(demoPhase==='watch'){demoLabel.textContent=t('demoLabelWatch');demoLabel.className='demo-label'}
+  else if(demoPhase==='go'){demoLabel.textContent=t('demoLabelGo');demoLabel.className='demo-label phase-go'}
+  else if(demoPhase==='correct'){demoLabel.textContent=t('demoLabelCorrect');demoLabel.className='demo-label phase-correct'}
+}
+
+var demoEpoch=0,demoTimeouts=[];
+function setDemoTimeout(fn,delay){
+  var id=setTimeout(function(){
+    var idx=demoTimeouts.indexOf(id);
+    if(idx>-1)demoTimeouts.splice(idx,1);
+    fn();
+  },delay);
+  demoTimeouts.push(id);
+  return id;
+}
+function clearDemoTimeouts(){demoTimeouts.forEach(function(id){clearTimeout(id)});demoTimeouts=[]}
+
+// A short, looping illustration of the real mechanic: a sequence
+// flashes, then a brief "your turn" replay stands in for the
+// player's own taps, then locks in — but unlike Chain Reaction's own
+// demo, the NEXT sequence is genuinely regenerated from scratch, one
+// target longer, never built by extending this one. Caps at 4
+// targets and resets, purely so the demo stays quick to follow.
+var sequence=[];
+function randomSequenceOfLength(len){
+  var seq=[];
+  for(var i=0;i<len;i++)seq.push(Math.floor(Math.random()*6));
+  return seq;
+}
+
+function playSequence(i,onDone){
+  if(i>=sequence.length){onDone();return}
+  var idx=sequence[i];
+  targetEls[idx].classList.add('lit');
+  setDemoTimeout(function(){
+    targetEls[idx].classList.remove('lit');
+    setDemoTimeout(function(){playSequence(i+1,onDone)},180);
+  },520);
+}
+
+function runDemoCycle(epoch){
+  if(epoch!==demoEpoch)return;
+  demoPhase='watch';
+  currentLevel=sequence.length;
+  updateDemoLabelForCurrentPhase();
+  levelBadge.textContent=t('levelLabel')+currentLevel;
+
+  playSequence(0,function(){
+    if(epoch!==demoEpoch)return;
+    demoPhase='go';
+    updateDemoLabelForCurrentPhase();
+    setDemoTimeout(function(){
+      if(epoch!==demoEpoch)return;
+      playSequence(0,function(){
+        if(epoch!==demoEpoch)return;
+        demoPhase='correct';
+        updateDemoLabelForCurrentPhase();
+        setDemoTimeout(function(){
+          // Genuinely regenerate — never extend the previous sequence.
+          var nextLen=sequence.length>=4?1:sequence.length+1;
+          sequence=randomSequenceOfLength(nextLen);
+          runDemoCycle(epoch);
+        },1100);
+      });
+    },500);
+  });
+}
+
+function startDemo(){demoEpoch++;clearDemoTimeouts();sequence=randomSequenceOfLength(1);runDemoCycle(demoEpoch)}
+
+updateUILanguage();
+startDemo();
+
+var toggle=document.getElementById('playbookToggle');
+var content=document.getElementById('playbookContent');
+toggle.addEventListener('click',function(){
+  toggle.classList.toggle('open');
+  content.classList.toggle('open');
+});
+})();
+</script>
+</body>
+</html>
