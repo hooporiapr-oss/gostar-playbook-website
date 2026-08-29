@@ -60,12 +60,36 @@ body{font-family:Arial,Helvetica,sans-serif;color:#fff}
 footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
 
 @media(max-width:480px){.demo-title{font-size:1.4rem}.demo-stage{max-width:270px}}
+
+/* Menu — jump to any other how-to-play page without first going
+   back to the hub. Fixed in place so it's reachable no matter how
+   far down the playbook someone has scrolled. */
+#menuWrap{position:fixed;top:16px;right:16px;z-index:130}
+.menu-btn{padding:8px 16px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.6);color:#fff;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.menu-btn:hover{border-color:var(--teal)}
+.menu-dropdown{position:absolute;top:calc(100% + 8px);right:0;min-width:210px;background:#0a1410;border:1px solid rgba(0,217,165,.3);border-radius:14px;padding:8px;box-shadow:0 20px 50px rgba(0,0,0,.6);opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .15s,transform .15s}
+.menu-dropdown.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+.menu-item{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:9px;color:#c9b8a8;text-decoration:none;font-size:.82rem;font-weight:600}
+.menu-item:hover{background:rgba(255,255,255,.06);color:#fff}
+.menu-item.current{color:var(--teal);font-weight:900;background:rgba(0,217,165,.08)}
+.menu-divider{height:1px;background:rgba(255,255,255,.08);margin:6px 4px}
 </style>
 </head>
 <body>
+<div id="menuWrap">
+  <button class="menu-btn" id="menuBtn">☰ <span id="menuBtnText">Menu</span></button>
+  <div class="menu-dropdown" id="menuDropdown">
+    <a href="htp-vr-index.html" class="menu-item" id="menuHome">🏠 <span id="menuHomeText">How To Play Home</span></a>
+    <div class="menu-divider"></div>
+    <a href="htp-vr-reactific.html" class="menu-item">Reactific</a>
+    <a href="htp-vr-reaction-speed.html" class="menu-item">Reaction Speed</a>
+    <a href="htp-vr-shoot-it-own-it.html" class="menu-item">Shoot It. Own It.</a>
+    <a href="htp-vr-make-it-count.html" class="menu-item current">Make It Count.</a>
+  </div>
+</div>
 <div id="stage">
   <div id="panel">
-    <a href="reaction-velocity.html" class="back-link" id="backLink">← Back to Hub</a>
+    <a href="htp-vr-index.html" class="back-link" id="backLink">← Back to Hub</a>
     <div class="nav-lang">
       <button class="nav-lang-btn active" id="langEN">EN</button>
       <button class="nav-lang-btn" id="langES">ES</button>
@@ -146,7 +170,9 @@ var translations={
     standingsTitle:'Standings',
     standings1:'Every run gets tracked on <strong>The Standings</strong> — tap any player\'s row to see their full shot-by-shot breakdown.',
     tipTitle:'Tip',
-    tipText:'Train your eyes to skip straight past the target\'s drift and land on the arrow inside it. Position is noise here — the arrow is the only real signal.'
+    tipText:'Train your eyes to skip straight past the target\'s drift and land on the arrow inside it. Position is noise here — the arrow is the only real signal.',
+    menuBtnText:'Menu',
+    menuHomeText:'How To Play Home'
   },
   es:{
     backLink:'← Volver al Centro',
@@ -164,7 +190,9 @@ var translations={
     standingsTitle:'Clasificación',
     standings1:'Cada corrida se registra en <strong>La Clasificación</strong> — toca la fila de cualquier jugador para ver su desglose completo, tiro por tiro.',
     tipTitle:'Consejo',
-    tipText:'Entrena tu vista para saltar directamente la deriva del objetivo y fijarte en la flecha dentro de él. La posición es ruido aquí — la flecha es la única señal real.'
+    tipText:'Entrena tu vista para saltar directamente la deriva del objetivo y fijarte en la flecha dentro de él. La posición es ruido aquí — la flecha es la única señal real.',
+    menuBtnText:'Menú',
+    menuHomeText:'Inicio de Cómo Jugar'
   }
 };
 function t(key){return translations[currentLang][key]||translations.en[key]||key}
@@ -183,6 +211,8 @@ function updateUILanguage(){
   document.getElementById('standings1').innerHTML=t('standings1');
   document.getElementById('tipTitle').textContent=t('tipTitle');
   document.getElementById('tipText').textContent=t('tipText');
+  document.getElementById('menuBtnText').textContent=t('menuBtnText');
+  document.getElementById('menuHomeText').textContent=t('menuHomeText');
   document.getElementById('langEN').classList.toggle('active',currentLang==='en');
   document.getElementById('langES').classList.toggle('active',currentLang==='es');
   updateDemoLabelForCurrentPhase();
@@ -276,6 +306,18 @@ var content=document.getElementById('playbookContent');
 toggle.addEventListener('click',function(){
   toggle.classList.toggle('open');
   content.classList.toggle('open');
+});
+
+var menuBtn=document.getElementById('menuBtn');
+var menuDropdown=document.getElementById('menuDropdown');
+menuBtn.addEventListener('click',function(e){
+  e.stopPropagation();
+  menuDropdown.classList.toggle('open');
+});
+document.addEventListener('click',function(e){
+  if(!menuDropdown.contains(e.target) && e.target!==menuBtn){
+    menuDropdown.classList.remove('open');
+  }
 });
 })();
 </script>
