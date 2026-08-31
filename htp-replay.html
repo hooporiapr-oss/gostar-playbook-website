@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Replay · How To Play</title>
+<title>Pass Path · How To Play</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;overflow:hidden;background:#000;user-select:none;-webkit-user-select:none;touch-action:manipulation}
@@ -74,12 +74,12 @@ footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
     </div>
 
     <div class="demo-badge" id="quarterBadge">Quarter 3</div>
-    <div class="demo-title">RE<span>PLAY</span></div>
-    <div class="demo-subtitle" id="demoSubtitle">Watch One By One. Repeat.</div>
+    <div class="demo-title">PASS<span> PATH</span></div>
+    <div class="demo-subtitle" id="demoSubtitle">Watch The Ball Move.</div>
 
     <div class="demo-court-wrap">
       <div style="width:100%;max-width:440px">
-        <div class="demo-label" id="demoLabel">👁️ WATCH THE SEQUENCE</div>
+        <div class="demo-label" id="demoLabel">👁️ WATCH THE PASS</div>
         <div class="demo-court" id="demoCourt"></div>
       </div>
     </div>
@@ -94,23 +94,23 @@ footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
         <div class="playbook-inner">
           <div class="playbook-card">
             <div class="playbook-card-title">🎯 <span id="objectiveTitle">Objective</span></div>
-            <div class="playbook-step"><div class="playbook-step-num">1</div><div class="playbook-step-text" id="step1"><strong>Watch</strong> the cells light up one at a time, in sequence — each with its own note, unlike Recall's all-at-once flash.</div></div>
-            <div class="playbook-step"><div class="playbook-step-num">2</div><div class="playbook-step-text" id="step2"><strong>Remember</strong> the exact order they lit up in.</div></div>
-            <div class="playbook-step"><div class="playbook-step-num">3</div><div class="playbook-step-text" id="step3"><strong>Tap</strong> the cells back in that same order before the beat runs out.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">1</div><div class="playbook-step-text" id="step1"><strong>Watch</strong> the ball move from player to player, one at a time, in sequence — each pass has its own note, unlike the all-at-once flash in Play Call.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">2</div><div class="playbook-step-text" id="step2"><strong>Track</strong> the exact order the pass moved in.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">3</div><div class="playbook-step-text" id="step3"><strong>Tap</strong> the players back in that same passing order before the beat runs out.</div></div>
           </div>
           <div class="playbook-card">
             <div class="playbook-card-title">⭐ <span id="progressionTitle">Progression</span></div>
-            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog1">Starts at <strong>3 cells</strong> — every correct round adds one more.</div></div>
-            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog2">A correct sequence earns an <strong>escalation bonus</strong> on top of the base score — the longer it grows, the bigger the bonus.</div></div>
-            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog3">Fixed at <strong>100 BPM</strong> — the pace stays constant, only the sequence length grows.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog1">Starts at <strong>3 passes</strong> — every correct round adds one more.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog2">A correct sequence earns an <strong>escalation bonus</strong> on top of the base score — the longer the path grows, the bigger the bonus.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog3">Fixed at <strong>100 BPM</strong> — the pace stays constant, only the path length grows.</div></div>
           </div>
           <div class="playbook-card">
             <div class="playbook-card-title">🎮 <span id="modesTitle">Game vs. Training</span></div>
-            <div class="playbook-step"><div class="playbook-step-num">🏀</div><div class="playbook-step-text" id="mode1"><strong>Game</strong> — the real, escalating run. Starts at 3 cells and keeps growing until you miss.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">🏀</div><div class="playbook-step-text" id="mode1"><strong>Game</strong> — the real, escalating run. Starts at 3 passes and keeps growing until you miss.</div></div>
             <div class="playbook-step"><div class="playbook-step-num">🏋️</div><div class="playbook-step-text" id="mode2"><strong>Training</strong> — pick a fixed level (1–5) and complete 10 rounds at that exact length to practice.</div></div>
             <div class="playbook-tip">
               <div class="playbook-tip-title">💡 <span id="tipTitle">Tip</span></div>
-              <div class="playbook-tip-text" id="tipText">A wrong tap doesn't end the round outright in standalone play — you get up to two chances to hit REPEAT and try again, at a reduced score. In the tracked Full Game, a miss ends that quarter immediately.</div>
+              <div class="playbook-tip-text" id="tipText">A miss genuinely ends the round right there — this is a practice rep, not a scored run with retries. Get it right, and the pass path grows by one for the next round.</div>
             </div>
           </div>
         </div>
@@ -133,46 +133,46 @@ var translations={
   en:{
     backLink:'← Back to Hub',
     quarterBadge:'Quarter 3',
-    demoSubtitle:'Watch One By One. Repeat.',
-    demoLabelWatch:'👁️ WATCH THE SEQUENCE',
-    demoLabelRecall:'⚡ REPEAT IN ORDER',
-    demoLabelSuccess:'✅ SEQUENCE GROWS!',
+    demoSubtitle:'Watch The Ball Move.',
+    demoLabelWatch:'👁️ WATCH THE PASS',
+    demoLabelRecall:'⚡ CALL THE PASSING ORDER',
+    demoLabelSuccess:'✅ THE PATH GROWS!',
     playbookToggleText:'The Playbook',
     objectiveTitle:'Objective',
-    step1:'<strong>Watch</strong> the cells light up one at a time, in sequence — each with its own note, unlike Recall\'s all-at-once flash.',
-    step2:'<strong>Remember</strong> the exact order they lit up in.',
-    step3:'<strong>Tap</strong> the cells back in that same order before the beat runs out.',
+    step1:'<strong>Watch</strong> the ball move from player to player, one at a time, in sequence — each pass has its own note, unlike the all-at-once flash in Play Call.',
+    step2:'<strong>Track</strong> the exact order the pass moved in.',
+    step3:'<strong>Tap</strong> the players back in that same passing order before the beat runs out.',
     progressionTitle:'Progression',
-    prog1:'Starts at <strong>3 cells</strong> — every correct round adds one more.',
-    prog2:'A correct sequence earns an <strong>escalation bonus</strong> on top of the base score — the longer it grows, the bigger the bonus.',
-    prog3:'Fixed at <strong>100 BPM</strong> — the pace stays constant, only the sequence length grows.',
+    prog1:'Starts at <strong>3 passes</strong> — every correct round adds one more.',
+    prog2:'A correct sequence earns an <strong>escalation bonus</strong> on top of the base score — the longer the path grows, the bigger the bonus.',
+    prog3:'Fixed at <strong>100 BPM</strong> — the pace stays constant, only the path length grows.',
     modesTitle:'Game vs. Training',
-    mode1:'<strong>Game</strong> — the real, escalating run. Starts at 3 cells and keeps growing until you miss.',
+    mode1:'<strong>Game</strong> — the real, escalating run. Starts at 3 passes and keeps growing until you miss.',
     mode2:'<strong>Training</strong> — pick a fixed level (1–5) and complete 10 rounds at that exact length to practice.',
     tipTitle:'Tip',
-    tipText:'A wrong tap doesn\'t end the round outright in standalone play — you get up to two chances to hit REPEAT and try again, at a reduced score. In the tracked Full Game, a miss ends that quarter immediately.'
+    tipText:'A miss genuinely ends the round right there — this is a practice rep, not a scored run with retries. Get it right, and the pass path grows by one for the next round.'
   },
   es:{
     backLink:'← Volver al Centro',
     quarterBadge:'Cuarto 3',
-    demoSubtitle:'Mira Una Por Una. Repite.',
-    demoLabelWatch:'👁️ MIRA LA SECUENCIA',
-    demoLabelRecall:'⚡ REPITE EN ORDEN',
-    demoLabelSuccess:'✅ ¡LA SECUENCIA CRECE!',
+    demoSubtitle:'Mira Moverse El Balón.',
+    demoLabelWatch:'👁️ MIRA EL PASE',
+    demoLabelRecall:'⚡ CANTA EL ORDEN DE PASE',
+    demoLabelSuccess:'✅ ¡LA RUTA CRECE!',
     playbookToggleText:'El Playbook',
     objectiveTitle:'Objetivo',
-    step1:'<strong>Mira</strong> las celdas encenderse una por una, en secuencia — cada una con su propia nota, a diferencia del destello simultáneo de Recall.',
-    step2:'<strong>Memoriza</strong> el orden exacto en que se encendieron.',
-    step3:'<strong>Toca</strong> las celdas de vuelta en ese mismo orden antes de que se acabe el tiempo.',
+    step1:'<strong>Mira</strong> el balón moverse de jugador a jugador, uno a la vez, en secuencia — cada pase tiene su propia nota, a diferencia del destello de una vez en Play Call.',
+    step2:'<strong>Sigue</strong> el orden exacto en que se movió el pase.',
+    step3:'<strong>Toca</strong> a los jugadores de vuelta en ese mismo orden de pase antes de que se acabe el tiempo.',
     progressionTitle:'Progresión',
-    prog1:'Empieza con <strong>3 celdas</strong> — cada ronda correcta añade una más.',
-    prog2:'Una secuencia correcta gana un <strong>bono de escalada</strong> encima del puntaje base — mientras más crece, más grande el bono.',
-    prog3:'Fijo a <strong>100 BPM</strong> — el ritmo se mantiene constante, solo crece la secuencia.',
+    prog1:'Empieza con <strong>3 pases</strong> — cada ronda correcta añade uno más.',
+    prog2:'Una secuencia correcta gana un <strong>bono de escalada</strong> encima del puntaje base — mientras más crece la ruta, más grande el bono.',
+    prog3:'Fijo a <strong>100 BPM</strong> — el ritmo se mantiene constante, solo crece la ruta.',
     modesTitle:'Juego vs. Entrenamiento',
-    mode1:'<strong>Juego</strong> — la corrida real y escalante. Empieza con 3 celdas y sigue creciendo hasta que falles.',
+    mode1:'<strong>Juego</strong> — la corrida real y escalante. Empieza con 3 pases y sigue creciendo hasta que falles.',
     mode2:'<strong>Entrenamiento</strong> — escoge un nivel fijo (1–5) y completa 10 rondas en ese nivel exacto para practicar.',
     tipTitle:'Consejo',
-    tipText:'Un toque equivocado no termina la ronda de una vez en modo práctica — tienes hasta dos oportunidades de presionar REPETIR e intentarlo de nuevo, con un puntaje reducido. En el Juego Completo, un fallo termina ese cuarto de inmediato.'
+    tipText:'Un fallo termina la ronda de inmediato — este es un repaso de práctica, no una corrida puntuada con reintentos. Acértalo, y la ruta de pase crece uno más para la próxima ronda.'
   }
 };
 function t(key){return translations[currentLang][key]||translations.en[key]||key}
