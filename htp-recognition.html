@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Recognition · How To Play</title>
+<title>Read the Defense · How To Play</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;overflow:hidden;background:#000;user-select:none;-webkit-user-select:none;touch-action:manipulation}
@@ -76,12 +76,12 @@ footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
     </div>
 
     <div class="demo-badge" id="quarterBadge">Quarter 4</div>
-    <div class="demo-title">RECOG<span>NITION</span></div>
-    <div class="demo-subtitle" id="demoSubtitle">Watch. Watch Again. Spot the Change.</div>
+    <div class="demo-title">READ THE<span> DEFENSE</span></div>
+    <div class="demo-subtitle" id="demoSubtitle">See It. See It Again. Read the Shift.</div>
 
     <div class="demo-court-wrap">
       <div style="width:100%;max-width:440px">
-        <div class="demo-label" id="demoLabel">👁️ WATCH ORIGINAL</div>
+        <div class="demo-label" id="demoLabel">👁️ WATCH THE ALIGNMENT</div>
         <div class="demo-court" id="demoCourt"></div>
       </div>
     </div>
@@ -96,23 +96,23 @@ footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
         <div class="playbook-inner">
           <div class="playbook-card">
             <div class="playbook-card-title">🎯 <span id="objectiveTitle">Objective</span></div>
-            <div class="playbook-step"><div class="playbook-step-num">1</div><div class="playbook-step-text" id="step1"><strong>Watch</strong> the original sequence — cells light up one at a time, gold.</div></div>
-            <div class="playbook-step"><div class="playbook-step-num">2</div><div class="playbook-step-text" id="step2"><strong>Watch</strong> the echo — the same sequence again, purple this time, but ONE cell is different.</div></div>
-            <div class="playbook-step"><div class="playbook-step-num">3</div><div class="playbook-step-text" id="step3"><strong>Tap</strong> the cell that changed — from memory, on a blank grid with no hints shown.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">1</div><div class="playbook-step-text" id="step1"><strong>Watch</strong> the defensive alignment — positions light up one at a time, gold.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">2</div><div class="playbook-step-text" id="step2"><strong>Watch</strong> it shown again — the same alignment, purple this time, but ONE position has shifted.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">3</div><div class="playbook-step-text" id="step3"><strong>Tap</strong> what changed — from memory, on a blank grid with no hints shown.</div></div>
           </div>
           <div class="playbook-card">
             <div class="playbook-card-title">⭐ <span id="progressionTitle">Progression</span></div>
-            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog1">Starts at <strong>3 cells</strong> in the sequence — every correct round adds one more.</div></div>
-            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog2">A correct answer earns an <strong>escalation bonus</strong> on top of the base score — the longer the sequence, the bigger the bonus.</div></div>
-            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog3">Fixed at <strong>100 BPM</strong> — the pace stays constant, only the sequence length grows.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog1">Starts at <strong>3 positions</strong> in the alignment — every correct round adds one more.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog2">A correct answer earns an <strong>escalation bonus</strong> on top of the base score — the longer the alignment, the bigger the bonus.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog3">Fixed at <strong>100 BPM</strong> — the pace stays constant, only the alignment length grows.</div></div>
           </div>
           <div class="playbook-card">
             <div class="playbook-card-title">🎮 <span id="modesTitle">Game vs. Training</span></div>
-            <div class="playbook-step"><div class="playbook-step-num">🏀</div><div class="playbook-step-text" id="mode1"><strong>Game</strong> — the real, escalating run. Starts at 3 cells and keeps growing until you miss.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">🏀</div><div class="playbook-step-text" id="mode1"><strong>Game</strong> — the real, escalating run. Starts at 3 positions and keeps growing until you miss.</div></div>
             <div class="playbook-step"><div class="playbook-step-num">🏋️</div><div class="playbook-step-text" id="mode2"><strong>Training</strong> — pick a fixed level (1–5) and complete 10 rounds at that exact length to practice.</div></div>
             <div class="playbook-tip">
               <div class="playbook-tip-title">💡 <span id="tipTitle">Tip</span></div>
-              <div class="playbook-tip-text" id="tipText">The answer never gets shown until you've genuinely used up your chances — a wrong tap in standalone play opens up to two REPEAT windows at a reduced score, and only reveals the real answer once those are gone. In the tracked Full Game, a miss ends that quarter immediately.</div>
+              <div class="playbook-tip-text" id="tipText">A miss genuinely ends the round right there — this is a practice rep, not a scored run with retries. Get the read right, and the alignment grows by one for the next round.</div>
             </div>
           </div>
         </div>
@@ -135,48 +135,48 @@ var translations={
   en:{
     backLink:'← Back to Hub',
     quarterBadge:'Quarter 4',
-    demoSubtitle:'Watch. Watch Again. Spot the Change.',
-    demoLabelWatch:'👁️ WATCH ORIGINAL',
-    demoLabelEcho:'👁️ NOW THE ECHO',
+    demoSubtitle:'See It. See It Again. Read the Shift.',
+    demoLabelWatch:'👁️ WATCH THE ALIGNMENT',
+    demoLabelEcho:'👁️ NOW THE SHIFT',
     demoLabelFind:'⚡ TAP WHAT CHANGED',
-    demoLabelSuccess:'✅ SEQUENCE GROWS!',
+    demoLabelSuccess:'✅ THE READ GROWS!',
     playbookToggleText:'The Playbook',
     objectiveTitle:'Objective',
-    step1:'<strong>Watch</strong> the original sequence — cells light up one at a time, gold.',
-    step2:'<strong>Watch</strong> the echo — the same sequence again, purple this time, but ONE cell is different.',
-    step3:'<strong>Tap</strong> the cell that changed — from memory, on a blank grid with no hints shown.',
+    step1:'<strong>Watch</strong> the defensive alignment — positions light up one at a time, gold.',
+    step2:'<strong>Watch</strong> it shown again — the same alignment, purple this time, but ONE position has shifted.',
+    step3:'<strong>Tap</strong> what changed — from memory, on a blank grid with no hints shown.',
     progressionTitle:'Progression',
-    prog1:'Starts at <strong>3 cells</strong> in the sequence — every correct round adds one more.',
-    prog2:'A correct answer earns an <strong>escalation bonus</strong> on top of the base score — the longer the sequence, the bigger the bonus.',
-    prog3:'Fixed at <strong>100 BPM</strong> — the pace stays constant, only the sequence length grows.',
+    prog1:'Starts at <strong>3 positions</strong> in the alignment — every correct round adds one more.',
+    prog2:'A correct answer earns an <strong>escalation bonus</strong> on top of the base score — the longer the alignment, the bigger the bonus.',
+    prog3:'Fixed at <strong>100 BPM</strong> — the pace stays constant, only the alignment length grows.',
     modesTitle:'Game vs. Training',
-    mode1:'<strong>Game</strong> — the real, escalating run. Starts at 3 cells and keeps growing until you miss.',
+    mode1:'<strong>Game</strong> — the real, escalating run. Starts at 3 positions and keeps growing until you miss.',
     mode2:'<strong>Training</strong> — pick a fixed level (1–5) and complete 10 rounds at that exact length to practice.',
     tipTitle:'Tip',
-    tipText:'The answer never gets shown until you\'ve genuinely used up your chances — a wrong tap in standalone play opens up to two REPEAT windows at a reduced score, and only reveals the real answer once those are gone. In the tracked Full Game, a miss ends that quarter immediately.'
+    tipText:'A miss genuinely ends the round right there — this is a practice rep, not a scored run with retries. Get the read right, and the alignment grows by one for the next round.'
   },
   es:{
     backLink:'← Volver al Centro',
     quarterBadge:'Cuarto 4',
-    demoSubtitle:'Mira. Mira de Nuevo. Encuentra el Cambio.',
-    demoLabelWatch:'👁️ MIRA EL ORIGINAL',
-    demoLabelEcho:'👁️ AHORA EL ECO',
+    demoSubtitle:'Míralo. Míralo de Nuevo. Lee el Cambio.',
+    demoLabelWatch:'👁️ MIRA LA ALINEACIÓN',
+    demoLabelEcho:'👁️ AHORA EL CAMBIO',
     demoLabelFind:'⚡ TOCA LO QUE CAMBIÓ',
-    demoLabelSuccess:'✅ ¡LA SECUENCIA CRECE!',
+    demoLabelSuccess:'✅ ¡LA LECTURA CRECE!',
     playbookToggleText:'El Playbook',
     objectiveTitle:'Objetivo',
-    step1:'<strong>Mira</strong> la secuencia original — las celdas se encienden una por una, en dorado.',
-    step2:'<strong>Mira</strong> el eco — la misma secuencia otra vez, esta vez en morado, pero UNA celda es diferente.',
-    step3:'<strong>Toca</strong> la celda que cambió — de memoria, en una cuadrícula vacía sin pistas.',
+    step1:'<strong>Mira</strong> la alineación defensiva — las posiciones se encienden una por una, en dorado.',
+    step2:'<strong>Mira</strong> cómo se muestra de nuevo — la misma alineación, esta vez en morado, pero UNA posición ha cambiado.',
+    step3:'<strong>Toca</strong> lo que cambió — de memoria, en una cuadrícula vacía sin pistas.',
     progressionTitle:'Progresión',
-    prog1:'Empieza con <strong>3 celdas</strong> en la secuencia — cada ronda correcta añade una más.',
-    prog2:'Una respuesta correcta gana un <strong>bono de escalada</strong> encima del puntaje base — mientras más larga la secuencia, más grande el bono.',
-    prog3:'Fijo a <strong>100 BPM</strong> — el ritmo se mantiene constante, solo crece la secuencia.',
+    prog1:'Empieza con <strong>3 posiciones</strong> en la alineación — cada ronda correcta añade una más.',
+    prog2:'Una respuesta correcta gana un <strong>bono de escalada</strong> encima del puntaje base — mientras más larga la alineación, más grande el bono.',
+    prog3:'Fijo a <strong>100 BPM</strong> — el ritmo se mantiene constante, solo crece la alineación.',
     modesTitle:'Juego vs. Entrenamiento',
-    mode1:'<strong>Juego</strong> — la corrida real y escalante. Empieza con 3 celdas y sigue creciendo hasta que falles.',
+    mode1:'<strong>Juego</strong> — la corrida real y escalante. Empieza con 3 posiciones y sigue creciendo hasta que falles.',
     mode2:'<strong>Entrenamiento</strong> — escoge un nivel fijo (1–5) y completa 10 rondas en ese nivel exacto para practicar.',
     tipTitle:'Consejo',
-    tipText:'La respuesta nunca se revela hasta que genuinamente se te acaben las oportunidades — un toque equivocado en modo práctica abre hasta dos ventanas de REPETIR con puntaje reducido, y solo revela la respuesta real cuando esas se acaben. En el Juego Completo, un fallo termina ese cuarto de inmediato.'
+    tipText:'Un fallo termina la ronda de inmediato — este es un repaso de práctica, no una corrida puntuada con reintentos. Acierta la lectura, y la alineación crece uno más para la próxima ronda.'
   }
 };
 function t(key){return translations[currentLang][key]||translations.en[key]||key}
