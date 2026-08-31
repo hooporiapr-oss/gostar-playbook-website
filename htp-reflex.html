@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Reflex · How To Play</title>
+<title>Shot Map · How To Play</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;overflow:hidden;background:#000;user-select:none;-webkit-user-select:none;touch-action:manipulation}
@@ -74,12 +74,12 @@ footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
     </div>
 
     <div class="demo-badge" id="quarterBadge">Quarter 2</div>
-    <div class="demo-title">RE<span>FLEX</span></div>
-    <div class="demo-subtitle" id="demoSubtitle">Find. Tap. React.</div>
+    <div class="demo-title">SHOT<span> MAP</span></div>
+    <div class="demo-subtitle" id="demoSubtitle">Spot it. Tap it. Sink it.</div>
 
     <div class="demo-court-wrap">
       <div style="width:100%;max-width:440px">
-        <div class="demo-label" id="demoLabel">👁️ WATCH FOR THE TARGETS</div>
+        <div class="demo-label" id="demoLabel">👁️ WATCH FOR THE LOCATIONS</div>
         <div class="demo-court" id="demoCourt"></div>
       </div>
     </div>
@@ -94,23 +94,23 @@ footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
         <div class="playbook-inner">
           <div class="playbook-card">
             <div class="playbook-card-title">🎯 <span id="objectiveTitle">Objective</span></div>
-            <div class="playbook-step"><div class="playbook-step-num">1</div><div class="playbook-step-text" id="step1"><strong>Watch</strong> the target cells flash — no numbers this time, just a quick flash of every cell you'll need to find.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">1</div><div class="playbook-step-text" id="step1"><strong>Watch</strong> the shooting locations flash — no numbers this time, just a quick flash of every spot you'll need to find.</div></div>
             <div class="playbook-step"><div class="playbook-step-num">2</div><div class="playbook-step-text" id="step2"><strong>React</strong> the instant they go dark — order doesn't matter here.</div></div>
-            <div class="playbook-step"><div class="playbook-step-num">3</div><div class="playbook-step-text" id="step3"><strong>Tap</strong> every target cell before the beat runs out — any order, as fast as you can find them.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">3</div><div class="playbook-step-text" id="step3"><strong>Tap</strong> every shooting location before the beat runs out — any order, as fast as you can find them.</div></div>
           </div>
           <div class="playbook-card">
             <div class="playbook-card-title">⭐ <span id="progressionTitle">Progression</span></div>
-            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog1">Starts at <strong>3 cells</strong> — every correct round adds one more.</div></div>
-            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog2">A correct round earns an <strong>escalation bonus</strong> on top of the base score — the more cells in play, the bigger the bonus.</div></div>
-            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog3">Fixed at <strong>100 BPM</strong> — the pace stays constant, only the number of targets grows.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog1">Starts at <strong>3 locations</strong> — every correct round adds one more.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog2">A correct round earns an <strong>escalation bonus</strong> on top of the base score — the more locations in play, the bigger the bonus.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog3">Fixed at <strong>100 BPM</strong> — the pace stays constant, only the number of locations grows.</div></div>
           </div>
           <div class="playbook-card">
             <div class="playbook-card-title">🎮 <span id="modesTitle">Game vs. Training</span></div>
-            <div class="playbook-step"><div class="playbook-step-num">🏀</div><div class="playbook-step-text" id="mode1"><strong>Game</strong> — the real, escalating run. Starts at 3 cells and keeps growing until you miss.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">🏀</div><div class="playbook-step-text" id="mode1"><strong>Game</strong> — the real, escalating run. Starts at 3 locations and keeps growing until you miss.</div></div>
             <div class="playbook-step"><div class="playbook-step-num">🏋️</div><div class="playbook-step-text" id="mode2"><strong>Training</strong> — pick a fixed level (1–5) and complete 10 rounds at that exact length to practice.</div></div>
             <div class="playbook-tip">
               <div class="playbook-tip-title">💡 <span id="tipTitle">Tip</span></div>
-              <div class="playbook-tip-text" id="tipText">A wrong tap doesn't end the round outright in standalone play — you get up to two chances to hit REPEAT and try again, at a reduced score. In the tracked Full Game, a miss ends that quarter immediately.</div>
+              <div class="playbook-tip-text" id="tipText">A miss genuinely ends the round right there — this is a practice rep, not a scored run with retries. Get it right, and one more location joins the map next round.</div>
             </div>
           </div>
         </div>
@@ -133,46 +133,46 @@ var translations={
   en:{
     backLink:'← Back to Hub',
     quarterBadge:'Quarter 2',
-    demoSubtitle:'Find. Tap. React.',
-    demoLabelWatch:'👁️ WATCH FOR THE TARGETS',
+    demoSubtitle:'Spot it. Tap it. Sink it.',
+    demoLabelWatch:'👁️ WATCH FOR THE LOCATIONS',
     demoLabelTap:'⚡ TAP THEM ALL — ANY ORDER',
-    demoLabelSuccess:'✅ MORE CELLS!',
+    demoLabelSuccess:'✅ THE MAP GROWS!',
     playbookToggleText:'The Playbook',
     objectiveTitle:'Objective',
-    step1:'<strong>Watch</strong> the target cells flash — no numbers this time, just a quick flash of every cell you\'ll need to find.',
-    step2:'<strong>React</strong> the instant they go dark — order doesn\'t matter here.',
-    step3:'<strong>Tap</strong> every target cell before the beat runs out — any order, as fast as you can find them.',
+    step1:'<strong>Watch</strong> the shooting locations flash — no numbers this time, just a quick flash of every spot you need to find.',
+    step2:'<strong>React</strong> the instant they go dark — order does not matter here.',
+    step3:'<strong>Tap</strong> every shooting location before the beat runs out — any order, as fast as you can find them.',
     progressionTitle:'Progression',
-    prog1:'Starts at <strong>3 cells</strong> — every correct round adds one more.',
-    prog2:'A correct round earns an <strong>escalation bonus</strong> on top of the base score — the more cells in play, the bigger the bonus.',
-    prog3:'Fixed at <strong>100 BPM</strong> — the pace stays constant, only the number of targets grows.',
+    prog1:'Starts at <strong>3 locations</strong> — every correct round adds one more.',
+    prog2:'A correct round earns an <strong>escalation bonus</strong> on top of the base score — the more locations in play, the bigger the bonus.',
+    prog3:'Fixed at <strong>100 BPM</strong> — the pace stays constant, only the number of locations grows.',
     modesTitle:'Game vs. Training',
-    mode1:'<strong>Game</strong> — the real, escalating run. Starts at 3 cells and keeps growing until you miss.',
+    mode1:'<strong>Game</strong> — the real, escalating run. Starts at 3 locations and keeps growing until you miss.',
     mode2:'<strong>Training</strong> — pick a fixed level (1–5) and complete 10 rounds at that exact length to practice.',
     tipTitle:'Tip',
-    tipText:'A wrong tap doesn\'t end the round outright in standalone play — you get up to two chances to hit REPEAT and try again, at a reduced score. In the tracked Full Game, a miss ends that quarter immediately.'
+    tipText:'A miss genuinely ends the round right there — this is a practice rep, not a scored run with retries. Get it right, and one more location joins the map next round.'
   },
   es:{
     backLink:'← Volver al Centro',
     quarterBadge:'Cuarto 2',
-    demoSubtitle:'Encuentra. Toca. Reacciona.',
-    demoLabelWatch:'👁️ BUSCA LOS OBJETIVOS',
-    demoLabelTap:'⚡ TÓCALOS TODOS — CUALQUIER ORDEN',
-    demoLabelSuccess:'✅ ¡MÁS CELDAS!',
+    demoSubtitle:'Encuéntralo. Tócalo. Anótalo.',
+    demoLabelWatch:'👁️ BUSCA LAS UBICACIONES',
+    demoLabelTap:'⚡ TÓCALAS TODAS — CUALQUIER ORDEN',
+    demoLabelSuccess:'✅ ¡EL MAPA CRECE!',
     playbookToggleText:'El Playbook',
     objectiveTitle:'Objetivo',
-    step1:'<strong>Mira</strong> las celdas objetivo encenderse — esta vez sin números, solo un destello rápido de cada celda que tienes que encontrar.',
+    step1:'<strong>Mira</strong> las ubicaciones de tiro encenderse — esta vez sin números, solo un destello rápido de cada punto que tienes que encontrar.',
     step2:'<strong>Reacciona</strong> en el instante en que se apaguen — el orden no importa aquí.',
-    step3:'<strong>Toca</strong> cada celda objetivo antes de que se acabe el tiempo — en cualquier orden, lo más rápido que puedas.',
+    step3:'<strong>Toca</strong> cada ubicación de tiro antes de que se acabe el tiempo — en cualquier orden, lo más rápido que puedas.',
     progressionTitle:'Progresión',
-    prog1:'Empieza con <strong>3 celdas</strong> — cada ronda correcta añade una más.',
-    prog2:'Una ronda correcta gana un <strong>bono de escalada</strong> encima del puntaje base — mientras más celdas en juego, más grande el bono.',
-    prog3:'Fijo a <strong>100 BPM</strong> — el ritmo se mantiene constante, solo crece el número de objetivos.',
+    prog1:'Empieza con <strong>3 ubicaciones</strong> — cada ronda correcta añade una más.',
+    prog2:'Una ronda correcta gana un <strong>bono de escalada</strong> encima del puntaje base — mientras más ubicaciones en juego, más grande el bono.',
+    prog3:'Fijo a <strong>100 BPM</strong> — el ritmo se mantiene constante, solo crece el número de ubicaciones.',
     modesTitle:'Juego vs. Entrenamiento',
-    mode1:'<strong>Juego</strong> — la corrida real y escalante. Empieza con 3 celdas y sigue creciendo hasta que falles.',
+    mode1:'<strong>Juego</strong> — la corrida real y escalante. Empieza con 3 ubicaciones y sigue creciendo hasta que falles.',
     mode2:'<strong>Entrenamiento</strong> — escoge un nivel fijo (1–5) y completa 10 rondas en ese nivel exacto para practicar.',
     tipTitle:'Consejo',
-    tipText:'Un toque equivocado no termina la ronda de una vez en modo práctica — tienes hasta dos oportunidades de presionar REPETIR e intentarlo de nuevo, con un puntaje reducido. En el Juego Completo, un fallo termina ese cuarto de inmediato.'
+    tipText:'Un fallo termina la ronda de inmediato — este es un repaso de práctica, no una corrida puntuada con reintentos. Acértalo, y una ubicación más se une al mapa la próxima ronda.'
   }
 };
 function t(key){return translations[currentLang][key]||translations.en[key]||key}
