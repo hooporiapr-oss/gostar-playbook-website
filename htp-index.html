@@ -131,35 +131,6 @@ h1.title .accent{color:#f37418}
 }
 @media(max-width:560px){.quarter-grid{grid-template-columns:1fr}}
 
-/* The featured, lead game — same visual weight the main game hub
-   already gives The Fortress, one tier above the four quarter cards. */
-.fortress-featured{
-  position:relative;display:block;text-decoration:none;
-  padding:24px 22px;border-radius:18px;margin-bottom:32px;
-  border:2px solid rgba(124,58,237,.5);
-  background:linear-gradient(155deg,rgba(124,58,237,.18),rgba(168,85,247,.05));
-  text-align:left;
-  transition:border-color .15s,transform .1s;
-}
-.fortress-featured:hover{transform:translateY(-2px)}
-.fortress-featured:active{transform:scale(.98) translateY(0)}
-.fortress-featured-tag{
-  font-size:.66rem;font-weight:900;letter-spacing:.2em;text-transform:uppercase;
-  color:#c9a3fa;margin-bottom:10px;
-}
-.fortress-featured-name{
-  font-family:'Anton',sans-serif;font-weight:400;font-size:1.9rem;
-  text-transform:uppercase;letter-spacing:.01em;color:#fff;
-  margin-bottom:8px;text-shadow:0 0 30px rgba(124,58,237,.6);
-}
-.fortress-featured-desc{font-size:.85rem;line-height:1.55;color:#a89b8f;margin-bottom:16px}
-.fortress-featured-cta{
-  display:flex;align-items:center;gap:5px;
-  font-family:'Oswald',sans-serif;font-weight:600;font-size:.72rem;
-  letter-spacing:.08em;text-transform:uppercase;color:#c9a3fa;
-}
-.fortress-featured:hover .fortress-featured-cta{color:#ffd35a}
-
 .quarter-card{
   position:relative;display:block;text-decoration:none;
   padding:20px 20px 18px;border-radius:16px;
@@ -285,17 +256,10 @@ footer{
     </section>
 
     <section class="section">
-      <a class="fortress-featured" href="htp-vr-the-fortress.html">
-        <div class="fortress-featured-tag">Featured · The 2-1-2 Zone</div>
-        <div class="fortress-featured-name">The Fortress</div>
-        <div class="fortress-featured-desc">Five basketballs, set in a real 2-1-2 zone inside the key. Watch the chain, repeat it back — four quarters, one combined final score.</div>
-        <div class="fortress-featured-cta">How to play<svg viewBox="0 0 12 12" fill="none" width="12" height="12"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      </a>
-
       <div class="section-head">
-        <div class="section-eyebrow" id="sectionEyebrow">How To Play</div>
-        <div class="section-title" id="sectionTitle">Pick A Quarter</div>
-        <div class="section-sub" id="sectionSub">See how each quarter plays before you step on the court.</div>
+        <div class="section-eyebrow" id="sectionEyebrow">The Playbook</div>
+        <div class="section-title" id="sectionTitle">The Dynamic Memory Playbook</div>
+        <div class="section-sub" id="sectionSub">Four plays, one playbook — see how each one runs before you step on the court.</div>
       </div>
 
       <div class="quarter-grid">
@@ -304,9 +268,9 @@ footer{
             <span class="card-badge">Q1</span>
             <div class="mech recall"><i></i><i></i><i></i></div>
           </div>
-          <div class="card-name">Recall</div>
-          <div class="card-skill" id="skill1">Flash. Repeat.</div>
-          <div class="card-desc" id="desc1">Watch a pattern flash all at once, then repeat it back in order.</div>
+          <div class="card-name">Play Call</div>
+          <div class="card-skill" id="skill1">Call it. Run it.</div>
+          <div class="card-desc" id="desc1">A sequence of numbered positions flashes all at once — call it back in the exact same order.</div>
           <div class="card-cta"><span id="cta1">How to play</span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </a>
 
@@ -315,9 +279,9 @@ footer{
             <span class="card-badge">Q2</span>
             <div class="mech reflex"><i></i><i></i><i></i></div>
           </div>
-          <div class="card-name">Reflex</div>
-          <div class="card-skill" id="skill2">Find. React.</div>
-          <div class="card-desc" id="desc2">Spot the targets, then tap them all back — any order, as fast as you can.</div>
+          <div class="card-name">Shot Map</div>
+          <div class="card-skill" id="skill2">Spot it. Sink it.</div>
+          <div class="card-desc" id="desc2">Shooting locations flash briefly — tap them all back before the shot clock runs out.</div>
           <div class="card-cta"><span id="cta2">How to play</span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </a>
 
@@ -326,9 +290,9 @@ footer{
             <span class="card-badge">Q3</span>
             <div class="mech replay"><i></i><i></i><i></i></div>
           </div>
-          <div class="card-name">Replay</div>
-          <div class="card-skill" id="skill3">Watch. Repeat.</div>
-          <div class="card-desc" id="desc3">Watch the sequence one cell at a time, then repeat it back in order.</div>
+          <div class="card-name">Pass Path</div>
+          <div class="card-skill" id="skill3">Track it. Throw it.</div>
+          <div class="card-desc" id="desc3">A passing sequence moves between players one at a time — tap the players back in the remembered passing order.</div>
           <div class="card-cta"><span id="cta3">How to play</span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </a>
 
@@ -337,9 +301,9 @@ footer{
             <span class="card-badge">Q4</span>
             <div class="mech recognition"><i></i><i></i><i></i></div>
           </div>
-          <div class="card-name">Recognition</div>
-          <div class="card-skill" id="skill4">Spot the switch.</div>
-          <div class="card-desc" id="desc4">Watch the original, then spot what changed in the echo that follows.</div>
+          <div class="card-name">Read the Defense</div>
+          <div class="card-skill" id="skill4">See it. Read it.</div>
+          <div class="card-desc" id="desc4">A defensive alignment is shown twice — tap what changed.</div>
           <div class="card-cta"><span id="cta4">How to play</span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </a>
       </div>
@@ -367,17 +331,17 @@ footer{
       demoCaption: 'Live Preview',
       demoLabelWatch: 'Watch the pattern',
       demoLabelRecall: 'Recall it back',
-      sectionEyebrow: 'How To Play',
-      sectionTitle: 'Pick A Quarter',
-      sectionSub: 'See how each quarter plays before you step on the court.',
-      skill1: 'Flash. Repeat.',
-      desc1: 'Watch a pattern flash all at once, then repeat it back in order.',
-      skill2: 'Find. React.',
-      desc2: 'Spot the targets, then tap them all back — any order, as fast as you can.',
-      skill3: 'Watch. Repeat.',
-      desc3: 'Watch the sequence one cell at a time, then repeat it back in order.',
-      skill4: 'Spot the switch.',
-      desc4: 'Watch the original, then spot what changed in the echo that follows.',
+      sectionEyebrow: 'The Playbook',
+      sectionTitle: 'The Dynamic Memory Playbook',
+      sectionSub: 'Four plays, one playbook — see how each one runs before you step on the court.',
+      skill1: 'Call it. Run it.',
+      desc1: 'A sequence of numbered positions flashes all at once — call it back in the exact same order.',
+      skill2: 'Spot it. Sink it.',
+      desc2: 'Shooting locations flash briefly — tap them all back before the shot clock runs out.',
+      skill3: 'Track it. Throw it.',
+      desc3: 'A passing sequence moves between players one at a time — tap the players back in the remembered passing order.',
+      skill4: 'See it. Read it.',
+      desc4: 'A defensive alignment is shown twice — tap what changed.',
       cta: 'How to play',
       homeBtnText: 'Home'
     },
@@ -389,17 +353,17 @@ footer{
       demoCaption: 'Vista En Vivo',
       demoLabelWatch: 'Mira el patrón',
       demoLabelRecall: 'Repítelo',
-      sectionEyebrow: 'Cómo Jugar',
-      sectionTitle: 'Elige Un Cuarto',
-      sectionSub: 'Mira cómo se juega cada cuarto antes de entrar a la cancha.',
-      skill1: 'Destello. Repite.',
-      desc1: 'Mira un patrón encenderse todo a la vez, luego repítelo en el mismo orden.',
-      skill2: 'Encuentra. Reacciona.',
-      desc2: 'Encuentra los objetivos, luego tócalos todos de vuelta — en cualquier orden, lo más rápido que puedas.',
-      skill3: 'Mira. Repite.',
-      desc3: 'Mira la secuencia encenderse una celda a la vez, luego repítela en el mismo orden.',
-      skill4: 'Nota el cambio.',
-      desc4: 'Mira el original, luego nota qué cambió en el eco que sigue.',
+      sectionEyebrow: 'El Playbook',
+      sectionTitle: 'El Playbook De Dynamic Memory',
+      sectionSub: 'Cuatro jugadas, un playbook — mira cómo funciona cada una antes de entrar a la cancha.',
+      skill1: 'Cántala. Córrela.',
+      desc1: 'Una secuencia de posiciones numeradas se enciende toda a la vez — cántala de vuelta en el mismo orden exacto.',
+      skill2: 'Encuéntralo. Anótalo.',
+      desc2: 'Las ubicaciones de tiro se encienden brevemente — tócalas todas de vuelta antes de que se acabe el reloj de tiro.',
+      skill3: 'Síguelo. Lánzalo.',
+      desc3: 'Una secuencia de pases se mueve entre jugadores una a la vez — toca a los jugadores de vuelta en el orden de pase recordado.',
+      skill4: 'Míralo. Léelo.',
+      desc4: 'Una alineación defensiva se muestra dos veces — toca qué cambió.',
       cta: 'Cómo jugar',
       homeBtnText: 'Inicio'
     }
