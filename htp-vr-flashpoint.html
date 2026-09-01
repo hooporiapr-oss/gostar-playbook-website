@@ -77,12 +77,11 @@ footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
     <div class="demo-stage-wrap">
       <div class="demo-board">
         <div class="demo-level-badge" id="demoLevelBadge">LEVEL 1</div>
-        <div class="demo-target" id="demoT0" style="left:20%;top:32%;background:#ff1e3c;color:#ff1e3c"></div>
-        <div class="demo-target" id="demoT1" style="left:50%;top:24%;background:#ffd35a;color:#ffd35a"></div>
-        <div class="demo-target" id="demoT2" style="left:80%;top:32%;background:#00D9A5;color:#00D9A5"></div>
-        <div class="demo-target" id="demoT3" style="left:20%;top:70%;background:#3b82f6;color:#3b82f6"></div>
-        <div class="demo-target" id="demoT4" style="left:50%;top:78%;background:#ff6b35;color:#ff6b35"></div>
-        <div class="demo-target" id="demoT5" style="left:80%;top:70%;background:#ec4899;color:#ec4899"></div>
+        <div class="demo-target" id="demoT0" style="left:25%;top:24%;background:#ff1e3c;color:#ff1e3c"></div>
+        <div class="demo-target" id="demoT1" style="left:25%;top:76%;background:#ffd35a;color:#ffd35a"></div>
+        <div class="demo-target" id="demoT2" style="left:49%;top:50%;background:#00D9A5;color:#00D9A5"></div>
+        <div class="demo-target" id="demoT3" style="left:75%;top:24%;background:#3b82f6;color:#3b82f6"></div>
+        <div class="demo-target" id="demoT4" style="left:75%;top:76%;background:#ff6b35;color:#ff6b35"></div>
       </div>
     </div>
 
@@ -96,7 +95,7 @@ footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
         <div class="playbook-inner">
           <div class="playbook-card">
             <div class="playbook-card-title">🎯 <span id="objectiveTitle">Objective</span></div>
-            <div class="playbook-step"><div class="playbook-step-num">1</div><div class="playbook-step-text" id="step1"><strong>Six colored targets</strong>, fixed in place for the whole game — same position, same color, from start to finish.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">1</div><div class="playbook-step-text" id="step1"><strong>Five colored targets</strong>, fixed in place for the whole game — same position, same color, from start to finish.</div></div>
             <div class="playbook-step"><div class="playbook-step-num">2</div><div class="playbook-step-text" id="step2">Watch a sequence flash, then <strong>tap the targets back in the same order</strong>.</div></div>
             <div class="playbook-step"><div class="playbook-step-num">3</div><div class="playbook-step-text" id="step3">Get it right and the next level is <strong>one target longer</strong> — but a genuinely brand new sequence, never the one you just learned.</div></div>
           </div>
@@ -127,7 +126,7 @@ var levelBadge=document.getElementById('demoLevelBadge');
 var demoLabel=document.getElementById('demoLabel');
 var targetEls=[
   document.getElementById('demoT0'),document.getElementById('demoT1'),document.getElementById('demoT2'),
-  document.getElementById('demoT3'),document.getElementById('demoT4'),document.getElementById('demoT5')
+  document.getElementById('demoT3'),document.getElementById('demoT4')
 ];
 
 var currentLang='en';
@@ -141,7 +140,7 @@ var translations={
     levelLabel:'LEVEL ',
     playbookToggleText:'The Playbook',
     objectiveTitle:'Objective',
-    step1:'<strong>Six colored targets</strong>, fixed in place for the whole game — same position, same color, from start to finish.',
+    step1:'<strong>Five colored targets</strong>, fixed in place for the whole game — same position, same color, from start to finish.',
     step2:'Watch a sequence flash, then <strong>tap the targets back in the same order</strong>.',
     step3:'Get it right and the next level is <strong>one target longer</strong> — but a genuinely brand new sequence, never the one you just learned.',
     progressionTitle:'What Makes It Different',
@@ -161,7 +160,7 @@ var translations={
     levelLabel:'NIVEL ',
     playbookToggleText:'El Manual',
     objectiveTitle:'Objetivo',
-    step1:'<strong>Seis objetivos de colores</strong>, en posición fija durante todo el juego — mismo lugar, mismo color, de principio a fin.',
+    step1:'<strong>Cinco objetivos de colores</strong>, en posición fija durante todo el juego — mismo lugar, mismo color, de principio a fin.',
     step2:'Mira una secuencia destellar, luego <strong>toca los objetivos de vuelta en el mismo orden</strong>.',
     step3:'Acertar hace que el siguiente nivel sea <strong>un objetivo más largo</strong> — pero una secuencia genuinamente nueva, nunca la que acabas de aprender.',
     progressionTitle:'Qué Lo Hace Diferente',
@@ -234,7 +233,7 @@ function clearDemoTimeouts(){demoTimeouts.forEach(function(id){clearTimeout(id)}
 var sequence=[];
 function randomSequenceOfLength(len){
   var seq=[];
-  for(var i=0;i<len;i++)seq.push(Math.floor(Math.random()*6));
+  for(var i=0;i<len;i++)seq.push(Math.floor(Math.random()*5));
   return seq;
 }
 
