@@ -134,6 +134,50 @@ h1.brand .accent{
 }
 @media(max-width:640px){.benefit-skill{text-align:left}}
 
+/* ── Game day timeline — a real, genuine sequence: playbook
+   retention is the season-long foundation, then the three actual
+   moments a coach depends on this during a game. Quiet by design,
+   since the trial panel below is this page's one bold moment. ── */
+.timeline-section{padding:56px 0 20px}
+.timeline-head{max-width:560px;margin:0 auto 46px;text-align:center}
+.timeline-kicker{
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:.66rem;
+  letter-spacing:.24em;text-transform:uppercase;color:#c99bff;margin-bottom:12px;
+}
+.timeline-title{
+  font-family:'Anton',sans-serif;font-weight:400;
+  font-size:clamp(1.5rem,4vw,2.1rem);text-transform:uppercase;
+  line-height:1.05;letter-spacing:.01em;color:#fff;
+}
+
+.timeline{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  position:relative;
+}
+.timeline::before{
+  content:'';position:absolute;top:7px;left:calc(12.5% - 1px);right:calc(12.5% - 1px);
+  height:1px;background:rgba(255,255,255,.15);
+}
+.timeline-node{position:relative;padding:0 16px;text-align:center}
+.timeline-node::before{
+  content:'';display:block;width:15px;height:15px;border-radius:50%;
+  margin:0 auto 20px;background:#000;border:2px solid #ffb066;
+  box-shadow:0 0 14px rgba(255,176,102,.5);position:relative;z-index:1;
+}
+.timeline-when{
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:.72rem;
+  letter-spacing:.08em;text-transform:uppercase;color:#ffb066;margin-bottom:10px;
+}
+.timeline-text{font-size:.86rem;line-height:1.5;color:#c9b8a8}
+
+@media(max-width:760px){
+  .timeline{grid-template-columns:1fr;gap:28px;padding-left:26px}
+  .timeline::before{top:0;bottom:0;left:6px;right:auto;width:1px;height:auto}
+  .timeline-node{padding:0;text-align:left}
+  .timeline-node::before{position:absolute;left:-26px;top:2px;margin:0}
+  .timeline-when{margin-bottom:6px}
+}
+
 /* ── Closing line ── */
 .closing{
   text-align:center;padding:40px 0 20px;
@@ -293,6 +337,32 @@ footer{
       </div>
     </section>
 
+    <section class="timeline-section">
+      <div class="timeline-head">
+        <div class="timeline-kicker" id="timelineKicker">Built For Game Day</div>
+        <div class="timeline-title" id="timelineTitle">Where coaches actually depend on this.</div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-node">
+          <div class="timeline-when" id="tl1When">Every Practice</div>
+          <div class="timeline-text" id="tl1Text">Offense, defense, presses, man-to-man, zone — every formation is a real sequence to retain, not just a diagram on a whiteboard.</div>
+        </div>
+        <div class="timeline-node">
+          <div class="timeline-when" id="tl2When">Pre-Game Warmup</div>
+          <div class="timeline-text" id="tl2Text">The mind warms up too. Quick, repeatable reps that match the same rhythm as the body's own warmup.</div>
+        </div>
+        <div class="timeline-node">
+          <div class="timeline-when" id="tl3When">Timeout</div>
+          <div class="timeline-text" id="tl3Text">A new read, thirty seconds to lock it in. A trained mind catches it the first time, not the third.</div>
+        </div>
+        <div class="timeline-node">
+          <div class="timeline-when" id="tl4When">Halftime</div>
+          <div class="timeline-text" id="tl4Text">One real adjustment, explained once, executed in the third quarter. Retention under pressure is a trained skill.</div>
+        </div>
+      </div>
+    </section>
+
     <section class="trial">
       <div class="trial-panel">
         <div class="trial-kicker" id="trialKicker">Free 7-Day Trial</div>
@@ -356,6 +426,16 @@ footer{
       benefit4Moment: 'Closing out on a shooter before you\'ve consciously seen the catch.',
       benefit4Game: 'Reaction Speed — Ritnome',
       benefit4Skill: 'Raw reaction speed, sharpened with reps',
+      timelineKicker: 'Built For Game Day',
+      timelineTitle: 'Where coaches actually depend on this.',
+      tl1When: 'Every Practice',
+      tl1Text: 'Offense, defense, presses, man-to-man, zone — every formation is a real sequence to retain, not just a diagram on a whiteboard.',
+      tl2When: 'Pre-Game Warmup',
+      tl2Text: 'The mind warms up too. Quick, repeatable reps that match the same rhythm as the body\'s own warmup.',
+      tl3When: 'Timeout',
+      tl3Text: 'A new read, thirty seconds to lock it in. A trained mind catches it the first time, not the third.',
+      tl4When: 'Halftime',
+      tl4Text: 'One real adjustment, explained once, executed in the third quarter. Retention under pressure is a trained skill.',
       closingLine: 'Train the mind like you train the body.',
       closingSub: 'Built by Gostar Digital LLC — every rep, every read, every reaction, real.',
       ctaMemory: 'Train With Dynamic Memory',
@@ -387,6 +467,16 @@ footer{
       benefit4Moment: 'Cerrarle el paso a un tirador antes de que lo veas conscientemente.',
       benefit4Game: 'Reaction Speed — Ritnome',
       benefit4Skill: 'Velocidad de reacción pura, afilada con repeticiones',
+      timelineKicker: 'Hecho Para El Día Del Juego',
+      timelineTitle: 'Dónde los entrenadores realmente dependen de esto.',
+      tl1When: 'Cada Práctica',
+      tl1Text: 'Ofensiva, defensiva, presiones, hombre a hombre, zona — cada formación es una secuencia real para retener, no solo un diagrama en la pizarra.',
+      tl2When: 'Calentamiento Pre-Juego',
+      tl2Text: 'La mente también calienta. Repeticiones rápidas y constantes que van al mismo ritmo que el calentamiento del cuerpo.',
+      tl3When: 'Tiempo Fuera',
+      tl3Text: 'Una lectura nueva, treinta segundos para que se quede grabada. Una mente entrenada la capta la primera vez, no la tercera.',
+      tl4When: 'Medio Tiempo',
+      tl4Text: 'Un ajuste real, explicado una vez, ejecutado en el tercer cuarto. Retener bajo presión es una destreza que se entrena.',
       closingLine: 'Entrena la mente como entrenas el cuerpo.',
       closingSub: 'Hecho por Gostar Digital LLC — cada repetición, cada lectura, cada reacción, de verdad.',
       ctaMemory: 'Entrena Con Dynamic Memory',
@@ -420,6 +510,12 @@ footer{
     document.getElementById('ctaMemory').textContent = t('ctaMemory');
     document.getElementById('ctaRitnome').textContent = t('ctaRitnome');
     document.getElementById('gateNote').textContent = t('gateNote');
+    document.getElementById('timelineKicker').textContent = t('timelineKicker');
+    document.getElementById('timelineTitle').textContent = t('timelineTitle');
+    for(var j=1;j<=4;j++){
+      document.getElementById('tl'+j+'When').textContent = t('tl'+j+'When');
+      document.getElementById('tl'+j+'Text').textContent = t('tl'+j+'Text');
+    }
     document.getElementById('trialKicker').textContent = t('trialKicker');
     document.getElementById('trialTitle').textContent = t('trialTitle');
     document.getElementById('trialSub').textContent = t('trialSub');
