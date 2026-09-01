@@ -159,8 +159,67 @@ h1.brand .accent{
 .closing-cta:active{transform:translateY(0) scale(.98)}
 .closing-cta.cta-memory{background:linear-gradient(135deg,#7c3aed,#f37418);box-shadow:0 0 30px rgba(243,116,24,.3)}
 .closing-cta.cta-ritnome{background:linear-gradient(135deg,#ff1e3c,#ff6b35);box-shadow:0 0 30px rgba(255,30,60,.3)}
+.gate-note{font-size:.76rem;color:#8892a0;margin-top:18px}
+
+/* ── Free trial — the one moment on this page worth a distinct
+   frame, since it's the actual conversion action everything above
+   is building toward. ── */
+.trial{padding:30px 0 8px}
+.trial-panel{
+  max-width:640px;margin:0 auto;padding:44px 40px;border-radius:26px;
+  background:linear-gradient(165deg,rgba(255,149,0,.1),rgba(124,58,237,.07) 55%,rgba(0,0,0,.5));
+  border:1.5px solid rgba(255,211,90,.3);
+  box-shadow:0 30px 90px rgba(255,107,53,.1);
+  text-align:center;
+}
+@media(max-width:600px){.trial-panel{padding:36px 24px}}
+
+.trial-kicker{
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:.66rem;
+  letter-spacing:.24em;text-transform:uppercase;color:#ffd35a;margin-bottom:14px;
+}
+.trial-title{
+  font-family:'Anton',sans-serif;font-weight:400;
+  font-size:clamp(1.6rem,4.5vw,2.3rem);text-transform:uppercase;
+  line-height:1.05;color:#fff;margin-bottom:14px;
+}
+.trial-sub{font-size:.92rem;line-height:1.55;color:#c9b8a8;max-width:440px;margin:0 auto 28px}
+
+.trial-picks{
+  display:flex;justify-content:center;gap:14px;margin-bottom:28px;flex-wrap:wrap;
+}
+.trial-pick{
+  display:flex;align-items:center;gap:10px;cursor:pointer;
+  padding:12px 18px;border-radius:14px;
+  border:1.5px solid rgba(255,255,255,.15);background:rgba(0,0,0,.35);
+  transition:border-color .15s ease;
+}
+.trial-pick:has(input:checked),.trial-pick.checked{border-color:rgba(255,211,90,.55);background:rgba(255,211,90,.07)}
+.trial-pick input{width:17px;height:17px;accent-color:#ffd35a;cursor:pointer}
+.trial-pick span{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:.82rem;
+  letter-spacing:.02em;color:#fff;
+}
+
+.trial-cta{
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:.85rem;
+  letter-spacing:.1em;text-transform:uppercase;color:#0b0b0b;
+  background:linear-gradient(135deg,#ffd35a,#ff9500);
+  padding:15px 30px;border-radius:999px;
+  box-shadow:0 0 34px rgba(255,211,90,.35);
+  transition:transform .15s ease;
+  border:none;cursor:pointer;
+}
+.trial-cta:hover{transform:translateY(-2px)}
+.trial-cta:active{transform:translateY(0) scale(.98)}
+.trial-cta[disabled]{opacity:.4;cursor:not-allowed;transform:none}
+
+.trial-questions{font-size:.78rem;color:#8892a0;margin-top:22px}
+.trial-questions a{color:#ffd35a;text-decoration:underline}
 
 footer{
+
   text-align:center;padding:32px 0 44px;
   font-size:.72rem;color:#544a42;letter-spacing:.08em;text-transform:uppercase;
 }
@@ -234,6 +293,29 @@ footer{
       </div>
     </section>
 
+    <section class="trial">
+      <div class="trial-panel">
+        <div class="trial-kicker" id="trialKicker">Free 7-Day Trial</div>
+        <div class="trial-title" id="trialTitle">Try it before your team commits.</div>
+        <p class="trial-sub" id="trialSub">A full week of real access, no cost. Pick what you want to test and we'll send an access code.</p>
+
+        <div class="trial-picks">
+          <label class="trial-pick">
+            <input type="checkbox" id="pickMemory" checked>
+            <span id="pickMemoryLabel">Dynamic Memory</span>
+          </label>
+          <label class="trial-pick">
+            <input type="checkbox" id="pickRitnome" checked>
+            <span id="pickRitnomeLabel">Ritnome</span>
+          </label>
+        </div>
+
+        <a class="trial-cta" id="trialCta" href="https://gostardigital.com" target="_blank" rel="noopener">Request Free Trial</a>
+
+        <div class="trial-questions" id="trialQuestions">Questions? Email <a href="mailto:gostardigital@gmail.com">gostardigital@gmail.com</a></div>
+      </div>
+    </section>
+
     <section class="closing">
       <div class="closing-line" id="closingLine">Train the mind like you train the body.</div>
       <div class="closing-sub" id="closingSub">Built by Gostar Digital LLC — every rep, every read, every reaction, real.</div>
@@ -241,6 +323,7 @@ footer{
         <a class="closing-cta cta-memory" href="https://hooporia.xyz" id="ctaMemory">Train With Dynamic Memory</a>
         <a class="closing-cta cta-ritnome" href="https://ritnome.com" id="ctaRitnome">Train With Ritnome</a>
       </div>
+      <div class="gate-note" id="gateNote">Both require a real access code to enter — issued to schools and trial requests.</div>
     </section>
 
   </div>
@@ -277,6 +360,14 @@ footer{
       closingSub: 'Built by Gostar Digital LLC — every rep, every read, every reaction, real.',
       ctaMemory: 'Train With Dynamic Memory',
       ctaRitnome: 'Train With Ritnome',
+      gateNote: 'Both require a real access code to enter — issued to schools and trial requests.',
+      trialKicker: 'Free 7-Day Trial',
+      trialTitle: 'Try it before your team commits.',
+      trialSub: 'A full week of real access, no cost. Pick what you want to test and we\'ll send an access code.',
+      pickMemoryLabel: 'Dynamic Memory',
+      pickRitnomeLabel: 'Ritnome',
+      trialCta: 'Request Free Trial',
+      trialQuestions: 'Questions? Email ',
       footerText: '© Gostar Digital LLC — All Rights Reserved'
     },
     es: {
@@ -300,6 +391,14 @@ footer{
       closingSub: 'Hecho por Gostar Digital LLC — cada repetición, cada lectura, cada reacción, de verdad.',
       ctaMemory: 'Entrena Con Dynamic Memory',
       ctaRitnome: 'Entrena Con Ritnome',
+      gateNote: 'Ambos requieren un código de acceso real para entrar — se emite a escuelas y a solicitudes de prueba.',
+      trialKicker: 'Prueba Gratis De 7 Días',
+      trialTitle: 'Pruébalo antes de que tu equipo se comprometa.',
+      trialSub: 'Una semana completa de acceso real, sin costo. Escoge qué quieres probar y te enviamos un código de acceso.',
+      pickMemoryLabel: 'Dynamic Memory',
+      pickRitnomeLabel: 'Ritnome',
+      trialCta: 'Solicitar Prueba Gratis',
+      trialQuestions: '¿Preguntas? Escríbenos a ',
       footerText: '© Gostar Digital LLC — Todos Los Derechos Reservados'
     }
   };
@@ -320,6 +419,17 @@ footer{
     document.getElementById('closingSub').textContent = t('closingSub');
     document.getElementById('ctaMemory').textContent = t('ctaMemory');
     document.getElementById('ctaRitnome').textContent = t('ctaRitnome');
+    document.getElementById('gateNote').textContent = t('gateNote');
+    document.getElementById('trialKicker').textContent = t('trialKicker');
+    document.getElementById('trialTitle').textContent = t('trialTitle');
+    document.getElementById('trialSub').textContent = t('trialSub');
+    document.getElementById('pickMemoryLabel').textContent = t('pickMemoryLabel');
+    document.getElementById('pickRitnomeLabel').textContent = t('pickRitnomeLabel');
+    document.getElementById('trialCta').textContent = t('trialCta');
+    // trialQuestions has a real mailto link nested inside it — only
+    // the leading text node updates here, so the link itself is
+    // never touched or wiped out by a language switch.
+    document.getElementById('trialQuestions').childNodes[0].nodeValue = t('trialQuestions');
     document.getElementById('footerText').textContent = t('footerText');
     document.getElementById('langEN').classList.toggle('active', currentLang === 'en');
     document.getElementById('langES').classList.toggle('active', currentLang === 'es');
@@ -335,6 +445,35 @@ footer{
   var savedLang;
   try{ savedLang = localStorage.getItem('lc-lang'); }catch(e){}
   if (savedLang) currentLang = savedLang;
+
+  // Free trial picker — reflects the checked products in the
+  // request link's own query string (gostardigital.com is free to
+  // read that or ignore it), and disables the button entirely if
+  // neither is checked, since a request for zero products isn't a
+  // real request at all.
+  function updateTrialCta(){
+    var wantsMemory = document.getElementById('pickMemory').checked;
+    var wantsRitnome = document.getElementById('pickRitnome').checked;
+    var picks = [];
+    if(wantsMemory) picks.push('dynamic-memory');
+    if(wantsRitnome) picks.push('ritnome');
+    var cta = document.getElementById('trialCta');
+    if(picks.length === 0){
+      cta.setAttribute('disabled','disabled');
+      cta.removeAttribute('href');
+    }else{
+      cta.removeAttribute('disabled');
+      cta.setAttribute('href','https://gostardigital.com/?trial='+picks.join(','));
+    }
+    // :has() fallback for older browsers — the CSS selector already
+    // handles this natively where supported, so this only matters
+    // where it doesn't.
+    document.getElementById('pickMemory').closest('.trial-pick').classList.toggle('checked', wantsMemory);
+    document.getElementById('pickRitnome').closest('.trial-pick').classList.toggle('checked', wantsRitnome);
+  }
+  document.getElementById('pickMemory').addEventListener('change', updateTrialCta);
+  document.getElementById('pickRitnome').addEventListener('change', updateTrialCta);
+  updateTrialCta();
 
   updateUILanguage();
 })();
