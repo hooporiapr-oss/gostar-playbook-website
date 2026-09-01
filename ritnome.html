@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ritnome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#050810;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+body{font-family:'Outfit',sans-serif;color:#fff}
+
+:root{--cyan:#00e5ff;--ink:#050810;--panel:#0a1120;--line:rgba(120,180,255,.28)}
+
+#stage{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at center,#0a1120 0%,#050810 75%)}
+
+#topBtns{position:fixed;top:14px;left:14px;z-index:30;display:flex;gap:8px}
+.top-btn{padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:#fff;font-size:.72rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;cursor:pointer;backdrop-filter:blur(4px)}
+#soundToggle{position:fixed;top:14px;right:14px;z-index:30;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+
+.rit-title{font-size:2rem;font-weight:900;letter-spacing:.03em;text-transform:uppercase;margin-bottom:2px;text-shadow:0 0 30px rgba(0,229,255,.5)}
+.rit-title span{color:var(--cyan)}
+.rit-sub{font-size:.76rem;font-weight:500;color:#7d8ba3;letter-spacing:.06em;margin-bottom:20px;text-align:center}
+
+.bpm-readout{font-family:'JetBrains Mono',monospace;display:flex;align-items:baseline;gap:6px;margin-bottom:6px}
+.bpm-num{font-size:3rem;font-weight:800;color:var(--cyan);text-shadow:0 0 24px rgba(0,229,255,.6);line-height:1;transition:opacity .1s}
+.bpm-num.pulse{animation:bpmPulse .12s ease-out}
+@keyframes bpmPulse{0%{transform:scale(1.12)}100%{transform:scale(1)}}
+.bpm-label{font-size:.7rem;font-weight:700;color:#7d8ba3;letter-spacing:.1em}
+
+.tempo-row{display:flex;gap:8px;margin-bottom:20px}
+.tempo-btn{font-family:'JetBrains Mono',monospace;padding:9px 18px;border-radius:10px;border:1.5px solid rgba(120,180,255,.3);background:rgba(10,17,32,.7);color:#7d8ba3;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .15s}
+.tempo-btn.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,255,.1);box-shadow:0 0 20px rgba(0,229,255,.25)}
+
+.court-wrap{position:relative;width:100%;max-width:760px}
+.court{display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(4,1fr);gap:6px;width:100%;aspect-ratio:2/1;border:2px solid var(--line);border-radius:14px;padding:6px;background-color:#050810;background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20200%20100%22%3E%0A%20%20%3Crect%20width%3D%22200%22%20height%3D%22100%22%20fill%3D%22%23050810%22/%3E%0A%20%20%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22198%22%20height%3D%2298%22%20fill%3D%22none%22%20stroke%3D%22rgba%28120%2C180%2C255%2C.28%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Cline%20x1%3D%221%22%20y1%3D%221%22%20x2%3D%221%22%20y2%3D%2299%22%20stroke%3D%22rgba%28120%2C180%2C255%2C.4%29%22%20stroke-width%3D%222.5%22/%3E%0A%20%20%3Cpath%20d%3D%22M%20199%2C10%20A%2062%2C62%200%200%201%20199%2C90%22%20fill%3D%22none%22%20stroke%3D%22rgba%28120%2C180%2C255%2C.28%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Crect%20x%3D%221%22%20y%3D%2220%22%20width%3D%22100%22%20height%3D%2260%22%20fill%3D%22rgba%280%2C229%2C255%2C.05%29%22%20stroke%3D%22rgba%28120%2C180%2C255%2C.28%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Ccircle%20cx%3D%22101%22%20cy%3D%2250%22%20r%3D%2220%22%20fill%3D%22none%22%20stroke%3D%22rgba%28120%2C180%2C255%2C.28%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Ccircle%20cx%3D%2216%22%20cy%3D%2250%22%20r%3D%228%22%20fill%3D%22none%22%20stroke%3D%22rgba%28120%2C180%2C255%2C.4%29%22%20stroke-width%3D%221.5%22/%3E%0A%3C/svg%3E%0A');background-size:100% 100%;box-shadow:0 0 60px rgba(0,229,255,.12),inset 0 0 40px rgba(0,229,255,.04),0 20px 60px rgba(0,0,0,.8)}
+.r-cell{position:relative;border-radius:8px;background:rgba(120,180,255,.03);border:1.5px solid rgba(120,180,255,.14);transition:background .35s ease,border-color .35s ease,box-shadow .35s ease}
+.r-cell.lit{background:var(--lit-color,var(--cyan));border-color:var(--lit-color,var(--cyan));box-shadow:0 0 26px var(--lit-color,var(--cyan)),inset 0 0 14px rgba(255,255,255,.25);transition:background .05s ease,border-color .05s ease,box-shadow .05s ease}
+
+.rim-overlay{position:absolute;pointer-events:none;left:-70%;top:-40%;width:260%;height:180%;z-index:5}
+.net-line{animation:netGlow 2.2s ease-in-out infinite}
+.rim-ring{animation:rimGlow 2.2s ease-in-out infinite}
+@keyframes netGlow{0%,100%{filter:drop-shadow(0 0 1px rgba(255,255,255,.4));opacity:.65}50%{filter:drop-shadow(0 0 6px rgba(255,255,255,.9));opacity:1}}
+@keyframes rimGlow{0%,100%{filter:drop-shadow(0 0 2px rgba(255,140,50,.5))}50%{filter:drop-shadow(0 0 9px rgba(255,140,50,1))}}
+@keyframes swishFlash{0%,100%{filter:drop-shadow(0 0 2px rgba(255,255,255,.6))}45%{filter:drop-shadow(0 0 24px rgba(255,255,255,1)) drop-shadow(0 0 46px rgba(0,229,255,1))}}
+.net-line.swish-flash,.rim-ring.swish-flash{animation:swishFlash .5s ease-out}
+.swish-ball{opacity:0}
+.swish-ball.dropping{animation:swishBallDrop .5s ease-in forwards}
+@keyframes swishBallDrop{0%{opacity:0;transform:translateY(0)}12%{opacity:1}78%{opacity:1}100%{opacity:0;transform:translateY(46px)}}
+
+.start-overlay{position:fixed;inset:0;z-index:40;background:rgba(5,8,16,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:24px}
+.start-overlay.hidden{display:none}
+.start-title{font-size:1.8rem;font-weight:900;letter-spacing:.03em;text-transform:uppercase}
+.start-title span{color:var(--cyan)}
+.start-desc{max-width:380px;font-size:.85rem;color:#a7b2c4;line-height:1.6}
+.start-btn{padding:16px 34px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--cyan),#0091ff);color:#031018;font-size:1rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;box-shadow:0 0 40px rgba(0,229,255,.5)}
+
+@media(max-width:480px){.rit-title{font-size:1.5rem}.bpm-num{font-size:2.3rem}}
+</style>
+</head>
+<body>
+<div id="topBtns">
+  <a href="gostar-digital-index.html" class="top-btn">← Home</a>
+</div>
+<button id="soundToggle" aria-label="Toggle sound">🔊</button>
+
+<div id="stage">
+  <div class="rit-title">RIT<span>NOME</span></div>
+  <div class="rit-sub">An ongoing basketball rhythm — no score, no end. Just the beat and the lights.</div>
+
+  <div class="bpm-readout">
+    <span class="bpm-num" id="bpmNum">90</span>
+    <span class="bpm-label">BPM</span>
+  </div>
+
+  <div class="tempo-row">
+    <button class="tempo-btn" data-bpm="60">60</button>
+    <button class="tempo-btn active" data-bpm="90">90</button>
+    <button class="tempo-btn" data-bpm="120">120</button>
+  </div>
+
+  <div class="court-wrap">
+    <div class="court" id="court"></div>
+  </div>
+</div>
+
+<div class="start-overlay" id="startOverlay">
+  <div class="start-title">RIT<span>NOME</span></div>
+  <div class="start-desc">A basketball dribble, set to a beat. Pick a tempo and let it run — lights move through the court with every beat, in time with the rhythm.</div>
+  <button class="start-btn" id="startBtn">▶ Start The Beat</button>
+</div>
+
+<script>
+(function(){
+var court=document.getElementById('court');
+var bpmNum=document.getElementById('bpmNum');
+var startOverlay=document.getElementById('startOverlay');
+var startBtn=document.getElementById('startBtn');
+var soundBtn=document.getElementById('soundToggle');
+var muted=false;
+
+var COLORS=['#00e5ff','#ff3b8d','#ffd23f','#3ddc72','#ff6b35','#a855f7'];
+var TOTAL_CELLS=32;
+// The rim overlay sits at the court's own left side, vertically
+// centered — column 0, row 2 of the 4-row grid (0-indexed: 16).
+var RIM_CELL_INDEX=16;
+var RIM_INTERVAL=8;
+
+// Build the 32 court cells, plus the rim/net overlay sitting on top
+// of the rim's own cell — the same detailed rim structure used
+// elsewhere in the project, recolored to match Ritnome's own cyan
+// identity rather than the warm orange used for made-shot moments
+// elsewhere.
+var cells=[];
+for(var i=0;i<TOTAL_CELLS;i++){
+  var c=document.createElement('div');
+  c.className='r-cell';
+  court.appendChild(c);
+  cells.push(c);
+}
+cells[RIM_CELL_INDEX].insertAdjacentHTML('beforeend','<div class="rim-overlay"><svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;overflow:visible"><ellipse cx="30" cy="24" rx="20" ry="3" fill="#050810" opacity=".3"/><line class="net-line" x1="14" y1="25" x2="21" y2="52" stroke="rgba(230,245,255,0.9)" stroke-width="1.3" stroke-linecap="round"/><line class="net-line" x1="46" y1="25" x2="39" y2="52" style="animation-delay:.15s" stroke="rgba(230,245,255,0.9)" stroke-width="1.3" stroke-linecap="round"/><line class="net-line" x1="20" y1="25" x2="24" y2="50" style="animation-delay:.3s" stroke="rgba(230,245,255,0.7)" stroke-width="1" stroke-linecap="round"/><line class="net-line" x1="40" y1="25" x2="36" y2="50" style="animation-delay:.45s" stroke="rgba(230,245,255,0.7)" stroke-width="1" stroke-linecap="round"/><ellipse cx="30" cy="24.5" rx="21" ry="3.4" fill="none" class="rim-ring" stroke="#ff8c32" stroke-width="2.6"/><circle id="swishBall" class="swish-ball" cx="30" cy="10" r="4.2" fill="#ff8c32"/></svg></div>');
+var swishBall=document.getElementById('swishBall');
+
+// ---- Audio: a synthesized dribble thump, not a sample. A low
+// sine sweep gives the thud its body; a short filtered noise burst
+// on top gives it the percussive slap of a ball meeting the floor.
+var audioCtx=null;
+function ensureAudio(){
+  if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+}
+function playThump(){
+  if(!audioCtx||muted)return;
+  var now=audioCtx.currentTime;
+  var osc=audioCtx.createOscillator();
+  var oscGain=audioCtx.createGain();
+  osc.type='sine';
+  osc.frequency.setValueAtTime(130,now);
+  osc.frequency.exponentialRampToValueAtTime(46,now+0.1);
+  oscGain.gain.setValueAtTime(.001,now);
+  oscGain.gain.exponentialRampToValueAtTime(.85,now+0.006);
+  oscGain.gain.exponentialRampToValueAtTime(.001,now+0.16);
+  osc.connect(oscGain);oscGain.connect(audioCtx.destination);
+  osc.start(now);osc.stop(now+0.17);
+
+  var bufSize=Math.floor(audioCtx.sampleRate*0.035);
+  var buf=audioCtx.createBuffer(1,bufSize,audioCtx.sampleRate);
+  var data=buf.getChannelData(0);
+  for(var i=0;i<bufSize;i++){data[i]=(Math.random()*2-1)*(1-i/bufSize)}
+  var noise=audioCtx.createBufferSource();
+  noise.buffer=buf;
+  var noiseFilter=audioCtx.createBiquadFilter();
+  noiseFilter.type='lowpass';
+  noiseFilter.frequency.value=900;
+  var noiseGain=audioCtx.createGain();
+  noiseGain.gain.setValueAtTime(.22,now);
+  noiseGain.gain.exponentialRampToValueAtTime(.001,now+0.035);
+  noise.connect(noiseFilter);noiseFilter.connect(noiseGain);noiseGain.connect(audioCtx.destination);
+  noise.start(now);
+}
+
+// ---- Beat scheduling: a look-ahead scheduler against
+// audioCtx.currentTime, not a bare setInterval — setInterval alone
+// drifts over a long, genuinely ongoing session like this one.
+var currentBPM=90;
+var nextBeatTime=0;
+var beatsSinceRim=0;
+var schedulerId=null;
+var running=false;
+
+function triggerVisualBeat(){
+  beatsSinceRim++;
+  var routeToRim=beatsSinceRim>=RIM_INTERVAL;
+  var idx;
+  if(routeToRim){
+    idx=RIM_CELL_INDEX;
+    beatsSinceRim=0;
+  }else{
+    idx=Math.floor(Math.random()*TOTAL_CELLS);
+    if(idx===RIM_CELL_INDEX)idx=(idx+1)%TOTAL_CELLS;
+  }
+  var cell=cells[idx];
+  var color=COLORS[Math.floor(Math.random()*COLORS.length)];
+  cell.style.setProperty('--lit-color',color);
+  cell.classList.remove('lit');
+  void cell.offsetWidth;
+  cell.classList.add('lit');
+  setTimeout(function(){cell.classList.remove('lit')},Math.max(220,(60/currentBPM*1000)*0.6));
+
+  bpmNum.classList.remove('pulse');
+  void bpmNum.offsetWidth;
+  bpmNum.classList.add('pulse');
+
+  if(routeToRim)triggerSwish();
+}
+
+function triggerSwish(){
+  document.querySelectorAll('.net-line,.rim-ring').forEach(function(el){
+    el.classList.remove('swish-flash');
+    void el.getBBox();
+    el.classList.add('swish-flash');
+    setTimeout(function(){el.classList.remove('swish-flash')},500);
+  });
+  swishBall.classList.remove('dropping');
+  void swishBall.getBBox();
+  swishBall.classList.add('dropping');
+}
+
+function scheduleLoop(){
+  if(!running)return;
+  while(nextBeatTime<audioCtx.currentTime+0.12){
+    playThump();
+    triggerVisualBeat();
+    nextBeatTime+=60/currentBPM;
+  }
+  schedulerId=setTimeout(scheduleLoop,25);
+}
+
+function startRitnome(){
+  ensureAudio();
+  if(audioCtx.state==='suspended')audioCtx.resume();
+  running=true;
+  nextBeatTime=audioCtx.currentTime+0.05;
+  beatsSinceRim=0;
+  scheduleLoop();
+}
+
+document.querySelectorAll('.tempo-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tempo-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    currentBPM=parseInt(btn.dataset.bpm,10);
+    bpmNum.textContent=currentBPM;
+  });
+});
+
+startBtn.addEventListener('click',function(){
+  startOverlay.classList.add('hidden');
+  startRitnome();
+  try{ if(!document.fullscreenElement && document.documentElement.requestFullscreen){ document.documentElement.requestFullscreen().catch(function(){}); } }catch(e){}
+});
+
+soundBtn.addEventListener('click',function(e){
+  e.stopPropagation();
+  muted=!muted;
+  soundBtn.textContent=muted?'🔇':'🔊';
+  soundBtn.style.opacity=muted?'.55':'1';
+});
+})();
+</script>
+</body>
+</html>
