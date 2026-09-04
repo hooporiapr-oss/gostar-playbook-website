@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Go No Go · How To Play</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#000;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+body{font-family:Arial,Helvetica,sans-serif;color:#fff}
+
+:root{--teal:#00D9A5;--teal-light:#5cf0c8;--red:#ff1e3c;--gold:#ffd35a;--cream:#c9b8a8;--purple:#7c3aed;--purple-light:#a855f7}
+
+#stage{position:fixed;inset:0;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at center,#0a1a14 0%,#000 70%)}
+#panel{position:relative;z-index:2;width:100%;max-width:640px;max-height:100%;overflow-y:auto;text-align:center}
+#panel::-webkit-scrollbar{width:6px}
+#panel::-webkit-scrollbar-thumb{background:rgba(0,217,165,.4);border-radius:10px}
+
+.demo-title{font-size:2.2rem;font-weight:900;font-style:italic;letter-spacing:.02em;text-transform:uppercase;text-shadow:0 0 40px rgba(0,217,165,.5);margin-bottom:4px}
+.demo-title span{color:var(--teal)}
+.demo-subtitle{font-size:.85rem;font-weight:700;color:var(--cream);letter-spacing:.04em;margin-bottom:22px}
+
+.demo-label{font-family:Arial,Helvetica,sans-serif;font-size:.72rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);background:rgba(0,0,0,.85);padding:5px 14px;border-radius:10px;display:inline-block;margin-bottom:14px;border:1px solid rgba(255,215,90,.3);transition:all .3s}
+.demo-label.phase-go{color:var(--teal);border-color:rgba(0,217,165,.5)}
+.demo-label.phase-miss{color:var(--red);border-color:rgba(255,30,60,.5)}
+
+.demo-stage-wrap{display:flex;justify-content:center;margin-bottom:22px}
+.demo-stage{position:relative;width:100%;max-width:340px;height:220px;background:#0a1410;border-radius:18px;border:2px solid rgba(0,217,165,.3);box-shadow:0 0 50px rgba(0,217,165,.15),inset 0 0 30px rgba(0,0,0,.4)}
+.demo-target{position:absolute;top:50%;left:50%;width:64px;height:64px;border-radius:50%;transform:translate(-50%,-50%) scale(1);transition:background .1s,box-shadow .1s;display:flex;align-items:center;justify-content:center;font-size:1.6rem}
+.demo-target.pulse{animation:targetPulse .35s ease-out}
+@keyframes targetPulse{0%{transform:translate(-50%,-50%) scale(1.25)}100%{transform:translate(-50%,-50%) scale(1)}}
+.demo-counter{position:absolute;top:12px;right:14px;font-size:.65rem;font-weight:900;letter-spacing:.08em;color:var(--cream);background:rgba(0,0,0,.5);padding:4px 10px;border-radius:8px}
+
+.playbook-section{max-width:520px;margin:0 auto 20px;text-align:left}
+.playbook-toggle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 16px;background:linear-gradient(135deg,rgba(0,217,165,.1),rgba(255,215,90,.05));border:1px solid rgba(0,217,165,.3);border-radius:12px;cursor:pointer;transition:all .3s}
+.playbook-toggle-icon{font-size:1rem}
+.playbook-toggle-text{font-size:.8rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#fff}
+.playbook-toggle-arrow{color:var(--teal-light);transition:transform .3s;margin-left:auto}
+.playbook-toggle.open .playbook-toggle-arrow{transform:rotate(180deg)}
+.playbook-content{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.playbook-content.open{max-height:700px}
+.playbook-inner{padding:16px 4px 4px}
+.playbook-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.playbook-card-title{font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.playbook-step{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.playbook-step:last-child{margin-bottom:0}
+.playbook-step-num{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(0,217,165,.2);color:var(--teal-light);font-size:.68rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.playbook-step-text{font-size:.78rem;line-height:1.5;color:var(--cream)}
+.playbook-step-text strong{color:#fff}
+.playbook-tip{background:rgba(255,215,90,.06);border-left:3px solid var(--gold);padding:9px 12px;border-radius:0 8px 8px 0;margin-top:10px}
+.playbook-tip-title{font-size:.68rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.playbook-tip-text{font-size:.76rem;color:var(--cream);line-height:1.5}
+
+.play-now-btn{display:block;width:100%;max-width:440px;margin:0 auto 20px;padding:16px 20px;border:none;border-radius:16px;font-size:1rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;text-decoration:none;background:linear-gradient(135deg,var(--teal),var(--teal-light));color:#04231b;box-shadow:0 0 40px rgba(0,217,165,.6);transition:all .3s;animation:demoPulse 2s ease-in-out infinite}
+.play-now-btn:active{transform:scale(.98)}
+@keyframes demoPulse{0%,100%{box-shadow:0 0 40px rgba(0,217,165,.6)}50%{box-shadow:0 0 55px rgba(0,217,165,.85)}}
+
+.back-link{display:inline-block;padding:8px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:#fff;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;margin-bottom:18px}
+
+.nav-lang{display:inline-flex;gap:3px;margin-left:10px;vertical-align:middle}
+.nav-lang-btn{padding:6px 10px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:#9a9088;border-radius:6px;font-size:.66rem;font-weight:800;cursor:pointer;letter-spacing:.04em}
+.nav-lang-btn.active{border-color:var(--gold);color:var(--gold)}
+
+footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
+
+@media(max-width:480px){.demo-title{font-size:1.6rem}.demo-stage{max-width:280px;height:190px}}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="panel">
+    <a href="how-to-play.html" class="back-link" id="backLink">← Back to Hub</a>
+    <div class="nav-lang">
+      <button class="nav-lang-btn active" id="langEN">EN</button>
+      <button class="nav-lang-btn" id="langES">ES</button>
+    </div>
+
+    <div class="demo-title">GO NO <span>GO</span></div>
+    <div class="demo-subtitle" id="demoSubtitle">Tap only on red.</div>
+
+    <div class="demo-stage-wrap">
+      <div style="width:100%;max-width:340px">
+        <div class="demo-label" id="demoLabel">👁️ WATCH THE COLOR</div>
+        <div class="demo-stage">
+          <div class="demo-counter" id="demoCounter">0 / 25</div>
+          <div class="demo-target" id="demoTarget"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="playbook-section">
+      <div class="playbook-toggle" id="playbookToggle">
+        <span class="playbook-toggle-icon">📖</span>
+        <span class="playbook-toggle-text" id="playbookToggleText">The Playbook</span>
+        <span class="playbook-toggle-arrow">▼</span>
+      </div>
+      <div class="playbook-content" id="playbookContent">
+        <div class="playbook-inner">
+          <div class="playbook-card">
+            <div class="playbook-card-title">🎯 <span id="objectiveTitle">Objective</span></div>
+            <div class="playbook-step"><div class="playbook-step-num">1</div><div class="playbook-step-text" id="step1">The target cycles through <strong>colors</strong>, one after another, to a steady beat.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">2</div><div class="playbook-step-text" id="step2">The instant it turns <strong>red</strong> — tap it.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">3</div><div class="playbook-step-text" id="step3">Tap on <strong>any other color</strong> and it costs you. Restraint matters as much as speed.</div></div>
+          </div>
+          <div class="playbook-card">
+            <div class="playbook-card-title">⭐ <span id="progressionTitle">The Run</span></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog1">The run ends after <strong>25 reds</strong> have appeared — that's the whole game, start to finish.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog2">Fixed at <strong>100 BPM</strong> — one steady tempo, every run, so your best score is always a fair comparison.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="prog3">The target also <strong>moves</strong> around the screen — you're tracking both color and position at once.</div></div>
+          </div>
+          <div class="playbook-card">
+            <div class="playbook-card-title">🏆 <span id="standingsTitle">Standings</span></div>
+            <div class="playbook-step"><div class="playbook-step-num">🥇</div><div class="playbook-step-text" id="standings1">Every run gets tracked on <strong>The Standings</strong> — your best score, ranked against every other player.</div></div>
+            <div class="playbook-tip">
+              <div class="playbook-tip-title">💡 <span id="tipTitle">Tip</span></div>
+              <div class="playbook-tip-text" id="tipText">Don't chase the target with your eyes the whole time — watching the color is what matters. Where it sits is secondary.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>Gostar Digital LLC</footer>
+  </div>
+</div>
+
+<script>
+(function(){
+var demoTarget=document.getElementById('demoTarget');
+var demoLabel=document.getElementById('demoLabel');
+var demoCounter=document.getElementById('demoCounter');
+
+var currentLang='en';
+var translations={
+  en:{
+    backLink:'← Back to Hub',
+    demoSubtitle:'Tap only on red.',
+    demoLabelWatch:'👁️ WATCH THE COLOR',
+    demoLabelGo:'✅ TAP!',
+    demoLabelMiss:'✗ NOT RED',
+    playbookToggleText:'The Playbook',
+    objectiveTitle:'Objective',
+    step1:'The target cycles through <strong>colors</strong>, one after another, to a steady beat.',
+    step2:'The instant it turns <strong>red</strong> — tap it.',
+    step3:'Tap on <strong>any other color</strong> and it simply doesn\'t count — no penalty, the round just keeps going.',
+    progressionTitle:'The Run',
+    prog1:'The run ends after <strong>25 reds</strong> have appeared — that\'s the whole game, start to finish.',
+    prog2:'Fixed at <strong>80 BPM</strong> — one steady tempo, every run, so your best score is always a fair comparison.',
+    prog3:'The target also <strong>moves</strong> around the screen — you\'re tracking both color and position at once.',
+    standingsTitle:'Standings',
+    standings1:'Every run gets tracked on <strong>The Standings</strong> — your best score, ranked against every other player.',
+    tipTitle:'Tip',
+    tipText:'Don\'t chase the target with your eyes the whole time — watching the color is what matters. Where it sits is secondary.'
+  },
+  es:{
+    backLink:'← Volver al Centro',
+    demoSubtitle:'Toca solo en rojo.',
+    demoLabelWatch:'👁️ MIRA EL COLOR',
+    demoLabelGo:'✅ ¡TOCA!',
+    demoLabelMiss:'✗ NO ES ROJO',
+    playbookToggleText:'El Manual',
+    objectiveTitle:'Objetivo',
+    step1:'El objetivo pasa por diferentes <strong>colores</strong>, uno tras otro, a un ritmo constante.',
+    step2:'En el instante que se vuelva <strong>rojo</strong> — tócalo.',
+    step3:'Tocar en <strong>cualquier otro color</strong> simplemente no cuenta — sin penalidad, la corrida sigue.',
+    progressionTitle:'La Corrida',
+    prog1:'La corrida termina después de que aparezcan <strong>25 rojos</strong> — eso es todo el juego, de principio a fin.',
+    prog2:'Fijo a <strong>80 BPM</strong> — un ritmo constante en cada corrida, para que tu mejor puntaje siempre sea una comparación justa.',
+    prog3:'El objetivo también se <strong>mueve</strong> por la pantalla — estás siguiendo el color y la posición a la vez.',
+    standingsTitle:'Clasificación',
+    standings1:'Cada corrida se registra en <strong>La Clasificación</strong> — tu mejor puntaje, comparado con todos los demás jugadores.',
+    tipTitle:'Consejo',
+    tipText:'No persigas el objetivo con la mirada todo el tiempo — lo que importa es observar el color. La posición es secundaria.'
+  }
+};
+function t(key){return translations[currentLang][key]||translations.en[key]||key}
+function updateUILanguage(){
+  document.getElementById('backLink').textContent=t('backLink');
+  document.getElementById('demoSubtitle').textContent=t('demoSubtitle');
+  document.getElementById('playbookToggleText').textContent=t('playbookToggleText');
+  document.getElementById('objectiveTitle').textContent=t('objectiveTitle');
+  document.getElementById('step1').innerHTML=t('step1');
+  document.getElementById('step2').innerHTML=t('step2');
+  document.getElementById('step3').innerHTML=t('step3');
+  document.getElementById('progressionTitle').textContent=t('progressionTitle');
+  document.getElementById('prog1').innerHTML=t('prog1');
+  document.getElementById('prog2').innerHTML=t('prog2');
+  document.getElementById('prog3').innerHTML=t('prog3');
+  document.getElementById('standingsTitle').textContent=t('standingsTitle');
+  document.getElementById('standings1').innerHTML=t('standings1');
+  document.getElementById('tipTitle').textContent=t('tipTitle');
+  document.getElementById('tipText').textContent=t('tipText');
+  document.getElementById('langEN').classList.toggle('active',currentLang==='en');
+  document.getElementById('langES').classList.toggle('active',currentLang==='es');
+  updateDemoLabelForCurrentPhase();
+}
+function setLang(l){
+  currentLang=l;
+  try{localStorage.setItem('lc-lang',l)}catch(e){}
+  updateUILanguage();
+}
+document.getElementById('langEN').onclick=function(){setLang('en')};
+document.getElementById('langES').onclick=function(){setLang('es')};
+var savedLang;
+try{savedLang=localStorage.getItem('lc-lang')}catch(e){}
+if(savedLang)currentLang=savedLang;
+
+var demoPhase='watch';
+function updateDemoLabelForCurrentPhase(){
+  if(demoPhase==='watch'){demoLabel.textContent=t('demoLabelWatch');demoLabel.className='demo-label'}
+  else if(demoPhase==='go'){demoLabel.textContent=t('demoLabelGo');demoLabel.className='demo-label phase-go'}
+  else if(demoPhase==='miss'){demoLabel.textContent=t('demoLabelMiss');demoLabel.className='demo-label phase-miss'}
+}
+
+// A short, looping cycle: a few non-red colors, then red (tap!), then
+// one deliberate near-miss on a non-red color to show what NOT to do,
+// then loop again. Position drifts a little each cycle, matching the
+// real game's moving target.
+var COLORS=['#5b8def','#a855f7','#ffd35a','#ff1e3c'];
+var COLOR_IS_RED=[false,false,false,true];
+var reds=0;
+var demoEpoch=0,demoTimeouts=[];
+function setDemoTimeout(fn,delay){
+  var id=setTimeout(function(){
+    var idx=demoTimeouts.indexOf(id);
+    if(idx>-1)demoTimeouts.splice(idx,1);
+    fn();
+  },delay);
+  demoTimeouts.push(id);
+  return id;
+}
+function clearDemoTimeouts(){demoTimeouts.forEach(function(id){clearTimeout(id)});demoTimeouts=[]}
+
+function positionTarget(){
+  var x=30+Math.random()*40, y=30+Math.random()*40;
+  demoTarget.style.left=x+'%';
+  demoTarget.style.top=y+'%';
+}
+
+function runDemoCycle(epoch,step){
+  if(epoch!==demoEpoch)return;
+  if(step>=COLORS.length){
+    setDemoTimeout(function(){runDemoCycle(epoch,0)},600);
+    return;
+  }
+  positionTarget();
+  demoTarget.style.background=COLORS[step];
+  demoTarget.style.boxShadow='0 0 24px '+COLORS[step];
+  demoPhase='watch';
+  updateDemoLabelForCurrentPhase();
+
+  var isRed=COLOR_IS_RED[step];
+  setDemoTimeout(function(){
+    if(epoch!==demoEpoch)return;
+    if(isRed){
+      reds++;
+      demoCounter.textContent=Math.min(reds,25)+' / 25';
+      demoTarget.classList.add('pulse');
+      demoTarget.textContent='✓';
+      demoPhase='go';
+      updateDemoLabelForCurrentPhase();
+      setDemoTimeout(function(){
+        demoTarget.classList.remove('pulse');
+        demoTarget.textContent='';
+        runDemoCycle(epoch,step+1);
+      },500);
+    }else{
+      runDemoCycle(epoch,step+1);
+    }
+  },700);
+}
+
+function startDemo(){
+  demoEpoch++;clearDemoTimeouts();reds=0;demoCounter.textContent='0 / 25';
+  runDemoCycle(demoEpoch,0);
+}
+
+updateUILanguage();
+startDemo();
+
+var toggle=document.getElementById('playbookToggle');
+var content=document.getElementById('playbookContent');
+toggle.addEventListener('click',function(){
+  toggle.classList.toggle('open');
+  content.classList.toggle('open');
+});
+})();
+</script>
+</body>
+</html>
