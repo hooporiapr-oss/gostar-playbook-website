@@ -32,6 +32,17 @@ body{overflow-x:hidden}
 main{position:relative;z-index:1}
 .wrap{max-width:900px;margin:0 auto;padding:0 24px}
 
+.home-btn{
+  position:fixed;top:16px;left:16px;z-index:10;
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 18px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);
+  color:#fff;font-family:'Oswald',sans-serif;font-weight:900;
+  font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+  text-decoration:none;
+}
+.home-btn:hover{border-color:rgba(255,178,102,.5)}
+
 .lang-toggle{
   display:flex;justify-content:center;gap:6px;
   padding:18px 0 0;
@@ -231,6 +242,7 @@ footer{
 <div id="ambient"></div>
 
 <main>
+  <a href="index.html" class="home-btn" id="homeBtn">← Home</a>
   <div class="lang-toggle">
     <button class="lang-btn active" id="langEN">EN</button>
     <button class="lang-btn" id="langES">ES</button>
@@ -341,6 +353,7 @@ footer{
   var translations = {
     en: {
       kickerText: 'Memory Basketball',
+      homeBtn: '← Home',
       subheadPre: 'Four quarters. Four different ways to play ',
       subheadStrong: 'memory',
       subheadPost: '. Watch, react, recall — every round moves to a real basketball beat.',
@@ -367,6 +380,7 @@ footer{
     },
     es: {
       kickerText: 'Baloncesto de Memoria',
+      homeBtn: '← Inicio',
       subheadPre: 'Cuatro cuartos. Cuatro maneras diferentes de jugar con la ',
       subheadStrong: 'memoria',
       subheadPost: '. Mira, reacciona, repite — cada ronda se mueve al ritmo real del baloncesto.',
@@ -396,6 +410,7 @@ footer{
   function t(key){ return translations[currentLang][key] || translations.en[key] || key; }
 
   function updateUILanguage(){
+    document.getElementById('homeBtn').textContent = t('homeBtn');
     document.getElementById('kickerText').textContent = t('kickerText');
     document.getElementById('subheadText').innerHTML =
       t('subheadPre') + '<strong>' + t('subheadStrong') + '</strong>' + t('subheadPost');
