@@ -204,6 +204,13 @@ h1.brand .accent{
 .closing-cta.cta-memory{background:linear-gradient(135deg,#7c3aed,#f37418);box-shadow:0 0 30px rgba(243,116,24,.3)}
 .closing-cta.cta-ritnome{background:linear-gradient(135deg,#ff1e3c,#ff6b35);box-shadow:0 0 30px rgba(255,30,60,.3)}
 .gate-note{font-size:.76rem;color:#8892a0;margin-top:18px}
+.how-to-play-link{
+  display:inline-block;margin-top:12px;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:.78rem;
+  letter-spacing:.04em;color:#ffb066;text-decoration:underline;
+  text-underline-offset:3px;
+}
+.how-to-play-link:hover{color:#ffd35a}
 
 /* ── Free trial — the one moment on this page worth a distinct
    frame, since it's the actual conversion action everything above
@@ -466,6 +473,7 @@ footer{
         <a class="closing-cta cta-ritnome" href="https://ritnome.com" id="ctaRitnome">Train With Ritnome</a>
       </div>
       <div class="gate-note" id="gateNote">Both require a real access code to enter — issued to schools and trial requests.</div>
+      <a href="how-to-play.html" class="how-to-play-link" id="howToPlayLink">See How To Play →</a>
     </section>
 
   </div>
@@ -524,6 +532,7 @@ footer{
       ctaMemory: 'Train With Dynamic Memory',
       ctaRitnome: 'Train With Ritnome',
       gateNote: 'Both require a real access code to enter — issued to schools and trial requests.',
+      howToPlayLink: 'See How To Play →',
       trialKicker: 'Free 7-Day Trial',
       trialTitle: 'Try it before your team commits.',
       trialSub: 'A full week of real access, no cost. Pick what you want to test and we\'ll send an access code.',
@@ -576,6 +585,7 @@ footer{
       ctaMemory: 'Entrena Con Dynamic Memory',
       ctaRitnome: 'Entrena Con Ritnome',
       gateNote: 'Ambos requieren un código de acceso real para entrar — se emite a escuelas y a solicitudes de prueba.',
+      howToPlayLink: 'Mira Cómo Jugar →',
       trialKicker: 'Prueba Gratis De 7 Días',
       trialTitle: 'Pruébalo antes de que tu equipo se comprometa.',
       trialSub: 'Una semana completa de acceso real, sin costo. Escoge qué quieres probar y te enviamos un código de acceso.',
@@ -604,6 +614,7 @@ footer{
     document.getElementById('ctaMemory').textContent = t('ctaMemory');
     document.getElementById('ctaRitnome').textContent = t('ctaRitnome');
     document.getElementById('gateNote').textContent = t('gateNote');
+    document.getElementById('howToPlayLink').textContent = t('howToPlayLink');
     document.getElementById('timelineKicker').textContent = t('timelineKicker');
     document.getElementById('timelineTitle').textContent = t('timelineTitle');
     for(var j=1;j<=4;j++){
