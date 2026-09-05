@@ -27,7 +27,6 @@ body{font-family:Arial,Helvetica,sans-serif;color:#fff}
 .demo-court-wrap{display:flex;justify-content:center;margin-bottom:22px}
 .demo-court{position:relative;width:100%;max-width:440px;aspect-ratio:520/300;background:#0f0820;border-radius:14px;border:2px solid rgba(124,58,237,.3);box-shadow:0 0 50px rgba(124,58,237,.15),inset 0 0 30px rgba(0,0,0,.4)}
 #demoKeySvg{position:absolute;inset:0;width:100%;height:100%}
-.demo-qtr-badge{position:absolute;top:8px;right:12px;font-size:.62rem;font-weight:900;letter-spacing:.06em;color:var(--cream);background:rgba(0,0,0,.5);padding:3px 9px;border-radius:8px}
 .demo-ball{position:absolute;border-radius:50%;aspect-ratio:1;transform:translate(-50%,-50%) scale(1);opacity:1;transition:filter .12s,box-shadow .12s,transform .12s;background-size:cover}
 .demo-ball.lit{filter:brightness(1.55) saturate(1.25);box-shadow:0 0 30px currentColor,0 0 55px currentColor;transform:translate(-50%,-50%) scale(1.12)}
 
@@ -82,7 +81,6 @@ footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
       <div style="width:100%;max-width:440px">
         <div class="demo-label" id="demoLabel">👁️ WATCH THE FORTRESS</div>
         <div class="demo-court">
-          <div class="demo-qtr-badge" id="demoQtrBadge">QUARTER 1</div>
           <svg id="demoKeySvg" viewBox="0 0 520 300" preserveAspectRatio="xMidYMid meet">
             <rect x="20" y="60" width="300" height="180" fill="none" stroke="rgba(168,85,247,.4)" stroke-width="3"/>
             <path d="M 320 60 A 90 90 0 0 1 320 240" fill="none" stroke="rgba(168,85,247,.4)" stroke-width="3"/>
@@ -114,13 +112,13 @@ footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
             <div class="playbook-step"><div class="playbook-step-num">3</div><div class="playbook-step-text" id="step3">Get it right and the chain <strong>grows by one</strong> — the whole thing replays, plus a new ball on the end.</div></div>
           </div>
           <div class="playbook-card">
-            <div class="playbook-card-title">🏀 <span id="quartersTitle">Four Quarters</span></div>
-            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="qtr1">Each quarter is its own chain, starting fresh — build it as far as you can before a wrong tap ends that quarter.</div></div>
-            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="qtr2">Play all four, and your <strong>final score is the total</strong> across every quarter combined.</div></div>
+            <div class="playbook-card-title">🏀 <span id="quartersTitle">The Run</span></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="qtr1">One continuous run — the chain just keeps growing, however long you can hold it.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">→</div><div class="playbook-step-text" id="qtr2">A <strong>wrong tap ends the run</strong> — your final score is the longest chain you actually held.</div></div>
           </div>
           <div class="playbook-card">
             <div class="playbook-card-title">🏆 <span id="standingsTitle">Standings</span></div>
-            <div class="playbook-step"><div class="playbook-step-num">🥇</div><div class="playbook-step-text" id="standings1">Every run gets tracked on <strong>The Standings</strong> — tap any player's row to see their own quarter-by-quarter breakdown.</div></div>
+            <div class="playbook-step"><div class="playbook-step-num">🥇</div><div class="playbook-step-text" id="standings1">Every run gets tracked on <strong>The Standings</strong> — the level you reached, and the real time it took to get there.</div></div>
             <div class="playbook-tip">
               <div class="playbook-tip-title">💡 <span id="tipTitle">Tip</span></div>
               <div class="playbook-tip-text" id="tipText">Learn the zone's colors and positions early — since they never move, real spatial memory is what carries a long chain, not luck.</div>
@@ -136,7 +134,6 @@ footer{margin-top:4px;font-size:.68rem;color:#6b5d52;letter-spacing:.02em}
 
 <script>
 (function(){
-var demoQtrBadge=document.getElementById('demoQtrBadge');
 var demoLabel=document.getElementById('demoLabel');
 var demoBalls=[
   document.getElementById('demoB0'),document.getElementById('demoB1'),document.getElementById('demoB2'),
@@ -151,17 +148,16 @@ var translations={
     demoLabelWatch:'👁️ WATCH THE FORTRESS',
     demoLabelGo:'🔁 YOUR TURN',
     demoLabelCorrect:'✅ HELD THE ZONE',
-    quarterLabel:'QUARTER ',
     playbookToggleText:'The Playbook',
     objectiveTitle:'Objective',
     step1:'<strong>Five basketballs</strong>, set in a real 2-1-2 zone inside the key — fixed in place for the whole game.',
     step2:'Watch the chain light up, then <strong>tap the balls back in the same order</strong>.',
     step3:'Get it right and the chain <strong>grows by one</strong> — the whole thing replays, plus a new ball on the end.',
-    quartersTitle:'Four Quarters',
-    qtr1:'Each quarter is its own chain, starting fresh — build it as far as you can before a wrong tap ends that quarter.',
-    qtr2:'Play all four, and your <strong>final score is the total</strong> across every quarter combined.',
+    quartersTitle:'The Run',
+    qtr1:'One continuous run — the chain just keeps growing, however long you can hold it.',
+    qtr2:'A <strong>wrong tap ends the run</strong> — your final score is the longest chain you actually held.',
     standingsTitle:'Standings',
-    standings1:'Every run gets tracked on <strong>The Standings</strong> — tap any player\'s row to see their own quarter-by-quarter breakdown.',
+    standings1:'Every run gets tracked on <strong>The Standings</strong> — the level you reached, and the real time it took to get there.',
     tipTitle:'Tip',
     tipText:'Learn the zone\'s colors and positions early — since they never move, real spatial memory is what carries a long chain, not luck.'
   },
@@ -171,17 +167,16 @@ var translations={
     demoLabelWatch:'👁️ MIRA LA FORTALEZA',
     demoLabelGo:'🔁 TU TURNO',
     demoLabelCorrect:'✅ ¡ZONA DEFENDIDA!',
-    quarterLabel:'CUARTO ',
     playbookToggleText:'El Manual',
     objectiveTitle:'Objetivo',
     step1:'<strong>Cinco balones</strong>, en una zona 2-1-2 real dentro de la pintura — en posición fija durante todo el juego.',
     step2:'Mira la cadena encenderse, luego <strong>toca los balones de vuelta en el mismo orden</strong>.',
     step3:'Acertar hace que la cadena <strong>crezca uno más</strong> — todo se repite, más un balón nuevo al final.',
-    quartersTitle:'Cuatro Cuartos',
-    qtr1:'Cada cuarto es su propia cadena, empezando de cero — llévala lo más lejos posible antes de que un toque equivocado termine ese cuarto.',
-    qtr2:'Juega los cuatro, y tu <strong>puntaje final es el total</strong> de los cuatro cuartos combinados.',
+    quartersTitle:'La Corrida',
+    qtr1:'Una corrida continua — la cadena sigue creciendo, lo que la puedas sostener.',
+    qtr2:'Un <strong>toque equivocado termina la corrida</strong> — tu puntaje final es la cadena más larga que realmente sostuviste.',
     standingsTitle:'Clasificación',
-    standings1:'Cada corrida se registra en <strong>La Clasificación</strong> — toca la fila de cualquier jugador para ver su propio desglose cuarto por cuarto.',
+    standings1:'Cada corrida se registra en <strong>La Clasificación</strong> — el nivel que alcanzaste, y el tiempo real que tomó llegar ahí.',
     tipTitle:'Consejo',
     tipText:'Aprende los colores y posiciones de la zona temprano — como nunca se mueven, la memoria espacial real es lo que sostiene una cadena larga, no la suerte.'
   }
@@ -205,7 +200,6 @@ function updateUILanguage(){
   document.getElementById('langEN').classList.toggle('active',currentLang==='en');
   document.getElementById('langES').classList.toggle('active',currentLang==='es');
   updateDemoLabelForCurrentPhase();
-  demoQtrBadge.textContent=t('quarterLabel')+currentQuarter;
 }
 function setLang(l){
   currentLang=l;
@@ -219,7 +213,6 @@ try{savedLang=localStorage.getItem('lc-lang')}catch(e){}
 if(savedLang)currentLang=savedLang;
 
 var demoPhase='watch';
-var currentQuarter=1;
 function updateDemoLabelForCurrentPhase(){
   if(demoPhase==='watch'){demoLabel.textContent=t('demoLabelWatch');demoLabel.className='demo-label'}
   else if(demoPhase==='go'){demoLabel.textContent=t('demoLabelGo');demoLabel.className='demo-label phase-go'}
@@ -242,8 +235,9 @@ function clearDemoTimeouts(){demoTimeouts.forEach(function(id){clearTimeout(id)}
 // same as Chain Reaction's own demo — a sequence plays back (growing
 // by one every loop), a brief "your turn" replay stands in for the
 // player's own taps, then it locks in and grows again. Caps at 4
-// balls and rolls the quarter badge over, purely so the demo stays
-// quick to follow and shows off the 4-quarter structure too.
+// balls purely so the demo stays quick to follow, then starts over
+// with a fresh short chain — The Fortress itself has no such cap at
+// all, since it's a single continuous run, not resetting quarters.
 var sequence=[0];
 function playSequence(i,onDone){
   if(i>=sequence.length){onDone();return}
@@ -273,8 +267,6 @@ function runDemoCycle(epoch){
         setDemoTimeout(function(){
           if(sequence.length>=4){
             sequence=[Math.floor(Math.random()*5)];
-            currentQuarter=currentQuarter>=4?1:currentQuarter+1;
-            demoQtrBadge.textContent=t('quarterLabel')+currentQuarter;
           }else{
             var next;
             do{next=Math.floor(Math.random()*5)}while(next===sequence[sequence.length-1]);
