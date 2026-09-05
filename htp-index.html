@@ -94,22 +94,16 @@ h1.title .accent{color:#f37418}
   min-width:190px;text-align:center;
 }
 .demo-phase.recall{color:#00D9A5;border-color:rgba(0,217,165,.4)}
+.demo-phase.go{color:#ffd35a;border-color:rgba(255,211,90,.4)}
 .demo-court{
-  width:100%;max-width:340px;aspect-ratio:2/1;
-  display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(4,1fr);
-  gap:3px;padding:6px;border-radius:12px;
-  border:2px solid rgba(255,149,0,.4);
-  background-color:#2b1810;
-  background-image:url('data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20200%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%0A%20%20%3Crect%20width%3D%22200%22%20height%3D%22100%22%20fill%3D%22%233a1c0b%22/%3E%0A%20%20%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22198%22%20height%3D%2298%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Cline%20x1%3D%22100%22%20y1%3D%221%22%20x2%3D%22100%22%20y2%3D%2299%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%2250%22%20r%3D%2213%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Crect%20x%3D%221%22%20y%3D%2231%22%20width%3D%2238%22%20height%3D%2238%22%20fill%3D%22rgba%28255%2C107%2C0%2C.08%29%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Ccircle%20cx%3D%2239%22%20cy%3D%2250%22%20r%3D%2213%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Cpath%20d%3D%22M%201%2C10%20A%2084%2C84%200%200%2C1%2061%2C50%20A%2084%2C84%200%200%2C1%201%2C90%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.3%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Crect%20x%3D%22161%22%20y%3D%2231%22%20width%3D%2238%22%20height%3D%2238%22%20fill%3D%22rgba%28255%2C107%2C0%2C.08%29%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Ccircle%20cx%3D%22161%22%20cy%3D%2250%22%20r%3D%2213%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.35%29%22%20stroke-width%3D%221.5%22/%3E%0A%20%20%3Cpath%20d%3D%22M%20199%2C10%20A%2084%2C84%200%200%2C0%20139%2C50%20A%2084%2C84%200%200%2C0%20199%2C90%22%20fill%3D%22none%22%20stroke%3D%22rgba%28255%2C178%2C116%2C.3%29%22%20stroke-width%3D%221.5%22/%3E%0A%3C/svg%3E%0A');
-  background-size:100% 100%;
-  box-shadow:0 0 50px rgba(255,149,0,.18),inset 0 0 30px rgba(0,0,0,.4);
+  position:relative;width:100%;max-width:340px;aspect-ratio:520/300;
+  background:#0f0820;border-radius:12px;
+  border:2px solid rgba(124,58,237,.4);
+  box-shadow:0 0 50px rgba(124,58,237,.18),inset 0 0 30px rgba(0,0,0,.4);
 }
-.demo-cell{
-  border-radius:5px;background:rgba(255,149,0,.06);border:1.5px solid rgba(255,149,0,.24);
-  transition:all .15s;
-}
-.demo-cell.lit{background:#ffd35a;border-color:#ffd35a;box-shadow:0 0 14px rgba(255,211,90,.7)}
-.demo-cell.recalled{background:#00D9A5;border-color:#00D9A5;box-shadow:0 0 14px rgba(0,217,165,.6)}
+#demoKeySvg{position:absolute;inset:0;width:100%;height:100%}
+.demo-ball{position:absolute;border-radius:50%;aspect-ratio:1;transform:translate(-50%,-50%) scale(1);opacity:1;transition:filter .12s,box-shadow .12s,transform .12s;background-size:cover}
+.demo-ball.lit{filter:brightness(1.55) saturate(1.25);box-shadow:0 0 30px currentColor,0 0 55px currentColor;transform:translate(-50%,-50%) scale(1.12)}
 
 .section{padding:36px 0 64px}
 .section-head{text-align:center;margin-bottom:28px}
@@ -125,6 +119,38 @@ h1.title .accent{color:#f37418}
 .section-sub{
   font-size:.88rem;color:#8892a0;margin-top:8px;
 }
+
+.featured-card{
+  position:relative;display:block;text-decoration:none;
+  padding:24px 24px 22px;border-radius:18px;margin-bottom:22px;
+  border:1.5px solid rgba(255,211,90,.4);
+  background:linear-gradient(155deg,rgba(255,211,90,.14),rgba(124,58,237,.08));
+  transition:border-color .15s,transform .1s,background .15s;
+}
+.featured-card:hover,.featured-card:focus-visible{
+  border-color:rgba(255,211,90,.7);
+  transform:translateY(-2px);
+}
+.featured-card:active{transform:scale(.99) translateY(0)}
+.featured-eyebrow{
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:.68rem;
+  letter-spacing:.2em;text-transform:uppercase;color:#ffd35a;
+  margin-bottom:8px;
+}
+.featured-name{
+  font-family:'Anton',sans-serif;font-weight:400;font-size:2rem;
+  text-transform:uppercase;letter-spacing:.01em;color:#fff;
+  margin-bottom:8px;line-height:1;
+}
+.featured-desc{font-size:.9rem;line-height:1.55;color:#c9b8a8;max-width:520px;margin-bottom:16px}
+.featured-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:.78rem;
+  letter-spacing:.08em;text-transform:uppercase;color:#ffd35a;
+}
+.featured-card:hover .featured-cta{color:#fff}
+.featured-cta svg{width:13px;height:13px;transition:transform .15s}
+.featured-card:hover .featured-cta svg{transform:translateX(3px)}
 
 .quarter-grid{
   display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
@@ -168,12 +194,6 @@ h1.title .accent{color:#f37418}
 .mech.recall i:nth-child(1){animation-delay:0s}
 .mech.recall i:nth-child(2){animation-delay:0s}
 .mech.recall i:nth-child(3){animation-delay:0s}
-.mech.reflex i:nth-child(1){animation-delay:0s}
-.mech.reflex i:nth-child(2){animation-delay:.08s}
-.mech.reflex i:nth-child(3){animation-delay:.16s}
-.mech.replay i:nth-child(1){animation-delay:0s}
-.mech.replay i:nth-child(2){animation-delay:.5s}
-.mech.replay i:nth-child(3){animation-delay:1s}
 .mech.recognition i:nth-child(1){animation-delay:0s}
 .mech.recognition i:nth-child(2){animation-delay:0s}
 .mech.recognition i:nth-child(3){animation-delay:1.1s}
@@ -246,20 +266,40 @@ footer{
     <section class="hero">
       <div class="kicker"><span class="dot"></span><span id="kickerText">Memory Basketball</span></div>
       <h1 class="title">DYNAMIC<br><span class="accent">MEMORY</span></h1>
-      <p class="subhead" id="subheadText">Four quarters. Four different ways to play memory. Watch, react, recall — every round moves to a real basketball beat.</p>
+      <p class="subhead" id="subheadText">Watch a chain grow one link at a time, then hold it — a real test of memory at a real basketball beat.</p>
 
       <div class="demo-wrap">
         <div class="demo-caption" id="demoCaption">Live Preview</div>
-        <div class="demo-phase" id="demoPhase">Watch the pattern</div>
-        <div class="demo-court" id="demoCourt"></div>
+        <div class="demo-phase" id="demoPhase">Watch the chain</div>
+        <div class="demo-court">
+          <svg id="demoKeySvg" viewBox="0 0 520 300" preserveAspectRatio="xMidYMid meet">
+            <rect x="20" y="60" width="300" height="180" fill="none" stroke="rgba(168,85,247,.4)" stroke-width="3"/>
+            <path d="M 320 60 A 90 90 0 0 1 320 240" fill="none" stroke="rgba(168,85,247,.4)" stroke-width="3"/>
+            <line x1="20" y1="60" x2="20" y2="240" stroke="rgba(168,85,247,.55)" stroke-width="5"/>
+            <circle cx="20" cy="150" r="7" fill="none" stroke="rgba(255,211,90,.7)" stroke-width="3"/>
+            <line x1="9" y1="150" x2="31" y2="150" stroke="rgba(255,211,90,.7)" stroke-width="3"/>
+          </svg>
+          <div class="demo-ball" id="demoB0" style="left:62%;top:22%;width:13%;background:#ff1e3c;color:#ff1e3c"></div>
+          <div class="demo-ball" id="demoB1" style="left:62%;top:78%;width:13%;background:#ffd35a;color:#ffd35a"></div>
+          <div class="demo-ball" id="demoB2" style="left:38%;top:50%;width:13%;background:#00D9A5;color:#00D9A5"></div>
+          <div class="demo-ball" id="demoB3" style="left:12%;top:22%;width:13%;background:#3b82f6;color:#3b82f6"></div>
+          <div class="demo-ball" id="demoB4" style="left:12%;top:78%;width:13%;background:#ff6b35;color:#ff6b35"></div>
+        </div>
       </div>
     </section>
 
     <section class="section">
+      <a class="featured-card" href="htp-vr-the-fortress.html">
+        <div class="featured-eyebrow">🏆 Featured</div>
+        <div class="featured-name">The Fortress</div>
+        <div class="featured-desc" id="featuredDesc">Five basketballs, fixed in a real 2-1-2 zone. Watch the chain grow, hold it as long as you can — one wrong tap ends the run.</div>
+        <div class="featured-cta"><span id="featuredCta">How to play</span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
       <div class="section-head">
         <div class="section-eyebrow" id="sectionEyebrow">The Playbook</div>
         <div class="section-title" id="sectionTitle">The Dynamic Memory Playbook</div>
-        <div class="section-sub" id="sectionSub">Four plays, one playbook — see how each one runs before you step on the court.</div>
+        <div class="section-sub" id="sectionSub">Two more plays, same playbook — see how each one runs before you step on the court.</div>
       </div>
 
       <div class="quarter-grid">
@@ -274,31 +314,9 @@ footer{
           <div class="card-cta"><span id="cta1">How to play</span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </a>
 
-        <a class="quarter-card" href="htp-reflex.html">
-          <div class="card-top">
-            <span class="card-badge">Q2</span>
-            <div class="mech reflex"><i></i><i></i><i></i></div>
-          </div>
-          <div class="card-name">Shot Map</div>
-          <div class="card-skill" id="skill2">Spot it. Sink it.</div>
-          <div class="card-desc" id="desc2">Shooting locations flash briefly — tap them all back before the shot clock runs out.</div>
-          <div class="card-cta"><span id="cta2">How to play</span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        </a>
-
-        <a class="quarter-card" href="htp-replay.html">
-          <div class="card-top">
-            <span class="card-badge">Q3</span>
-            <div class="mech replay"><i></i><i></i><i></i></div>
-          </div>
-          <div class="card-name">Replay</div>
-          <div class="card-skill" id="skill3">Track it. Throw it.</div>
-          <div class="card-desc" id="desc3">A passing sequence moves between players one at a time — tap the players back in the remembered passing order.</div>
-          <div class="card-cta"><span id="cta3">How to play</span><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        </a>
-
         <a class="quarter-card" href="htp-recognition.html">
           <div class="card-top">
-            <span class="card-badge">Q4</span>
+            <span class="card-badge">Q2</span>
             <div class="mech recognition"><i></i><i></i><i></i></div>
           </div>
           <div class="card-name">Recognition</div>
@@ -325,21 +343,18 @@ footer{
   var translations = {
     en: {
       kickerText: 'Memory Basketball',
-      subheadPre: 'Four quarters. Four different ways to play ',
+      subheadPre: 'Watch a chain grow one link at a time, then hold it — a real test of ',
       subheadStrong: 'memory',
-      subheadPost: '. Watch, react, recall — every round moves to a real basketball beat.',
+      subheadPost: ' at a real basketball beat.',
       demoCaption: 'Live Preview',
-      demoLabelWatch: 'Watch the pattern',
-      demoLabelRecall: 'Recall it back',
+      demoLabelWatch: 'Watch the chain',
+      demoLabelGo: 'Hold the chain',
+      featuredDesc: 'Five basketballs, fixed in a real 2-1-2 zone. Watch the chain grow, hold it as long as you can — one wrong tap ends the run.',
       sectionEyebrow: 'The Playbook',
       sectionTitle: 'The Dynamic Memory Playbook',
-      sectionSub: 'Four plays, one playbook — see how each one runs before you step on the court.',
+      sectionSub: 'Two more plays, same playbook — see how each one runs before you step on the court.',
       skill1: 'Call it. Run it.',
       desc1: 'A sequence of numbered positions flashes all at once — call it back in the exact same order.',
-      skill2: 'Spot it. Sink it.',
-      desc2: 'Shooting locations flash briefly — tap them all back before the shot clock runs out.',
-      skill3: 'Track it. Throw it.',
-      desc3: 'A passing sequence moves between players one at a time — tap the players back in the remembered passing order.',
       skill4: 'See it. Read it.',
       desc4: 'A defensive alignment is shown twice — tap what changed.',
       cta: 'How to play',
@@ -347,21 +362,18 @@ footer{
     },
     es: {
       kickerText: 'Baloncesto de Memoria',
-      subheadPre: 'Cuatro cuartos. Cuatro maneras diferentes de jugar con la ',
+      subheadPre: 'Mira una cadena crecer un eslabón a la vez, luego sostenla — una prueba real de la ',
       subheadStrong: 'memoria',
-      subheadPost: '. Mira, reacciona, repite — cada ronda se mueve al ritmo real del baloncesto.',
+      subheadPost: ' al ritmo real del baloncesto.',
       demoCaption: 'Vista En Vivo',
-      demoLabelWatch: 'Mira el patrón',
-      demoLabelRecall: 'Repítelo',
+      demoLabelWatch: 'Mira la cadena',
+      demoLabelGo: 'Sostén la cadena',
+      featuredDesc: 'Cinco balones, fijos en una zona 2-1-2 real. Mira la cadena crecer, sostenla lo más que puedas — un toque equivocado termina la corrida.',
       sectionEyebrow: 'El Playbook',
       sectionTitle: 'El Playbook De Dynamic Memory',
-      sectionSub: 'Cuatro jugadas, un playbook — mira cómo funciona cada una antes de entrar a la cancha.',
+      sectionSub: 'Dos jugadas más, el mismo playbook — mira cómo funciona cada una antes de entrar a la cancha.',
       skill1: 'Cántala. Córrela.',
       desc1: 'Una secuencia de posiciones numeradas se enciende toda a la vez — cántala de vuelta en el mismo orden exacto.',
-      skill2: 'Encuéntralo. Anótalo.',
-      desc2: 'Las ubicaciones de tiro se encienden brevemente — tócalas todas de vuelta antes de que se acabe el reloj de tiro.',
-      skill3: 'Síguelo. Lánzalo.',
-      desc3: 'Una secuencia de pases se mueve entre jugadores una a la vez — toca a los jugadores de vuelta en el orden de pase recordado.',
       skill4: 'Míralo. Léelo.',
       desc4: 'Una alineación defensiva se muestra dos veces — toca qué cambió.',
       cta: 'Cómo jugar',
@@ -379,11 +391,13 @@ footer{
     document.getElementById('sectionEyebrow').textContent = t('sectionEyebrow');
     document.getElementById('sectionTitle').textContent = t('sectionTitle');
     document.getElementById('sectionSub').textContent = t('sectionSub');
-    for (var i = 1; i <= 4; i++){
+    document.getElementById('featuredDesc').textContent = t('featuredDesc');
+    document.getElementById('featuredCta').textContent = t('cta');
+    [1, 4].forEach(function(i){
       document.getElementById('skill' + i).textContent = t('skill' + i);
       document.getElementById('desc' + i).textContent = t('desc' + i);
       document.getElementById('cta' + i).textContent = t('cta');
-    }
+    });
     document.getElementById('homeBtnText').textContent = t('homeBtnText');
     document.getElementById('langEN').classList.toggle('active', currentLang === 'en');
     document.getElementById('langES').classList.toggle('active', currentLang === 'es');
@@ -402,20 +416,20 @@ footer{
   if (savedLang) currentLang = savedLang;
 
   // ── Signature hero element — a small, looping, fully authentic demo
-  // of the core mechanic: watch a pattern flash together, then see it
-  // played back in order. Purely ambient, no interaction needed.
-  var court = document.getElementById('demoCourt');
+  // of The Fortress's own real mechanic: watch the chain light up,
+  // then see it held back in order, growing by one each pass. Purely
+  // ambient, no interaction needed. Caps at 5 balls purely so the
+  // demo stays quick to follow, then starts over with a fresh short
+  // chain — The Fortress itself has no such cap at all, since it's a
+  // single continuous run, not a series of resetting quarters.
+  var demoBalls = [
+    document.getElementById('demoB0'),
+    document.getElementById('demoB1'),
+    document.getElementById('demoB2'),
+    document.getElementById('demoB3'),
+    document.getElementById('demoB4')
+  ];
   var phaseEl = document.getElementById('demoPhase');
-  var GRID = 32; // 8 x 4
-  var cells = [];
-  for (var i = 0; i < GRID; i++) {
-    var c = document.createElement('div');
-    c.className = 'demo-cell';
-    court.appendChild(c);
-    cells.push(c);
-  }
-
-  var PATTERN = [6, 13, 20, 27];
   var demoPhase = 'watch';
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -424,43 +438,49 @@ footer{
       phaseEl.textContent = t('demoLabelWatch');
       phaseEl.className = 'demo-phase';
     } else {
-      phaseEl.textContent = t('demoLabelRecall');
-      phaseEl.className = 'demo-phase recall';
+      phaseEl.textContent = t('demoLabelGo');
+      phaseEl.className = 'demo-phase go';
     }
   }
 
-  function reset(){ cells.forEach(function(c){ c.className = 'demo-cell'; }); }
+  var sequence = [0];
+  function playSequence(i, onDone){
+    if (i >= sequence.length){ onDone(); return; }
+    var idx = sequence[i];
+    demoBalls[idx].classList.add('lit');
+    setTimeout(function(){
+      demoBalls[idx].classList.remove('lit');
+      setTimeout(function(){ playSequence(i + 1, onDone); }, 180);
+    }, 520);
+  }
 
   function loop(){
-    reset();
     demoPhase = 'watch';
     updateDemoPhaseLabel();
-
-    setTimeout(function(){
-      PATTERN.forEach(function(idx){ cells[idx].classList.add('lit'); });
-
+    playSequence(0, function(){
+      demoPhase = 'go';
+      updateDemoPhaseLabel();
       setTimeout(function(){
-        reset();
-        demoPhase = 'recall';
-        updateDemoPhaseLabel();
-        recall(0);
-      }, 900);
-    }, 500);
-  }
-
-  function recall(step){
-    if (step >= PATTERN.length){
-      setTimeout(loop, 1500);
-      return;
-    }
-    cells[PATTERN[step]].classList.add('recalled');
-    setTimeout(function(){ recall(step + 1); }, 420);
+        playSequence(0, function(){
+          setTimeout(function(){
+            if (sequence.length >= 5){
+              sequence = [Math.floor(Math.random() * 5)];
+            } else {
+              var next;
+              do { next = Math.floor(Math.random() * 5); } while (next === sequence[sequence.length - 1]);
+              sequence.push(next);
+            }
+            loop();
+          }, 1100);
+        });
+      }, 500);
+    });
   }
 
   updateUILanguage();
 
   if (reduced){
-    PATTERN.forEach(function(idx){ cells[idx].classList.add('recalled'); });
+    sequence.forEach(function(idx){ demoBalls[idx].classList.add('lit'); });
   } else {
     loop();
   }
